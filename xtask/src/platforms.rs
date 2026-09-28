@@ -1927,6 +1927,42 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "tag",
+        struct_name: "Tag",
+        noun: "tag scanner",
+        doc: &[
+            "An MQTT tag scanner: each message on `topic` is a scanned tag, whose ID",
+            "fires a tag scanned event. Not an entity.",
+        ],
+        url: "https://www.home-assistant.io/integrations/tag.mqtt/",
+        schema: None,
+        validate: false,
+        entity: None,
+        fields: &[
+            field("device", Enforced, "Device", &[
+                "The device the tag scanner belongs to; needs `identifiers` or",
+                "`connections`. Required per the docs, but optional in Home Assistant's",
+                "source and missing from the docs' example; the builder requires it.",
+            ]),
+            field("encoding", Opt, "String", &[
+                "Encoding of received payloads. Not in the tag docs; accepted by Home",
+                "Assistant, which ignores it and decodes `utf-8`.",
+            ]),
+            field("group", OneOrMany, "String", &[
+                "Not in the tag docs; accepted by Home Assistant (shared base schema)",
+                "but unused.",
+            ]),
+            field("qos", Opt, "Qos", &[
+                "Maximum QoS level for the subscription. Not in the tag docs; accepted",
+                "by Home Assistant. Default: `0`.",
+            ]),
+            field("topic", Req, "String", &["Topic to receive tag scanned events from. Required."]),
+            field("value_template", Opt, "String", &[
+                "Template that returns the tag ID. Default: the whole payload.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

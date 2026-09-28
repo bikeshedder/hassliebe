@@ -1,0 +1,4 @@
+{
+  "topic": "0AFFD2/tag_scanned",
+  "value_template": "{{ value_json.PN532.UID }}"
+}

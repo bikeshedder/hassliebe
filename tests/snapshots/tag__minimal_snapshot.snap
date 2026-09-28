@@ -1,0 +1,7 @@
+---
+source: tests/tag.rs
+expression: "Tag { topic: \"0AFFD2/tag_scanned\".into(), ..Default::default() }"
+---
+{
+  "topic": "0AFFD2/tag_scanned"
+}

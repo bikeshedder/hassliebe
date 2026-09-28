@@ -1,0 +1,16 @@
+---
+source: tests/tag.rs
+expression: full()
+---
+{
+  "device": {
+    "identifiers": [
+      "0AFFD2"
+    ],
+    "name": "Tag reader"
+  },
+  "encoding": "utf-8",
+  "qos": 1,
+  "topic": "0AFFD2/tag_scanned",
+  "value_template": "{{ value_json.PN532.UID }}"
+}

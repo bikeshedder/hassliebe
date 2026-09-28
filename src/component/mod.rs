@@ -31,6 +31,7 @@ pub mod select;
 pub mod sensor;
 pub mod siren;
 pub mod switch;
+pub mod tag;
 pub mod text;
 pub mod time;
 pub mod update;
@@ -212,6 +213,7 @@ components! {
     Sensor(sensor::Sensor),
     Siren(siren::Siren),
     Switch(switch::Switch),
+    Tag(tag::Tag),
     TemplateLight(light::TemplateLight),
     Text(text::Text),
     Time(time::Time),
