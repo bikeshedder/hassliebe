@@ -156,7 +156,7 @@ All string-valued enums use `string_enum!`, including closed sets (decision 11).
 
 - [x] **`Convert EntityCategory to string_enum!`** (`homeassistant/const.py`)
 - [x] **`Convert AvailabilityMode to string_enum!`** (MQTT docs, `schemas.py`)
-- [ ] **`Sync StateClass with HA`** (`sensor/const.py`; adds `measurement_angle`)
+- [x] **`Sync StateClass with HA`** (`sensor/const.py`; adds `measurement_angle`)
 - [ ] **`Sync Unit with HA`**
   Convert to `string_enum!`, rename `UnitOfMeasurement` → `Unit`, rebuild the
   list from all `UnitOf*` classes plus the plain constants (`°`, `lx`,

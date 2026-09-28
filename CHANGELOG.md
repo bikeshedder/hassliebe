@@ -13,3 +13,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Qos` serializes as the integers `0`, `1`, `2` and deserializes only those.
 - String enums (`AvailabilityMode`, `EntityCategory`, …) are `#[non_exhaustive]`, deserialize, and keep
   unknown values in an `Other(String)` variant.
+- Add `StateClass::MeasurementAngle`.
