@@ -1,0 +1,8 @@
+---
+source: tests/infrared_receiver.rs
+expression: "InfraredReceiver { state_topic: \"state-topic\".into(), ..Default::default() }"
+---
+{
+  "schema": "receiver",
+  "state_topic": "state-topic"
+}

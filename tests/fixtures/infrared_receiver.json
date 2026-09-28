@@ -1,0 +1,6 @@
+{
+  "name": "My Infrared receiver",
+  "schema": "receiver",
+  "icon": "mdi:ab-testing",
+  "state_topic": "ir/receive-signal"
+}

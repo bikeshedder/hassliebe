@@ -19,6 +19,7 @@ pub mod event;
 pub mod fan;
 pub mod humidifier;
 pub mod image;
+pub mod infrared;
 pub mod lawn_mower;
 pub mod light;
 pub mod lock;
@@ -196,8 +197,10 @@ components! {
     Fan(fan::Fan),
     Humidifier(humidifier::Humidifier),
     Image(image::Image),
-    LawnMower(lawn_mower::LawnMower),
+    InfraredEmitter(infrared::InfraredEmitter),
+    InfraredReceiver(infrared::InfraredReceiver),
     JsonLight(light::JsonLight),
+    LawnMower(lawn_mower::LawnMower),
     Light(light::Light),
     Lock(lock::Lock),
     Notify(notify::Notify),
@@ -207,8 +210,8 @@ components! {
     Sensor(sensor::Sensor),
     Siren(siren::Siren),
     Switch(switch::Switch),
-    Text(text::Text),
     TemplateLight(light::TemplateLight),
+    Text(text::Text),
     Time(time::Time),
     Update(update::Update),
     Vacuum(vacuum::Vacuum),

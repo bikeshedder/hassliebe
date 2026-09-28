@@ -1818,6 +1818,70 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "infrared",
+        struct_name: "InfraredEmitter",
+        noun: "infrared emitter",
+        doc: &[
+            "An MQTT infrared emitter (`emitter` schema): infrared commands are",
+            "published to `command_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/infrared.mqtt/#infrared-emitter-schema",
+        schema: Some("emitter"),
+        validate: false,
+        entity: Some(Entity {
+            name_default: Some("`MQTT Infrared` per the docs (`MQTT Infrared emitter` in Home Assistant's source)"),
+            undocumented: &["group", "icon", "origin", "visible_by_default"],
+            ..entity("infrared.living_room_emitter", "mdi:remote", "MQTT Infrared", true)
+        }),
+        fields: &[
+            field("command_template", Opt, "String", &[
+                "Template to generate the payload sent to `command_topic`. Variables:",
+                "`timings`, `modulation` and `repeat_count`.",
+            ]),
+            field("command_topic", Req, "String", &[
+                "Topic to publish infrared signals to, by default as a JSON object.",
+                "Required.",
+            ]),
+            RETAIN,
+            field("schema", Tag, "InfraredEmitterSchema", &[
+                "Schema of the infrared config; always `emitter`. Required.",
+            ]),
+        ],
+    },
+    Platform {
+        name: "infrared",
+        struct_name: "InfraredReceiver",
+        noun: "infrared receiver",
+        doc: &[
+            "An MQTT infrared receiver (`receiver` schema): received infrared signals",
+            "arrive on `state_topic` as JSON objects.",
+        ],
+        url: "https://www.home-assistant.io/integrations/infrared.mqtt/#infrared-receiver-schema",
+        schema: Some("receiver"),
+        validate: false,
+        entity: Some(Entity {
+            name_default: Some("`MQTT Infrared` per the docs (`MQTT Infrared receiver` in Home Assistant's source)"),
+            undocumented: &["group", "icon", "origin", "visible_by_default"],
+            ..entity("infrared.living_room_receiver", "mdi:remote", "MQTT Infrared", false)
+        }),
+        fields: &[
+            field("retain", Opt, "bool", &[
+                "Publish with the retain flag. Default: `false`. Home Assistant's",
+                "source does not accept it for receivers and drops it.",
+            ]),
+            field("schema", Tag, "InfraredReceiverSchema", &[
+                "Schema of the infrared config; always `receiver`. Required.",
+            ]),
+            field("state_topic", Req, "String", &[
+                "Topic to receive signals from: JSON with `timings` (microseconds, on",
+                "positive, off negative) and optional `modulation` (Hz). Required.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template to extract the signal JSON from the `state_topic` payload.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

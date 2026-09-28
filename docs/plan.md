@@ -276,7 +276,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add climate`**
 - [x] **`Add JSON schema light`**
 - [x] **`Add template schema light`**
-- [ ] **`Add infrared`** (`InfraredEmitter`, `InfraredReceiver`)
+- [x] **`Add infrared`** (`InfraredEmitter`, `InfraredReceiver`)
 - [ ] **`Add device_trigger`** (platform `device_automation`; not an entity)
 - [ ] **`Add tag`** (not an entity)
 - [ ] **`Check that every supported platform has a Component variant`**

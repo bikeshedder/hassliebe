@@ -1,0 +1,40 @@
+---
+source: tests/infrared_receiver.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "living_room/ir/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "default_entity_id": "infrared.living_room_ir",
+  "device": {
+    "identifiers": [
+      "living_room_ir_device"
+    ],
+    "name": "IR receiver"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/living_room_ir.png",
+  "group": [
+    "living_room_ir_2"
+  ],
+  "icon": "mdi:remote",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "living_room/ir/attributes",
+  "message_expiry_interval": 60,
+  "name": "IR receiver",
+  "origin": {
+    "name": "living_room_ir2mqtt"
+  },
+  "qos": 1,
+  "schema": "receiver",
+  "state_topic": "living_room/ir/received",
+  "unique_id": "living_room_ir",
+  "value_template": "{{ value_json.signal | tojson }}",
+  "visible_by_default": true
+}

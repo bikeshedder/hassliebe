@@ -1,0 +1,8 @@
+---
+source: tests/infrared_emitter.rs
+expression: "InfraredEmitter\n{ command_topic: \"command-topic\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "command-topic",
+  "schema": "emitter"
+}

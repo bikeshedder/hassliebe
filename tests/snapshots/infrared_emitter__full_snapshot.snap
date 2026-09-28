@@ -1,0 +1,41 @@
+---
+source: tests/infrared_emitter.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "living_room/ir/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{{ {\"timings\": timings, \"modulation\": modulation} | tojson }}",
+  "command_topic": "living_room/ir/send",
+  "default_entity_id": "infrared.living_room_ir",
+  "device": {
+    "identifiers": [
+      "living_room_ir_device"
+    ],
+    "name": "IR blaster"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/living_room_ir.png",
+  "group": [
+    "living_room_ir_2"
+  ],
+  "icon": "mdi:remote",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "living_room/ir/attributes",
+  "message_expiry_interval": 60,
+  "name": "IR blaster",
+  "origin": {
+    "name": "living_room_ir2mqtt"
+  },
+  "qos": 1,
+  "retain": false,
+  "schema": "emitter",
+  "unique_id": "living_room_ir",
+  "visible_by_default": true
+}
