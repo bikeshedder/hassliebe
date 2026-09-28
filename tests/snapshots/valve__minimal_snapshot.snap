@@ -1,0 +1,8 @@
+---
+source: tests/valve.rs
+expression: "Valve\n{\n    command_topic: Some(\"heater/valve/set\".into()), state_topic:\n    Some(\"heater/valve/state\".into()), ..Default::default()\n}"
+---
+{
+  "command_topic": "heater/valve/set",
+  "state_topic": "heater/valve/state"
+}

@@ -823,6 +823,76 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "valve",
+        struct_name: "Valve",
+        noun: "valve",
+        doc: &["An MQTT valve, such as a gas or water valve."],
+        url: "https://www.home-assistant.io/integrations/valve.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(Entity {
+            name_default: Some("`MQTT valve` per the docs (`MQTT Valve` in Home Assistant's source)"),
+            ..entity("valve.garden_water", "mdi:valve", "MQTT valve", true)
+        }),
+        fields: &[
+            COMMAND_TEMPLATE,
+            field("command_topic", Opt, "String", &[
+                "Topic to publish commands to: `payload_open`, `payload_close` and",
+                "`payload_stop`, or a position if `reports_position` is `true`.",
+            ]),
+            field("device_class", Opt, "ValveDeviceClass", &[
+                "Type of the valve, which sets its icon and the text shown for its",
+                "states.",
+            ]),
+            OPTIMISTIC_STATE,
+            field("payload_close", Nullable, "String", &[
+                "Payload sent to close the valve; [`Nullable::Null`] disables the command.",
+                "Not allowed if `reports_position` is `true`. Default: `CLOSE`.",
+            ]),
+            field("payload_open", Nullable, "String", &[
+                "Payload sent to open the valve; [`Nullable::Null`] disables the command.",
+                "Not allowed if `reports_position` is `true`. Default: `OPEN`.",
+            ]),
+            field("payload_stop", Opt, "String", &[
+                "Payload sent to stop the valve. Without it the valve cannot be stopped.",
+            ]),
+            field("position_closed", Opt, "i32", &[
+                "Device position that means closed; positions are scaled between",
+                "`position_closed` and `position_open`. Default: `0`.",
+            ]),
+            field("position_open", Opt, "i32", &[
+                "Device position that means open; positions are scaled between",
+                "`position_closed` and `position_open`. Default: `100`.",
+            ]),
+            field("reports_position", Opt, "bool", &[
+                "The valve reports and accepts positions; commands publish positions",
+                "instead of payloads. Default: `false`.",
+            ]),
+            RETAIN,
+            field("state_closed", Opt, "String", &[
+                "Payload on `state_topic` that means closed. Not allowed if",
+                "`reports_position` is `true`. Default: `closed`.",
+            ]),
+            field("state_closing", Opt, "String", &[
+                "Payload on `state_topic` that means closing. Default: `closing`.",
+            ]),
+            field("state_open", Opt, "String", &[
+                "Payload on `state_topic` that means open. Not allowed if",
+                "`reports_position` is `true`. Default: `open`.",
+            ]),
+            field("state_opening", Opt, "String", &[
+                "Payload on `state_topic` that means opening. Default: `opening`.",
+            ]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the state or position from, also as JSON with `state`",
+                "and `position`.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template to extract the state or position from the payload.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {
@@ -1061,15 +1131,18 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
             "MessageExpiryInterval",
             lines(&["Message expiry interval for command payloads."]),
         ),
-        (
-            "name",
-            Nullable,
-            "String",
-            vec![
-                format!("Name of the {noun}; [`Nullable::Null`] if only the device name is"),
-                format!("relevant.{name_default}"),
-            ],
-        ),
+        ("name", Nullable, "String", {
+            let mut doc = vec![format!(
+                "Name of the {noun}; [`Nullable::Null`] if only the device name is"
+            )];
+            if matches!(entity.name_default, Some(text) if !text.is_empty()) {
+                doc.push("relevant.".to_owned());
+                doc.push(name_default.trim_start().to_owned());
+            } else {
+                doc.push(format!("relevant.{name_default}"));
+            }
+            doc
+        }),
         (
             "origin",
             Opt,

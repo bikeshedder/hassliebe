@@ -25,6 +25,7 @@ pub mod sensor;
 pub mod switch;
 pub mod text;
 pub mod time;
+pub mod valve;
 
 /// Implemented by every platform config struct.
 pub trait Platform {
@@ -192,4 +193,5 @@ components! {
     Switch(switch::Switch),
     Text(text::Text),
     Time(time::Time),
+    Valve(valve::Valve),
 }

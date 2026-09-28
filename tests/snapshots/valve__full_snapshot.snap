@@ -1,0 +1,54 @@
+---
+source: tests/valve.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "garden/water/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"x\": {{ value }} }",
+  "command_topic": "garden/water/set",
+  "default_entity_id": "valve.garden_water",
+  "device": {
+    "identifiers": [
+      "garden_water_device"
+    ],
+    "name": "Garden water valve"
+  },
+  "device_class": "water",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/garden_water.png",
+  "group": [
+    "garden_water_2"
+  ],
+  "icon": "mdi:valve",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "garden/water/attributes",
+  "message_expiry_interval": 60,
+  "name": "Water",
+  "optimistic": false,
+  "origin": {
+    "name": "garden_water2mqtt"
+  },
+  "payload_close": "CLOSE",
+  "payload_open": "OPEN",
+  "payload_stop": "STOP",
+  "position_closed": 0,
+  "position_open": 100,
+  "qos": 1,
+  "reports_position": false,
+  "retain": true,
+  "state_closed": "closed",
+  "state_closing": "closing",
+  "state_open": "open",
+  "state_opening": "opening",
+  "state_topic": "garden/water/state",
+  "unique_id": "garden_water",
+  "value_template": "{{ value_json.x }}",
+  "visible_by_default": true
+}
