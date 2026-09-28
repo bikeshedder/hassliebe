@@ -64,6 +64,7 @@ pub struct DateTime {
     pub entity_picture: Option<String>,
     /// Unique IDs of member entities, making this a group date/time. Home
     /// Assistant also accepts a single string.
+    /// Not in the date/time docs; accepted by Home Assistant.
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",
@@ -72,6 +73,7 @@ pub struct DateTime {
     #[cfg_attr(feature = "builder", builder(default))]
     pub group: Vec<String>,
     /// Icon for the entity, e.g. `mdi:calendar-clock`.
+    /// Not in the date/time docs; accepted by Home Assistant.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub icon: Option<String>,
@@ -137,6 +139,7 @@ pub struct DateTime {
     pub value_template: Option<String>,
     /// Whether the entity is visible on dashboards when first added. Default:
     /// `true`.
+    /// Not in the date/time docs; accepted by Home Assistant.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub visible_by_default: Option<bool>,

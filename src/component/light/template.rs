@@ -94,6 +94,7 @@ pub struct TemplateLight {
     #[cfg_attr(feature = "builder", builder(default))]
     pub entity_category: Option<EntityCategory>,
     /// URL of a picture for the entity.
+    /// Not in the template light docs; accepted by Home Assistant.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub entity_picture: Option<String>,

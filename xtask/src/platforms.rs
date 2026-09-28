@@ -288,7 +288,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/number.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("number.heating_setpoint", "mdi:thermostat", "MQTT Number", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "origin"],
+            ..entity("number.heating_setpoint", "mdi:thermostat", "MQTT Number", true)
+        }),
         fields: &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &["Topic to publish new values to. Required."]),
@@ -322,7 +325,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/select.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("select.fan_mode", "mdi:fan", "MQTT Select", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "origin"],
+            ..entity("select.fan_mode", "mdi:fan", "MQTT Select", true)
+        }),
         fields: &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &["Topic to publish the selected option to. Required."]),
@@ -350,6 +356,7 @@ pub const PLATFORMS: &[Platform] = &[
         schema: None,
         validate: false,
         entity: Some(Entity {
+            undocumented: &["group", "origin"],
             encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
             qos_doc: &["QoS level for publishing. Default: `0`."],
             ..entity("button.restart_bedroom_switch", "mdi:restart", "MQTT Button", true)
@@ -372,7 +379,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/text.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("text.remote_lcd_screen", "mdi:ab-testing", "MQTT Text", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "icon", "origin"],
+            ..entity("text.remote_lcd_screen", "mdi:ab-testing", "MQTT Text", true)
+        }),
         fields: &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &["Topic to publish the text to. Required."]),
@@ -485,7 +495,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/date.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("date.scheduled_task", "mdi:calendar", "MQTT Date", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "icon", "origin", "visible_by_default"],
+            ..entity("date.scheduled_task", "mdi:calendar", "MQTT Date", true)
+        }),
         fields: &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &[
@@ -511,7 +524,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/time.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("time.alarm_clock", "mdi:clock-outline", "MQTT Time", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "origin", "visible_by_default"],
+            ..entity("time.alarm_clock", "mdi:clock-outline", "MQTT Time", true)
+        }),
         fields: &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &[
@@ -540,7 +556,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/datetime.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("datetime.scheduled_task", "mdi:calendar-clock", "MQTT Date/Time", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "icon", "origin", "visible_by_default"],
+            ..entity("datetime.scheduled_task", "mdi:calendar-clock", "MQTT Date/Time", true)
+        }),
         fields: &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &[
@@ -727,13 +746,7 @@ pub const PLATFORMS: &[Platform] = &[
         validate: true,
         entity: Some(Entity {
             name_default: Some(""),
-            undocumented: &[
-                "encoding",
-                "entity_category",
-                "entity_picture",
-                "message_expiry_interval",
-                "origin",
-            ],
+            undocumented: &["encoding", "entity_category", "entity_picture", "message_expiry_interval", "origin"],
             ..entity("device_tracker.paulus_phone", "mdi:cellphone", "", false)
         }),
         fields: &[
@@ -834,6 +847,7 @@ pub const PLATFORMS: &[Platform] = &[
         schema: None,
         validate: false,
         entity: Some(Entity {
+            undocumented: &["origin"],
             name_default: Some("`MQTT valve` per the docs (`MQTT Valve` in Home Assistant's source)"),
             ..entity("valve.garden_water", "mdi:valve", "MQTT valve", true)
         }),
@@ -970,7 +984,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/lawn_mower.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("lawn_mower.backyard", "mdi:robot-mower", "MQTT Lawn Mower", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "origin"],
+            ..entity("lawn_mower.backyard", "mdi:robot-mower", "MQTT Lawn Mower", true)
+        }),
         fields: &[
             field("activity_state_topic", Opt, "String", &[
                 "Topic to receive the activity from: `mowing`, `paused`, `docked` or",
@@ -1027,7 +1044,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/update.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("update.living_room_plug_firmware", "mdi:package-up", "MQTT Update", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "origin"],
+            ..entity("update.living_room_plug_firmware", "mdi:package-up", "MQTT Update", true)
+        }),
         fields: &[
             field("command_topic", Opt, "String", &[
                 "Topic to publish `payload_install` to, which starts the installation.",
@@ -1081,7 +1101,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/alarm_control_panel.mqtt/",
         schema: None,
         validate: false,
-        entity: Some(entity("alarm_control_panel.home_alarm", "mdi:shield-home", "MQTT Alarm", true)),
+        entity: Some(Entity {
+            undocumented: &["group", "origin"],
+            ..entity("alarm_control_panel.home_alarm", "mdi:shield-home", "MQTT Alarm", true)
+        }),
         fields: &[
             field("code", Opt, "String", &[
                 "Code to arm or disarm the alarm in the frontend, validated locally.",
@@ -1147,7 +1170,7 @@ pub const PLATFORMS: &[Platform] = &[
         validate: true,
         entity: Some(Entity {
             name_default: Some("`MQTT Vacuum` per the docs (`MQTT State Vacuum` in Home Assistant's source)"),
-            undocumented: &["entity_category", "entity_picture", "icon", "origin"],
+            undocumented: &["entity_category", "entity_picture", "group", "icon", "origin"],
             ..entity("vacuum.living_room", "mdi:robot-vacuum", "MQTT Vacuum", true)
         }),
         fields: &[
@@ -1394,6 +1417,7 @@ pub const PLATFORMS: &[Platform] = &[
         schema: None,
         validate: false,
         entity: Some(Entity {
+            undocumented: &["origin"],
             name_default: Some("`MQTT water heater` per the docs (`MQTT Water Heater` in Home Assistant's source)"),
             ..entity("water_heater.boiler", "mdi:water-boiler", "MQTT water heater", true)
         }),
@@ -1702,7 +1726,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/light.mqtt/#json-schema",
         schema: Some("json"),
         validate: false,
-        entity: Some(entity("light.living_room_strip", "mdi:led-strip-variant", "MQTT JSON Light", true)),
+        entity: Some(Entity {
+            undocumented: &["entity_picture", "origin"],
+            ..entity("light.living_room_strip", "mdi:led-strip-variant", "MQTT JSON Light", true)
+        }),
         fields: &[
             field("brightness", Opt, "bool", &[
                 "Support brightness when the `rgb`, `rgbw` or `rgbww` color mode is",
@@ -1756,7 +1783,10 @@ pub const PLATFORMS: &[Platform] = &[
         url: "https://www.home-assistant.io/integrations/light.mqtt/#template-schema",
         schema: Some("template"),
         validate: false,
-        entity: Some(entity("light.bedroom_bulb", "mdi:lightbulb", "MQTT Template Light", true)),
+        entity: Some(Entity {
+            undocumented: &["entity_picture", "origin"],
+            ..entity("light.bedroom_bulb", "mdi:lightbulb", "MQTT Template Light", true)
+        }),
         fields: &[
             field("blue_template", Opt, "String", &[
                 "Template to extract the blue value (`0` to `255`) from the state payload.",

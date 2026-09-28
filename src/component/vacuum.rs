@@ -87,6 +87,7 @@ pub struct Vacuum {
     pub fan_speed_list: Vec<String>,
     /// Unique IDs of member entities, making this a group vacuum. Home
     /// Assistant also accepts a single string.
+    /// Not in the vacuum docs; accepted by Home Assistant.
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",

@@ -72,6 +72,7 @@ pub struct Update {
     pub entity_picture: Option<String>,
     /// Unique IDs of member entities, making this a group update. Home
     /// Assistant also accepts a single string.
+    /// Not in the update docs; accepted by Home Assistant.
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",

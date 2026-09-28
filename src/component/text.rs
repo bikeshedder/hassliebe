@@ -65,6 +65,7 @@ pub struct Text {
     pub entity_picture: Option<String>,
     /// Unique IDs of member entities, making this a group text. Home
     /// Assistant also accepts a single string.
+    /// Not in the text docs; accepted by Home Assistant.
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",
@@ -73,6 +74,7 @@ pub struct Text {
     #[cfg_attr(feature = "builder", builder(default))]
     pub group: Vec<String>,
     /// Icon for the entity, e.g. `mdi:ab-testing`.
+    /// Not in the text docs; accepted by Home Assistant.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub icon: Option<String>,

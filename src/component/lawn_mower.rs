@@ -76,6 +76,7 @@ pub struct LawnMower {
     pub entity_picture: Option<String>,
     /// Unique IDs of member entities, making this a group lawn mower. Home
     /// Assistant also accepts a single string.
+    /// Not in the lawn mower docs; accepted by Home Assistant.
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",

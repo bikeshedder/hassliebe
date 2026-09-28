@@ -69,6 +69,7 @@ pub struct Button {
     pub entity_picture: Option<String>,
     /// Unique IDs of member entities, making this a group button. Home
     /// Assistant also accepts a single string.
+    /// Not in the button docs; accepted by Home Assistant.
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",
