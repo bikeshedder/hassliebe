@@ -1,0 +1,7 @@
+---
+source: tests/binary_sensor.rs
+expression: "BinarySensor\n{ state_topic: \"hallway/door/state\".into(), ..Default::default() }"
+---
+{
+  "state_topic": "hallway/door/state"
+}

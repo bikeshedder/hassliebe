@@ -1,0 +1,50 @@
+---
+source: tests/binary_sensor.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "payload_available": "1",
+      "payload_not_available": "0",
+      "topic": "hallway/door/status"
+    }
+  ],
+  "availability_mode": "any",
+  "default_entity_id": "binary_sensor.hallway_door",
+  "device": {
+    "connections": [
+      [
+        "mac",
+        "02:5b:26:a8:dc:12"
+      ]
+    ],
+    "name": "Hallway door"
+  },
+  "device_class": "door",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/door.png",
+  "expire_after": 600,
+  "force_update": true,
+  "group": [
+    "hallway_window"
+  ],
+  "icon": "mdi:door",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "hallway/door/attributes",
+  "message_expiry_interval": 60,
+  "name": "Door",
+  "off_delay": 30,
+  "origin": {
+    "name": "door2mqtt"
+  },
+  "payload_off": "closed",
+  "payload_on": "open",
+  "qos": 0,
+  "state_topic": "hallway/door/state",
+  "unique_id": "hallway_door",
+  "value_template": "{{ value_json.state }}",
+  "visible_by_default": false
+}

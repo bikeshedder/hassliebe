@@ -193,7 +193,7 @@ docs with HA defaults as stated in the docs (decision 4), full + minimal
 snapshot, round-trip test, one real-world fixture, CHANGELOG line.
 
 - [x] **`Sync sensor with HA`** (`name` → `Option<EntityName>`; 62 device classes)
-- [ ] **`Sync binary_sensor with HA`** (`group` → `Vec<String>`)
+- [x] **`Sync binary_sensor with HA`** (`group` → `Vec<String>`; 29 device classes)
 - [ ] **`Sync switch with HA`**
 - [ ] **`Sync number with HA`** (`min` default 1 per docs; `NumberMode` via `string_enum!`)
 - [ ] **`Sync select with HA`** (`entity_category` typed; no device class in HA)
@@ -230,8 +230,8 @@ Same checklist as Phase D.
   Port `ABBREVIATIONS` (275), `DEVICE_ABBREVIATIONS` (11),
   `ORIGIN_ABBREVIATIONS` (3) from `abbreviations.py`; apply like
   `discovery.py` (root, each availability entry, each `cmps` entry; device/origin
-  tables only to those blocks). Abbreviated fixtures must equal their expanded
-  form. Consider a test that fails when the table size drifts.
+  tables only to those blocks) and the `~` base topic substitution shown in
+  the MQTT docs. Abbreviated fixtures must equal their expanded form. Consider a test that fails when the table size drifts.
 
 ### Phase G — polish
 
