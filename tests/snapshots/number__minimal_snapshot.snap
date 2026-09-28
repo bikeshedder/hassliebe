@@ -1,0 +1,7 @@
+---
+source: tests/number.rs
+expression: "Number { command_topic: \"my-device/threshold\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "my-device/threshold"
+}

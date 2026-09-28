@@ -33,3 +33,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (29 values), `group` as a list, same common fields as `Sensor`.
 - Sync `Switch` with Home Assistant: `SwitchDeviceClass`, `command_topic`
   required, `state_topic` optional.
+- Sync `Number` with Home Assistant: `NumberDeviceClass` (58 values), open
+  `NumberMode`, `payload_reset`, `group`, alphabetical fields.

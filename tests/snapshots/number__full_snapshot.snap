@@ -1,0 +1,50 @@
+---
+source: tests/number.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "heating/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{{ value | round(1) }}",
+  "command_topic": "heating/setpoint/set",
+  "default_entity_id": "number.heating_setpoint",
+  "device": {
+    "identifiers": [
+      "heating01"
+    ],
+    "name": "Heating"
+  },
+  "device_class": "temperature",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/heating.png",
+  "group": [
+    "heating_boost"
+  ],
+  "icon": "mdi:thermostat",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "heating/attributes",
+  "max": 28.0,
+  "message_expiry_interval": 600,
+  "min": 5.0,
+  "mode": "slider",
+  "name": "Setpoint",
+  "optimistic": false,
+  "origin": {
+    "name": "heating2mqtt"
+  },
+  "payload_reset": "None",
+  "qos": 1,
+  "retain": false,
+  "state_topic": "heating/setpoint",
+  "step": 0.5,
+  "unique_id": "heating_setpoint",
+  "unit_of_measurement": "°C",
+  "value_template": "{{ value_json.setpoint }}",
+  "visible_by_default": true
+}
