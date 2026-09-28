@@ -16,6 +16,7 @@ pub use common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
     entity_category::EntityCategory,
+    origin::Origin,
     qos::Qos,
     state_class::StateClass,
     unit::Unit,

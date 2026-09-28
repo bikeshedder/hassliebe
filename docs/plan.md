@@ -172,7 +172,7 @@ All string-valued enums use `string_enum!`, including closed sets (decision 11).
   type); `name` per decision 4; `identifiers:
   Vec<String>`, skipped when empty, deserializer also accepts a single string
   (decision 5; shared helper in `common/`, reused for `group`); no `Arc`.
-- [ ] **`Add Origin`** (`name` required, `sw_version`, `support_url`).
+- [x] **`Add Origin`** (`name` required, `sw_version`, `support_url`).
 - [ ] **`Add MessageExpiryInterval`** (decision 12)
   Untagged enum: `Seconds(u32)` or a time period struct. Derive the period keys
   from `cv.time_period_dict` in `helpers/config_validation.py`.

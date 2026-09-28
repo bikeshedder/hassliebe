@@ -22,3 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Device.identifiers` and `Device.connections` are plain `Vec`s; `identifiers`
   also reads a single string. The `Device` builder requires `name` and an
   identifier or connection.
+- Add `Origin`.
