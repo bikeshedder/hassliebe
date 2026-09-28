@@ -5,8 +5,8 @@ use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
     entity_category::EntityCategory,
-    entity_name::EntityName,
     message_expiry_interval::MessageExpiryInterval,
+    nullable::Nullable,
     origin::Origin,
     qos::Qos,
 };
@@ -85,15 +85,15 @@ pub struct Select {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub message_expiry_interval: Option<MessageExpiryInterval>,
-    /// Name of the select; [`EntityName::Null`] if only the device name is
+    /// Name of the select; [`Nullable::Null`] if only the device name is
     /// relevant. Default: `MQTT Select`.
     #[serde(
         default,
         skip_serializing_if = "Option::is_none",
-        deserialize_with = "crate::common::entity_name::deserialize"
+        deserialize_with = "crate::common::nullable::deserialize"
     )]
     #[cfg_attr(feature = "builder", builder(default))]
-    pub name: Option<EntityName>,
+    pub name: Option<Nullable<String>>,
     /// Assume the option changes as commanded. Default: `true` without
     /// `state_topic`, otherwise `false`.
     #[serde(default, skip_serializing_if = "Option::is_none")]

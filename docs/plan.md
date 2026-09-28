@@ -192,7 +192,7 @@ required/optional fields (required fields have no builder default, decision 13),
 docs with HA defaults as stated in the docs (decision 4), full + minimal
 snapshot, round-trip test, one real-world fixture, CHANGELOG line.
 
-- [x] **`Sync sensor with HA`** (`name` → `Option<EntityName>`; 62 device classes)
+- [x] **`Sync sensor with HA`** (`name` → `Option<Nullable<String>>`; 62 device classes)
 - [x] **`Sync binary_sensor with HA`** (`group` → `Vec<String>`; 29 device classes)
 - [x] **`Sync switch with HA`** (`SwitchDeviceClass`: `outlet`, `switch`)
 - [x] **`Sync number with HA`** (`min` default 1 per docs; `NumberMode` via `string_enum!`; 58 device classes)
@@ -291,8 +291,9 @@ are the source of truth; the core source only fills gaps the docs leave open.
     period map.
 13. **Builders:** required fields have no builder default; `build()` fails when
     they are missing.
-14. **Nullable `name`:** HA distinguishes an absent `name` (platform default)
-    from `null` (only the device name). Entity `name` fields are
-    `Option<EntityName>` (`Null` or `Name(String)`, `From<&str>`).
+14. **Nullable fields:** HA distinguishes an absent key (default) from `null`
+    for entity `name` (only the device name is shown) and for the cover
+    command payloads (command disabled). Such fields are
+    `Option<Nullable<T>>` (`Null` or `Value(T)`; `From<&str>` for strings).
 15. **Lists where absent equals empty** (`availability`, `group`, device
     `identifiers`/`connections`) are plain `Vec`s, skipped when empty.

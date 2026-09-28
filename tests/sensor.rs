@@ -1,7 +1,7 @@
 mod support;
 
 use hassliebe::{
-    Availability, AvailabilityMode, Device, EntityCategory, EntityName, Origin, Qos, StateClass,
+    Availability, AvailabilityMode, Device, EntityCategory, Nullable, Origin, Qos, StateClass,
     sensor::{Sensor, SensorDeviceClass},
     unit::UnitOfPower,
 };
@@ -71,7 +71,7 @@ fn minimal_snapshot() {
 fn round_trip() {
     support::assert_round_trip(&full());
     support::assert_round_trip(&Sensor {
-        name: Some(EntityName::Null),
+        name: Some(Nullable::Null),
         state_topic: "home/kitchen/temperature".into(),
         ..Default::default()
     });
@@ -112,7 +112,7 @@ fn null_name_and_unknown_values() {
         }"#,
     )
     .unwrap();
-    assert_eq!(sensor.name, Some(EntityName::Null));
+    assert_eq!(sensor.name, Some(Nullable::Null));
     assert_eq!(
         sensor.device_class,
         Some(SensorDeviceClass::Other("future_class".into()))

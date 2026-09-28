@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `MessageExpiryInterval` (seconds or a `TimePeriod`).
 - Replace the `Discovery` trait with `Platform`; `unique_id` is optional.
 - Sync `Sensor` with Home Assistant: `SensorDeviceClass` with all 62 device
-  classes, nullable `name` (`EntityName`), `availability` (was `availabilty`),
+  classes, nullable `name` (`Nullable`), `availability` (was `availabilty`),
   `origin`, `message_expiry_interval`, `visible_by_default`; legacy top-level
   availability fields removed.
 - Sync `BinarySensor` with Home Assistant: its own `BinarySensorDeviceClass`

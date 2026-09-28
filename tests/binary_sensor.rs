@@ -1,7 +1,7 @@
 mod support;
 
 use hassliebe::{
-    Availability, AvailabilityMode, Device, EntityCategory, EntityName, Origin, Qos,
+    Availability, AvailabilityMode, Device, EntityCategory, Nullable, Origin, Qos,
     binary_sensor::{BinarySensor, BinarySensorDeviceClass},
 };
 use pretty_assertions::assert_eq;
@@ -81,7 +81,7 @@ fn docs_motion_example() {
                 ..Default::default()
             }),
             device_class: Some(BinarySensorDeviceClass::Motion),
-            name: Some(EntityName::Null),
+            name: Some(Nullable::Null),
             state_topic: "homeassistant/binary_sensor/garden/state".into(),
             unique_id: Some("motion01ad".into()),
             ..Default::default()
