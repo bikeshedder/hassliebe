@@ -1,0 +1,8 @@
+---
+source: tests/scene.rs
+expression: "Scene\n{\n    command_topic: Some(\"home/living_room/party_scene/set\".into()),\n    payload_on: Some(\"ON\".into()), ..Default::default()\n}"
+---
+{
+  "command_topic": "home/living_room/party_scene/set",
+  "payload_on": "ON"
+}

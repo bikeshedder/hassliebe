@@ -546,6 +546,32 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "scene",
+        struct_name: "Scene",
+        noun: "scene",
+        doc: &["An MQTT scene: activating it publishes `payload_on` to `command_topic`."],
+        url: "https://www.home-assistant.io/integrations/scene.mqtt/",
+        schema: None,
+        entity: Some(Entity {
+            encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
+            qos_doc: &["QoS level for publishing. Default: `0`."],
+            undocumented: &["group", "origin"],
+            ..entity("scene.party_scene", "mdi:party-popper", "MQTT Scene", true)
+        }),
+        fields: &[
+            field("command_topic", Enforced, "String", &[
+                "Topic to publish `payload_on` to when the scene is activated. Optional",
+                "per the docs, but required by Home Assistant; the builder requires it.",
+            ]),
+            field("payload_on", Enforced, "String", &[
+                "Payload sent to `command_topic` to activate the scene. Default: `ON`",
+                "per the docs; Home Assistant has no default and fails to activate the",
+                "scene without it, so the builder requires it.",
+            ]),
+            RETAIN,
+        ],
+    },
 ];
 
 macro_rules! color_fields {

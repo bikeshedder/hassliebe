@@ -58,3 +58,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   any element type (`common::one_or_many`).
 - Add `Time`.
 - Add `DateTime`.
+- Add `Scene`.

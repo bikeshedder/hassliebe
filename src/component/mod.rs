@@ -13,6 +13,7 @@ pub mod date;
 pub mod datetime;
 pub mod light;
 pub mod number;
+pub mod scene;
 pub mod select;
 pub mod sensor;
 pub mod switch;
@@ -173,6 +174,7 @@ components! {
     DateTime(datetime::DateTime),
     Light(light::Light),
     Number(number::Number),
+    Scene(scene::Scene),
     Select(select::Select),
     Sensor(sensor::Sensor),
     Switch(switch::Switch),

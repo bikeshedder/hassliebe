@@ -1,0 +1,17 @@
+{
+  "unique_id": "living_room_party_scene",
+  "name": "Party Scene",
+  "command_topic": "home/living_room/party_scene/set",
+  "availability": [
+    {
+      "topic": "home/living_room/party_scene/available"
+    }
+  ],
+  "payload_on": "ON",
+  "qos": 0,
+  "retain": true,
+  "device": {
+    "name": "Living Room",
+    "identifiers": "livingroom_lights"
+  }
+}

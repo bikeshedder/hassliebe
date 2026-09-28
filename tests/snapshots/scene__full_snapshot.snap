@@ -1,0 +1,40 @@
+---
+source: tests/scene.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/living_room/party_scene/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_topic": "home/living_room/party_scene/set",
+  "default_entity_id": "scene.home_living_room_party_scene",
+  "device": {
+    "identifiers": [
+      "home_living_room_party_scene_device"
+    ],
+    "name": "Living Room"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/home_living_room_party_scene.png",
+  "group": [
+    "home_living_room_party_scene_2"
+  ],
+  "icon": "mdi:party-popper",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/living_room/party_scene/attributes",
+  "message_expiry_interval": 60,
+  "name": "Party Scene",
+  "origin": {
+    "name": "home_living_room_party_scene2mqtt"
+  },
+  "payload_on": "ON",
+  "qos": 1,
+  "retain": true,
+  "unique_id": "home_living_room_party_scene",
+  "visible_by_default": true
+}
