@@ -140,7 +140,7 @@ Noted docs/source discrepancies (resolved in favour of the docs, decision 4):
   rejected). `FromStr` must agree with serde, including aliases. Test-time guard
   against duplicate strings/aliases. Unit tests incl. `Other` round-trip, alias
   normalisation and the `Other("known")` case.
-- [ ] **`Add snapshot and fixture scaffolding`**
+- [x] **`Add snapshot and fixture scaffolding`**
   `tests/` layout, `tests/fixtures/`, a small round-trip helper, one insta
   snapshot as example. No component tests yet.
 - [ ] **`Serialize Qos as integers`**

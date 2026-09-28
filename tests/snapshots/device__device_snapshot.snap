@@ -1,0 +1,17 @@
+---
+source: tests/device.rs
+expression: device
+---
+{
+  "configuration_url": "https://example.com/sensor_portal/config",
+  "hw_version": "1.01a",
+  "identifiers": [
+    "bedroom01ae"
+  ],
+  "manufacturer": "Example sensors Ltd.",
+  "model": "Example Sensor",
+  "model_id": "K9",
+  "name": "Bedroom",
+  "serial_number": "12AE3010545",
+  "sw_version": "2024.1.0"
+}
