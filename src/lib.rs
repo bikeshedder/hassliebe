@@ -11,12 +11,14 @@ pub mod common;
 pub mod component;
 pub mod discovery;
 
+pub use common::unit;
 pub use common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
     entity_category::EntityCategory,
     qos::Qos,
     state_class::StateClass,
-    unit::UnitOfMeasurement,
+    unit::Unit,
 };
 pub use component::{binary_sensor, number, select, sensor, switch};
+pub use string_enum::UnknownValue;

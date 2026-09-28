@@ -15,7 +15,7 @@ inspect discovery payloads.
 ## Example
 
 ```rust
-use hassliebe::{Device, sensor::{Sensor, SensorDeviceClass}, StateClass, Unit};
+use hassliebe::{Device, sensor::{Sensor, SensorDeviceClass}, StateClass, unit::UnitOfPower};
 
 let sensor = Sensor {
     name: Some("Power".into()),
@@ -23,7 +23,7 @@ let sensor = Sensor {
     state_topic: "wallbox/garage/power".into(),
     device_class: Some(SensorDeviceClass::Power),
     state_class: Some(StateClass::Measurement),
-    unit_of_measurement: Some(Unit::Watt),
+    unit_of_measurement: Some(UnitOfPower::Watt.into()),
     device: Some(Device {
         identifiers: vec!["wallbox_garage".into()],
         name: "Wallbox Garage".into(),

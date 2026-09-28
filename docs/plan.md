@@ -157,13 +157,13 @@ All string-valued enums use `string_enum!`, including closed sets (decision 11).
 - [x] **`Convert EntityCategory to string_enum!`** (`homeassistant/const.py`)
 - [x] **`Convert AvailabilityMode to string_enum!`** (MQTT docs, `schemas.py`)
 - [x] **`Sync StateClass with HA`** (`sensor/const.py`; adds `measurement_angle`)
-- [ ] **`Sync Unit with HA`**
-  Convert to `string_enum!`, rename `UnitOfMeasurement` → `Unit`, rebuild the
-  list from all `UnitOf*` classes plus the plain constants (`°`, `lx`,
-  `UV index`, `rpm`, `dB`, `dBm`, currencies). Fixes `ft³/m` → `ft³/min` and the
-  micro sign. Legacy spellings from `AMBIGUOUS_UNITS` become input aliases
-  (decision 1). One variant per wire string (decision 2): `"m"` is `Unit::M`
-  (meters and months), `"dB"` stays `Unit::Decibel` (same unit in both classes).
+- [x] **`Sync Unit with HA`**
+  Replace `UnitOfMeasurement` with the 29 `UnitOf*` classes (generated from
+  `const.py`, `string_enum! { @closed … }`) and the `Unit` wrapper with the
+  plain constants (`°`, `lx`, `UV index`, `rpm`, `dB`, `dBm`, currencies,
+  deprecated `p/m³`) (decision 2). Fixes `ft³/m` → `ft³/min` and the micro
+  sign. Legacy spellings from `AMBIGUOUS_UNITS` become input aliases
+  (decision 1).
 - [ ] **`Make Availability deserializable and document it`**
   `Deserialize`, `PartialEq`, `#[serde(default)]`, docs with HA defaults
   (`online`/`offline`), fields verified against `schemas.py`.
@@ -253,10 +253,11 @@ are the source of truth; the core source only fills gaps the docs leave open.
    debugging and consuming payloads of other devices.
 1. **Input aliases:** yes. `string_enum!` accepts input-only aliases (e.g. U+00B5
    `µ` spellings, `VAr`); serialization always emits the canonical string.
-2. **Duplicate unit strings:** one variant per wire string. Where one string
-   means different units, the variant is named after the string (`"m"` →
-   `Unit::M`, meters and months). `"dB"` is the decibel in both classes and stays
-   `Unit::Decibel`.
+2. **Units mirror HA's classes** (revised the same day): one closed enum per
+   `UnitOf*` class, wrapped by `Unit` (one variant per class, the plain constants,
+   `Other(String)`), `From<UnitOf*> for Unit`. When reading, shared strings
+   resolve by precedence: `m`, `mm`, `cm`, `in` → length; `dB` → sound pressure.
+   A test pins the set of shared strings.
 3. **Unknown platforms in `cmps`:** fallback `Component::Other { platform, config }`
    holding a `serde_json::Map`, feature `json`. Without `json`, `Component` and
    `DeviceDiscovery` are serialize-only.

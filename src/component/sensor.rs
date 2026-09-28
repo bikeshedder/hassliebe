@@ -9,7 +9,7 @@ use crate::common::{
     entity_category::EntityCategory,
     qos::Qos,
     state_class::StateClass,
-    unit::UnitOfMeasurement,
+    unit::Unit,
 };
 use serde::Serialize;
 
@@ -73,7 +73,7 @@ pub struct Sensor {
     // this implementation.
     pub unique_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub unit_of_measurement: Option<UnitOfMeasurement>,
+    pub unit_of_measurement: Option<Unit>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub value_template: Option<String>,
 }

@@ -14,3 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - String enums (`AvailabilityMode`, `EntityCategory`, …) are `#[non_exhaustive]`, deserialize, and keep
   unknown values in an `Other(String)` variant.
 - Add `StateClass::MeasurementAngle`.
+- Replace `UnitOfMeasurement` with `Unit` and the `UnitOf*` classes from Home
+  Assistant. Adds all current units, fixes `ft³/min` and serializes the micro sign
+  as U+03BC.

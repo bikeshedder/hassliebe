@@ -34,7 +34,7 @@ src/
     entity_category.rs
     qos.rs          Qos, serialized as the integers 0, 1, 2
     state_class.rs
-    unit.rs         Unit of measurement
+    unit.rs         Unit and the UnitOf* classes
   component/
     mod.rs          Component enum (one variant per platform), Platform trait
     sensor.rs       Sensor, SensorDeviceClass
@@ -74,9 +74,21 @@ not know yet. This applies to closed sets such as `EntityCategory` too.
 
 Variants may carry input-only aliases for legacy spellings Home Assistant still
 accepts (e.g. the micro sign U+00B5 in `µg/m³`); serialization always emits the
-canonical string. Each wire string maps to exactly one variant. Where Home
-Assistant uses one string for different units (`"m"` for meters and months), the
-variant is named after the string (`Unit::M`).
+canonical string. Each wire string maps to exactly one variant.
+
+### Units
+
+Units mirror `homeassistant/const.py`: one closed enum per `UnitOf*` class
+(`UnitOfPower`, `UnitOfSpeed`, …, generated with `string_enum! { @closed … }`, so
+without `Other`), wrapped by the open `Unit` enum, which also holds the units Home
+Assistant defines as plain constants (`°`, `lx`, currencies, …) and
+`Other(String)`. Every class converts into `Unit`, so builders accept
+`UnitOfSpeed::MetersPerSecond` directly.
+
+A few strings belong to more than one class (`"m"` is meters and months; `"mm"`,
+`"cm"`, `"in"` are lengths and precipitation depths; `"dB"` is sound pressure and
+signal strength). When reading, the first match in a fixed precedence wins
+(length, sound pressure), so these values normalise on a round trip.
 
 ### Device classes per platform
 

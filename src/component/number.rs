@@ -6,7 +6,7 @@ use crate::{
         device::Device,
         entity_category::EntityCategory,
         qos::Qos,
-        unit::UnitOfMeasurement,
+        unit::Unit,
     },
     discovery::Discovery,
 };
@@ -78,7 +78,7 @@ pub struct Number {
     pub step: Option<f64>,
     pub unique_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub unit_of_measurement: Option<UnitOfMeasurement>,
+    pub unit_of_measurement: Option<Unit>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub value_template: Option<String>,
 }
