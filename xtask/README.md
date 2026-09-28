@@ -36,7 +36,8 @@ formatted with `rustfmt`. Kinds:
 
 1. Add a `Platform` to `PLATFORMS` in `src/platforms.rs`. Field docs are short
    paraphrases of the platform's `*.mqtt` docs page.
-2. Create `src/component/<platform>.rs` with a module doc, an empty
+2. Create `src/component/<platform>.rs` with a module doc, `use
+   crate::string_enum::string_enum;` if it defines string enums, an empty
    `component <platform>` region and, per enum, a `string_enum!` with an empty
    `device-class` region.
 3. Run `cargo xtask generate <ha-core>`.

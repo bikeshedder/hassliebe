@@ -1012,8 +1012,6 @@ const IMPORTS: &[(&str, &str)] = &[
     ("Unit", "unit::Unit"),
 ];
 
-const BUILTINS: &[&str] = &["String", "Vec", "bool", "u32", "i32", "f64"];
-
 /// A field with an owned doc, for the common fields built at runtime.
 struct Owned {
     name: &'static str,
@@ -1235,11 +1233,6 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
         .collect();
     imports.sort_unstable();
     imports.dedup();
-    let local_enums = names.iter().any(|name| {
-        !BUILTINS.contains(name)
-            && !IMPORTS.iter().any(|(import, _)| name == import)
-            && *name != "AvailabilityMode"
-    });
 
     let mut out = String::new();
     writeln!(out, "use serde::{{Deserialize, Serialize}};\n")?;
@@ -1249,9 +1242,6 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
         writeln!(out, "        {import},")?;
     }
     writeln!(out, "    }},")?;
-    if local_enums {
-        writeln!(out, "    string_enum::string_enum,")?;
-    }
     writeln!(out, "}};\n")?;
     for line in platform.doc {
         writeln!(out, "/// {line}")?;

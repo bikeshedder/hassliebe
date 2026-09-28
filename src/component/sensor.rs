@@ -1,22 +1,21 @@
 //! MQTT sensor: <https://www.home-assistant.io/integrations/sensor.mqtt/>
 
+use crate::string_enum::string_enum;
+
 // @generated begin component sensor
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
-use crate::{
-    common::{
-        availability::{Availability, AvailabilityMode},
-        device::Device,
-        entity_category::EntityCategory,
-        message_expiry_interval::MessageExpiryInterval,
-        nullable::Nullable,
-        origin::Origin,
-        qos::Qos,
-        state_class::StateClass,
-        unit::Unit,
-    },
-    string_enum::string_enum,
+use crate::common::{
+    availability::{Availability, AvailabilityMode},
+    device::Device,
+    entity_category::EntityCategory,
+    message_expiry_interval::MessageExpiryInterval,
+    nullable::Nullable,
+    origin::Origin,
+    qos::Qos,
+    state_class::StateClass,
+    unit::Unit,
 };
 
 /// An MQTT sensor: a read-only entity whose state is received on

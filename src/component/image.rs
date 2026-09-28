@@ -1,20 +1,19 @@
 //! MQTT image: <https://www.home-assistant.io/integrations/image.mqtt/>
 
+use crate::string_enum::string_enum;
+
 // @generated begin component image
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
-use crate::{
-    common::{
-        availability::{Availability, AvailabilityMode},
-        device::Device,
-        entity_category::EntityCategory,
-        message_expiry_interval::MessageExpiryInterval,
-        nullable::Nullable,
-        origin::Origin,
-        qos::Qos,
-    },
-    string_enum::string_enum,
+use crate::common::{
+    availability::{Availability, AvailabilityMode},
+    device::Device,
+    entity_category::EntityCategory,
+    message_expiry_interval::MessageExpiryInterval,
+    nullable::Nullable,
+    origin::Origin,
+    qos::Qos,
 };
 
 /// An MQTT image: shows an image file received on `image_topic`, or
