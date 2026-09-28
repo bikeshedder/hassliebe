@@ -79,7 +79,7 @@ pub struct Sensor {
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",
-        deserialize_with = "crate::common::string_list::deserialize"
+        deserialize_with = "crate::common::one_or_many::deserialize"
     )]
     #[cfg_attr(feature = "builder", builder(default))]
     pub group: Vec<String>,
@@ -101,8 +101,8 @@ pub struct Sensor {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub last_reset_value_template: Option<String>,
-    /// Message expiry interval for command payloads. Not in the sensor
-    /// docs; accepted by Home Assistant for all MQTT entities.
+    /// Message expiry interval for command payloads.
+    /// Not in the sensor docs; accepted by Home Assistant.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub message_expiry_interval: Option<MessageExpiryInterval>,
@@ -120,8 +120,8 @@ pub struct Sensor {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub options: Option<Vec<String>>,
-    /// The application that sent the discovery message. Not in the sensor
-    /// docs; accepted by Home Assistant for all MQTT entities.
+    /// The application that sent the discovery message.
+    /// Not in the sensor docs; accepted by Home Assistant.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub origin: Option<Origin>,

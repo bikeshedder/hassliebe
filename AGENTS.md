@@ -103,7 +103,7 @@ accepting it with `cargo insta accept`. Never accept snapshots blindly.
 - All optional fields: `Option<T>` with `#[serde(default, skip_serializing_if = "Option::is_none")]`.
   Exception: list fields where HA treats absent and empty alike (`identifiers`,
   `connections`, `group`) are a plain `Vec`, skipped when empty; those HA also
-  accepts as a single string deserialize with `common::string_list`.
+  accepts as a single value deserialize with `common::one_or_many`.
 - Builders enforce what HA or the docs require (required fields, "at least one
   of"); deserialization stays lenient.
 - Derive at least `Clone, Debug, Default, PartialEq, Serialize, Deserialize` on

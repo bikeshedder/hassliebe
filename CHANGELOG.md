@@ -54,3 +54,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Platform::SCHEMA` for platforms with several config schemas; `Component`
   picks the struct by platform and schema.
 - Add `Date`.
+- Fields Home Assistant accepts as a single value or a list read both forms for
+  any element type (`common::one_or_many`).

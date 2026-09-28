@@ -8,15 +8,24 @@ use std::{error::Error, fmt::Write as _};
 
 /// How a field is declared.
 #[derive(Clone, Copy)]
+#[expect(dead_code, reason = "used by the remaining platforms")]
 pub enum Kind {
     /// Required: `T`.
     Req,
     /// Optional: `Option<T>`.
     Opt,
+    /// Optional in the docs but required by Home Assistant: `Option<T>`, but
+    /// the builder requires it.
+    Enforced,
     /// A list where absent and empty are alike: `Vec<T>`, skipped when empty.
     List,
-    /// Like `Vec`, but also read from a single string.
-    StringList,
+    /// Like `List`, but also read from a single value (`cv.ensure_list`).
+    OneOrMany,
+    /// An optional list that is also read from a single value:
+    /// `Option<Vec<T>>`.
+    OptOneOrMany,
+    /// A required list that is also read from a single value: `Vec<T>`.
+    ReqOneOrMany,
     /// Absent, `null` or a value: `Option<Nullable<T>>`.
     Nullable,
 }
@@ -68,13 +77,16 @@ pub struct Entity {
     pub entity_id_example: &'static str,
     pub icon_example: &'static str,
     pub default_name: &'static str,
+    /// Replaces "Default: `<default_name>`." in the `name` doc; `Some("")`
+    /// for no default.
+    pub name_default: Option<&'static str>,
     pub encoding_doc: &'static [&'static str],
     pub qos_doc: &'static [&'static str],
     pub entity_category_doc: &'static [&'static str],
-    /// Whether the platform docs list `message_expiry_interval`.
-    pub expiry_documented: bool,
-    /// Whether the platform docs list `origin`.
-    pub origin_documented: bool,
+    /// Common fields the platform docs do not list.
+    pub undocumented: &'static [&'static str],
+    /// Replacement docs for common fields.
+    pub overrides: &'static [(&'static str, &'static [&'static str])],
 }
 
 const RO_ENCODING: &[&str] = &[
@@ -101,11 +113,12 @@ const fn entity(
         entity_id_example,
         icon_example,
         default_name,
+        name_default: None,
         encoding_doc: if rw { RW_ENCODING } else { RO_ENCODING },
         qos_doc: if rw { RW_QOS } else { RO_QOS },
         entity_category_doc: CATEGORY,
-        expiry_documented: true,
-        origin_documented: false,
+        undocumented: &["origin"],
+        overrides: &[],
     }
 }
 
@@ -154,7 +167,7 @@ pub const PLATFORMS: &[Platform] = &[
         schema: None,
         entity: Some(Entity {
             entity_category_doc: SENSOR_CATEGORY,
-            expiry_documented: false,
+            undocumented: &["message_expiry_interval", "origin"],
             ..entity("sensor.kitchen_temperature", "mdi:thermometer", "MQTT Sensor", false)
         }),
         fields: &[
@@ -202,7 +215,7 @@ pub const PLATFORMS: &[Platform] = &[
         schema: None,
         entity: Some(Entity {
             entity_category_doc: SENSOR_CATEGORY,
-            expiry_documented: false,
+            undocumented: &["message_expiry_interval", "origin"],
             ..entity("binary_sensor.front_door", "mdi:door", "MQTT binary sensor", false)
         }),
         fields: &[
@@ -541,7 +554,7 @@ const LIGHT_BASIC: &[Field] = &[
     ]),
     field("command_topic", Req, "String", &["Topic to publish on/off commands to. Required."]),
     EFFECT[0], EFFECT[1], EFFECT[2], EFFECT[3],
-    field("effect_list", StringList, "String", &[
+    field("effect_list", OneOrMany, "String", &[
         "Supported effects. Home Assistant also accepts a single string.",
     ]),
     HS[0], HS[1], HS[2], HS[3],
@@ -618,33 +631,25 @@ fn lines(doc: &[&str]) -> Vec<String> {
 /// The fields of `SCHEMA_BASE` and `MQTT_ENTITY_COMMON_SCHEMA`.
 fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
     let noun = platform.noun;
-    let docs = platform.noun;
-    let not_in_docs = |what: &str| {
-        vec![
-            format!("{what} Not in the {docs}"),
-            "docs; accepted by Home Assistant for all MQTT entities.".to_owned(),
-        ]
+    let name_default = match entity.name_default {
+        None => format!(" Default: `{}`.", entity.default_name),
+        Some("") => String::new(),
+        Some(text) => format!(" Default: {text}."),
     };
-    let common = |name, kind, ty, doc| Owned {
-        name,
-        kind,
-        ty,
-        doc,
-    };
-    vec![
-        common(
+    let fields: Vec<(&'static str, Kind, &'static str, Vec<String>)> = vec![
+        (
             "availability",
             List,
             "Availability",
             lines(&["Topics that report the availability of the entity."]),
         ),
-        common(
+        (
             "availability_mode",
             Opt,
             "AvailabilityMode",
             lines(&["How the `availability` topics are combined. Default: `latest`."]),
         ),
-        common(
+        (
             "default_entity_id",
             Opt,
             "String",
@@ -653,7 +658,7 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
                 format!("`{}`.", entity.entity_id_example),
             ],
         ),
-        common(
+        (
             "device",
             Opt,
             "Device",
@@ -661,35 +666,35 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
                 "The device this {noun} belongs to. Only works when `unique_id` is set."
             )],
         ),
-        common(
+        (
             "enabled_by_default",
             Opt,
             "bool",
             lines(&["Whether the entity is enabled when first added. Default: `true`."]),
         ),
-        common("encoding", Opt, "String", lines(entity.encoding_doc)),
-        common(
+        ("encoding", Opt, "String", lines(entity.encoding_doc)),
+        (
             "entity_category",
             Opt,
             "EntityCategory",
             lines(entity.entity_category_doc),
         ),
-        common(
+        (
             "entity_picture",
             Opt,
             "String",
             lines(&["URL of a picture for the entity."]),
         ),
-        common(
+        (
             "group",
-            StringList,
+            OneOrMany,
             "String",
             vec![
                 format!("Unique IDs of member entities, making this a group {noun}. Home"),
                 "Assistant also accepts a single string.".to_owned(),
             ],
         ),
-        common(
+        (
             "icon",
             Opt,
             "String",
@@ -698,7 +703,7 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
                 entity.icon_example
             )],
         ),
-        common(
+        (
             "json_attributes_template",
             Opt,
             "String",
@@ -707,43 +712,35 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
                 "`json_attributes_topic`.",
             ]),
         ),
-        common(
+        (
             "json_attributes_topic",
             Opt,
             "String",
             lines(&["Topic whose JSON dictionary payload is added as entity attributes."]),
         ),
-        common(
+        (
             "message_expiry_interval",
             Opt,
             "MessageExpiryInterval",
-            if entity.expiry_documented {
-                lines(&["Message expiry interval for command payloads."])
-            } else {
-                not_in_docs("Message expiry interval for command payloads.")
-            },
+            lines(&["Message expiry interval for command payloads."]),
         ),
-        common(
+        (
             "name",
             Nullable,
             "String",
             vec![
                 format!("Name of the {noun}; [`Nullable::Null`] if only the device name is"),
-                format!("relevant. Default: `{}`.", entity.default_name),
+                format!("relevant.{name_default}"),
             ],
         ),
-        common(
+        (
             "origin",
             Opt,
             "Origin",
-            if entity.origin_documented {
-                lines(&["The application that sent the discovery message."])
-            } else {
-                not_in_docs("The application that sent the discovery message.")
-            },
+            lines(&["The application that sent the discovery message."]),
         ),
-        common("qos", Opt, "Qos", lines(entity.qos_doc)),
-        common(
+        ("qos", Opt, "Qos", lines(entity.qos_doc)),
+        (
             "unique_id",
             Opt,
             "String",
@@ -752,7 +749,7 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
                 "and for `device`.".to_owned(),
             ],
         ),
-        common(
+        (
             "visible_by_default",
             Opt,
             "bool",
@@ -761,7 +758,38 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
                 "`true`.",
             ]),
         ),
-    ]
+    ];
+    fields
+        .into_iter()
+        .map(|(name, kind, ty, mut doc)| {
+            if let Some((_, replacement)) =
+                entity.overrides.iter().find(|(field, _)| *field == name)
+            {
+                doc = lines(replacement);
+            }
+            if entity.undocumented.contains(&name) {
+                doc.push(format!(
+                    "Not in the {noun} docs; accepted by Home Assistant."
+                ));
+            }
+            Owned {
+                name,
+                kind,
+                ty,
+                doc,
+            }
+        })
+        .collect()
+}
+
+/// A field name as a Rust identifier (`type` → `r#type`).
+fn ident(name: &str) -> String {
+    const KEYWORDS: &[&str] = &["type", "match", "mod", "move", "ref", "use", "where"];
+    if KEYWORDS.contains(&name) {
+        format!("r#{name}")
+    } else {
+        name.to_owned()
+    }
 }
 
 /// Renders the imports, the struct, its builder impl and its `Platform` impl.
@@ -838,34 +866,56 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
             writeln!(out, "    /// {line}")?;
         }
         let ty = field.ty;
-        let (serde, rust_ty) = match field.kind {
+        const ONE_OR_MANY: &str = "crate::common::one_or_many::deserialize";
+        let (serde, rust_ty, builder_default) = match field.kind {
             Req => {
-                writeln!(out, "    pub {}: {ty},", field.name)?;
+                writeln!(out, "    pub {}: {ty},", ident(field.name))?;
                 continue;
             }
             Opt => (
-                "default, skip_serializing_if = \"Option::is_none\"",
+                "default, skip_serializing_if = \"Option::is_none\"".to_owned(),
                 format!("Option<{ty}>"),
+                true,
+            ),
+            Enforced => (
+                "default, skip_serializing_if = \"Option::is_none\"".to_owned(),
+                format!("Option<{ty}>"),
+                false,
             ),
             List => (
-                "default, skip_serializing_if = \"Vec::is_empty\"",
+                "default, skip_serializing_if = \"Vec::is_empty\"".to_owned(),
                 format!("Vec<{ty}>"),
+                true,
             ),
-            StringList => (
-                "default, skip_serializing_if = \"Vec::is_empty\", deserialize_with = \"crate::common::string_list::deserialize\"",
+            OneOrMany => (
+                format!("default, skip_serializing_if = \"Vec::is_empty\", deserialize_with = \"{ONE_OR_MANY}\""),
                 format!("Vec<{ty}>"),
+                true,
+            ),
+            OptOneOrMany => (
+                format!("default, skip_serializing_if = \"Option::is_none\", deserialize_with = \"{ONE_OR_MANY}_option\""),
+                format!("Option<Vec<{ty}>>"),
+                true,
+            ),
+            ReqOneOrMany => (
+                format!("deserialize_with = \"{ONE_OR_MANY}\""),
+                format!("Vec<{ty}>"),
+                false,
             ),
             Nullable => (
-                "default, skip_serializing_if = \"Option::is_none\", deserialize_with = \"crate::common::nullable::deserialize\"",
+                "default, skip_serializing_if = \"Option::is_none\", deserialize_with = \"crate::common::nullable::deserialize\"".to_owned(),
                 format!("Option<Nullable<{ty}>>"),
+                true,
             ),
         };
         writeln!(out, "    #[serde({serde})]")?;
-        writeln!(
-            out,
-            "    #[cfg_attr(feature = \"builder\", builder(default))]"
-        )?;
-        writeln!(out, "    pub {}: {rust_ty},", field.name)?;
+        if builder_default {
+            writeln!(
+                out,
+                "    #[cfg_attr(feature = \"builder\", builder(default))]"
+            )?;
+        }
+        writeln!(out, "    pub {}: {rust_ty},", ident(field.name))?;
     }
     writeln!(out, "}}\n")?;
     writeln!(out, "#[cfg(feature = \"builder\")]\nimpl {struct_name} {{")?;

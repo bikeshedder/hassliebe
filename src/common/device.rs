@@ -41,7 +41,7 @@ pub struct Device {
     #[serde(
         default,
         skip_serializing_if = "Vec::is_empty",
-        deserialize_with = "crate::common::string_list::deserialize"
+        deserialize_with = "crate::common::one_or_many::deserialize"
     )]
     #[cfg_attr(
         feature = "builder",
