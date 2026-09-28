@@ -25,30 +25,24 @@ Non-goals:
 
 ```
 src/
-  lib.rs            re-exports, crate docs
-  string_enum.rs    macro for string enums with an Other(String) fallback
+  lib.rs              re-exports, crate docs
+  string_enum.rs      macro for string enums with an Other(String) fallback
   common/
-    availability.rs Availability, AvailabilityMode
-    device.rs       Device (the "dev" block), connections, identifiers
-    origin.rs       Origin (the "o" block)
-    entity_category.rs
-    qos.rs          Qos, serialized as the integers 0, 1, 2
-    state_class.rs
-    unit.rs         Unit and the UnitOf* classes
+    availability.rs   Availability, AvailabilityMode
+    device.rs         Device (the "dev" block), connections, identifiers
+    origin.rs         Origin (the "o" block)
+    entity_category.rs, message_expiry_interval.rs, nullable.rs, qos.rs,
+    state_class.rs, temperature_unit.rs
+    unit.rs           Unit and the UnitOf* classes
+    one_or_many.rs    serde helper for "value or list" fields
   component/
-    mod.rs          Component enum (one variant per platform), Platform trait
-    sensor.rs       Sensor, SensorDeviceClass
-    binary_sensor.rs
-    switch.rs
-    number.rs
-    select.rs
-    button.rs
-    text.rs
-    light.rs        default ("basic") schema only for now
-    cover.rs
-  discovery.rs      DeviceDiscovery payload, topic helpers, HA status constants
-  abbreviations.rs  expansion of abbreviated keys (feature "json")
-xtask/              code generators (workspace member, not published)
+    mod.rs            Component enum (one variant per struct), Platform trait
+    <platform>.rs     one module per MQTT platform (sensor.rs, climate.rs, …)
+    light/            Light (basic), JsonLight, TemplateLight, ColorMode
+    infrared/         InfraredEmitter, InfraredReceiver
+  discovery.rs        DeviceDiscovery payload, topic helpers, HA status constants
+  abbreviations.rs    expansion of abbreviated keys (feature "json")
+xtask/                code generators (workspace member, not published)
 ```
 
 ## Key design decisions
@@ -116,8 +110,8 @@ must carry its platform. Two extra variants cover the rest of what may appear in
 
 - `Removed { platform }`: an entry with only the platform, which tells Home
   Assistant to remove that component.
-- `Other { platform, config }` (feature `json`): platforms the crate does not model
-  and lights with a non-basic `schema`, with the config kept as a
+- `Other { platform, config }` (feature `json`): platforms or schemas the crate
+  does not model (e.g. from a newer Home Assistant), with the config kept as a
   `serde_json::Map`.
 
 Deserializing `Component` and `DeviceDiscovery` needs these fallbacks, so it is only
@@ -192,17 +186,15 @@ required fields), types follow the docs and doc comments mention the source valu
 ## Scope for 0.1
 
 Common: `Device`, `Origin`, `Availability`, `AvailabilityMode`, `EntityCategory`,
-`StateClass`, `Unit`, `Qos`.
+`StateClass`, `Unit`, `Qos`, `Nullable`, `MessageExpiryInterval`,
+`TemperatureUnit`.
 
-Platforms: `sensor`, `binary_sensor`, `switch`, `number`, `select`, `button`,
-`text`, `light` (default schema), `cover`.
+Platforms: every entry of `SUPPORTED_COMPONENTS` in `mqtt/const.py` (32,
+including all light and infrared schemas, `device_automation` and `tag`). A test
+pins the list, so a new Home Assistant platform shows up as a failing test.
 
 Discovery: single-component and device-based payloads, topic helpers, abbreviation
 expansion.
-
-Later, driven by real needs: `light` JSON/template schemas, `climate`, `fan`,
-`lock`, `valve`, `water_heater`, `event`, `update`, `device_trigger`, `siren`,
-`alarm_control_panel`, `vacuum`, `image`, `camera`, …
 
 ## Migration from nrg-hass
 

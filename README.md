@@ -10,6 +10,9 @@ no opinions about how you talk to your broker.
 Use it to announce devices to Home Assistant from any MQTT client, or to parse and
 inspect discovery payloads.
 
+It covers every platform of Home Assistant's MQTT discovery (sensor, light,
+climate, device triggers, …), for single-component and device-based discovery.
+
 > **Status:** early development. The API will change.
 
 ## Example

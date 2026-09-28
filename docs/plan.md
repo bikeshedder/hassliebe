@@ -243,7 +243,7 @@ Same checklist as Phase D.
   Re-check every enum and field list against `dev` on the day before the 0.1
   release; update the baseline date at the top of this file.
 
-### Phase H — all MQTT discovery platforms
+### Phase H — all MQTT discovery platforms (done)
 
 Scope: every entry of `SUPPORTED_COMPONENTS` in `mqtt/const.py` (32; 9 done in
 D/E). Same checklist as Phase D per platform, plus a `Component` variant.
