@@ -31,3 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   availability fields removed.
 - Sync `BinarySensor` with Home Assistant: its own `BinarySensorDeviceClass`
   (29 values), `group` as a list, same common fields as `Sensor`.
+- Sync `Switch` with Home Assistant: `SwitchDeviceClass`, `command_topic`
+  required, `state_topic` optional.

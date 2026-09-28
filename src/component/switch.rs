@@ -1,83 +1,165 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use super::Platform;
-use super::device_class::DeviceClass;
-
-use crate::common::{
-    availability::{Availability, AvailabilityMode},
-    device::Device,
-    entity_category::EntityCategory,
-    qos::Qos,
+use crate::{
+    common::{
+        availability::{Availability, AvailabilityMode},
+        device::Device,
+        entity_category::EntityCategory,
+        entity_name::EntityName,
+        message_expiry_interval::MessageExpiryInterval,
+        origin::Origin,
+        qos::Qos,
+    },
+    string_enum::string_enum,
 };
 
+/// An MQTT switch: an entity that is switched on and off by publishing to
+/// `command_topic`.
+///
 /// <https://www.home-assistant.io/integrations/switch.mqtt/>
-#[derive(Clone, Debug, Default, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
-#[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
+#[cfg_attr(feature = "builder", builder(setter(into, strip_option)))]
 pub struct Switch {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub availabilty: Option<Vec<Availability>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Topics that report the availability of the entity.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub availability: Vec<Availability>,
+    /// How the `availability` topics are combined. Default: `latest`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub availability_mode: Option<AvailabilityMode>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub availability_template: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub availability_topic: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Template to generate the payload sent to `command_topic`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub command_template: Option<String>,
+    /// Topic to publish commands to. Required.
     pub command_topic: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Entity ID to use instead of one generated from the name, e.g.
+    /// `switch.garden_irrigation`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub default_entity_id: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// The device this switch belongs to. Only works when `unique_id` is set.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub device: Option<Device>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub device_class: Option<DeviceClass>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Type of the switch, which sets its icon.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub device_class: Option<SwitchDeviceClass>,
+    /// Whether the entity is enabled when first added. Default: `true`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub enabled_by_default: Option<bool>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Encoding of received and published payloads; an empty string disables
+    /// decoding of received payloads. Default: `utf-8`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub encoding: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Category of the entity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub entity_category: Option<EntityCategory>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// URL of a picture for the entity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub entity_picture: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub group: Option<Vec<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Unique IDs of member entities, making this a group switch. Home
+    /// Assistant also accepts a single string.
+    #[serde(
+        default,
+        skip_serializing_if = "Vec::is_empty",
+        deserialize_with = "crate::common::string_list::deserialize"
+    )]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub group: Vec<String>,
+    /// Icon for the entity, e.g. `mdi:sprinkler`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub icon: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Template to extract a JSON dictionary of attributes from messages on
+    /// `json_attributes_topic`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub json_attributes_template: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Topic whose JSON dictionary payload is added as entity attributes.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub json_attributes_topic: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Message expiry interval for command payloads.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub message_expiry_interval: Option<MessageExpiryInterval>,
+    /// Name of the switch; [`EntityName::Null`] if only the device name is
+    /// relevant. Default: `MQTT Switch`.
+    #[serde(
+        default,
+        skip_serializing_if = "Option::is_none",
+        deserialize_with = "crate::common::entity_name::deserialize"
+    )]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub name: Option<EntityName>,
+    /// Assume the state changes as commanded. Default: `true` without
+    /// `state_topic`, otherwise `false`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub optimistic: Option<bool>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub payload_available: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub payload_not_available: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// The application that sent the discovery message. Not in the switch
+    /// docs; accepted by Home Assistant for all MQTT entities.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub origin: Option<Origin>,
+    /// Payload sent to turn the switch off. Default: `OFF`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub payload_off: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Payload sent to turn the switch on. Default: `ON`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub payload_on: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// QoS level for subscribing and publishing. Default: `0`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub qos: Option<Qos>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Publish commands with the retain flag. Default: `false`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub retain: Option<bool>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Payload on `state_topic` that means off. Default: `payload_off` if set,
+    /// otherwise `OFF`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub state_off: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Payload on `state_topic` that means on. Default: `payload_on` if set,
+    /// otherwise `ON`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub state_on: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Topic to receive state updates from.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub state_topic: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// ID that uniquely identifies this switch. Required for device discovery
+    /// and for `device`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub unique_id: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Template to extract the state from the payload.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
     pub value_template: Option<String>,
+    /// Whether the entity is visible on dashboards when first added. Default:
+    /// `true`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "builder", builder(default))]
+    pub visible_by_default: Option<bool>,
 }
 
 #[cfg(feature = "builder")]
 impl Switch {
+    /// Returns a builder for [`Switch`].
     pub fn builder() -> SwitchBuilder {
         SwitchBuilder::default()
     }
@@ -85,4 +167,18 @@ impl Switch {
 
 impl Platform for Switch {
     const PLATFORM: &'static str = "switch";
+}
+
+string_enum! {
+    /// Device class of a switch, which sets its icon.
+    ///
+    /// <https://www.home-assistant.io/integrations/switch/#device-class>
+    ///
+    /// Source: `homeassistant/components/switch/const.py`
+    pub enum SwitchDeviceClass {
+        /// Outlet.
+        Outlet = "outlet",
+        /// Switch.
+        Switch = "switch",
+    }
 }

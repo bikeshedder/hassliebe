@@ -1,0 +1,52 @@
+---
+source: tests/switch.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "garden/pump/status",
+      "value_template": "{{ value_json.status }}"
+    }
+  ],
+  "availability_mode": "all",
+  "command_template": "{\"state\": \"{{ value }}\"}",
+  "command_topic": "garden/pump/set",
+  "default_entity_id": "switch.garden_pump",
+  "device": {
+    "identifiers": [
+      "garden_pump"
+    ],
+    "name": "Garden pump"
+  },
+  "device_class": "outlet",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/pump.png",
+  "group": [
+    "garden_valve"
+  ],
+  "icon": "mdi:water-pump",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "garden/pump/attributes",
+  "message_expiry_interval": {
+    "minutes": 5.0
+  },
+  "name": "Pump",
+  "optimistic": false,
+  "origin": {
+    "name": "garden2mqtt",
+    "support_url": "https://example.com/garden2mqtt"
+  },
+  "payload_off": "0",
+  "payload_on": "1",
+  "qos": 2,
+  "retain": true,
+  "state_off": "off",
+  "state_on": "on",
+  "state_topic": "garden/pump/state",
+  "unique_id": "garden_pump",
+  "value_template": "{{ value_json.state }}",
+  "visible_by_default": true
+}

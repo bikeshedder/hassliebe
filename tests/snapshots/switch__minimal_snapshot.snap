@@ -1,0 +1,7 @@
+---
+source: tests/switch.rs
+expression: "Switch { command_topic: \"garden/pump/set\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "garden/pump/set"
+}

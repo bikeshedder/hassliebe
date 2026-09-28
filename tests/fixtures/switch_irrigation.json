@@ -1,0 +1,12 @@
+{
+   "name":"Irrigation",
+   "command_topic":"homeassistant/switch/irrigation/set",
+   "state_topic":"homeassistant/switch/irrigation/state",
+   "unique_id":"irr01ad",
+   "device":{
+      "identifiers":[
+         "garden01ad"
+      ],
+      "name":"Garden"
+   }
+}
