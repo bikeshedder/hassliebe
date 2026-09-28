@@ -1,0 +1,58 @@
+---
+source: tests/alarm_control_panel.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "alarmdecoder/panel/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "code": "REMOTE_CODE_TEXT",
+  "code_arm_required": false,
+  "code_disarm_required": true,
+  "code_trigger_required": true,
+  "command_template": "{ \"action\": \"{{ action }}\", \"code\": \"{{ code }}\" }",
+  "command_topic": "alarmdecoder/panel/set",
+  "default_entity_id": "alarm_control_panel.alarmdecoder_panel",
+  "device": {
+    "identifiers": [
+      "alarmdecoder_panel_device"
+    ],
+    "name": "AlarmDecoder"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/alarmdecoder_panel.png",
+  "group": [
+    "alarmdecoder_panel_2"
+  ],
+  "icon": "mdi:shield-home",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "alarmdecoder/panel/attributes",
+  "message_expiry_interval": 60,
+  "name": "Alarm Panel",
+  "origin": {
+    "name": "alarmdecoder_panel2mqtt"
+  },
+  "payload_arm_away": "ARM_AWAY",
+  "payload_arm_custom_bypass": "ARM_CUSTOM_BYPASS",
+  "payload_arm_home": "ARM_HOME",
+  "payload_arm_night": "ARM_NIGHT",
+  "payload_arm_vacation": "ARM_VACATION",
+  "payload_disarm": "DISARM",
+  "payload_trigger": "TRIGGER",
+  "qos": 1,
+  "retain": false,
+  "state_topic": "alarmdecoder/panel",
+  "supported_features": [
+    "arm_home",
+    "arm_away",
+    "trigger"
+  ],
+  "unique_id": "alarmdecoder_panel",
+  "value_template": "{{ value_json.state }}",
+  "visible_by_default": true
+}

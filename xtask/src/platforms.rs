@@ -1068,6 +1068,70 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "alarm_control_panel",
+        struct_name: "AlarmControlPanel",
+        noun: "alarm control panel",
+        doc: &[
+            "An MQTT alarm control panel: its state is received on `state_topic`,",
+            "and it is armed, disarmed and triggered by publishing to `command_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/alarm_control_panel.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(entity("alarm_control_panel.home_alarm", "mdi:shield-home", "MQTT Alarm", true)),
+        fields: &[
+            field("code", Opt, "String", &[
+                "Code to arm or disarm the alarm in the frontend, validated locally.",
+                "`REMOTE_CODE` or `REMOTE_CODE_TEXT` pass a numeric or text code on to",
+                "`command_template` instead.",
+            ]),
+            field("code_arm_required", Opt, "bool", &[
+                "Whether the code is required to arm the alarm. Default: `true`.",
+            ]),
+            field("code_disarm_required", Opt, "bool", &[
+                "Whether the code is required to disarm the alarm. Default: `true`.",
+            ]),
+            field("code_trigger_required", Opt, "bool", &[
+                "Whether the code is required to trigger the alarm. Default: `true`.",
+            ]),
+            field("command_template", Opt, "String", &[
+                "Template to generate the payload sent to `command_topic`, with the",
+                "variables `action` and `code`. Default: `action` per the docs",
+                "(`{{action}}` in Home Assistant's source).",
+            ]),
+            field("command_topic", Req, "String", &["Topic to publish commands to. Required."]),
+            field("payload_arm_away", Opt, "String", &[
+                "Payload sent to arm in away mode. Default: `ARM_AWAY`.",
+            ]),
+            field("payload_arm_custom_bypass", Opt, "String", &[
+                "Payload sent to arm with custom bypass. Default: `ARM_CUSTOM_BYPASS`.",
+            ]),
+            field("payload_arm_home", Opt, "String", &[
+                "Payload sent to arm in home mode. Default: `ARM_HOME`.",
+            ]),
+            field("payload_arm_night", Opt, "String", &[
+                "Payload sent to arm in night mode. Default: `ARM_NIGHT`.",
+            ]),
+            field("payload_arm_vacation", Opt, "String", &[
+                "Payload sent to arm in vacation mode. Default: `ARM_VACATION`.",
+            ]),
+            field("payload_disarm", Opt, "String", &["Payload sent to disarm. Default: `DISARM`."]),
+            field("payload_trigger", Opt, "String", &[
+                "Payload sent to trigger the alarm. Default: `TRIGGER`.",
+            ]),
+            RETAIN,
+            field("state_topic", Req, "String", &[
+                "Topic to receive the state from, e.g. `armed_away` or `disarmed`.",
+                "Required.",
+            ]),
+            field("supported_features", Opt, "Vec<AlarmControlPanelFeature>", &[
+                "Features the panel supports. Default: all of `arm_home`, `arm_away`,",
+                "`arm_night`, `arm_vacation`, `arm_custom_bypass` and `trigger`.",
+            ]),
+            field("value_template", Opt, "String", &["Template to extract the state from the payload."]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

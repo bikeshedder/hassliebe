@@ -22,9 +22,9 @@ pub use common::{
     unit::Unit,
 };
 pub use component::{
-    Component, Platform, binary_sensor, button, camera, cover, date, datetime, device_tracker,
-    event, image, lawn_mower, light, lock, notify, number, scene, select, sensor, siren, switch,
-    text, time, update, valve,
+    Component, Platform, alarm_control_panel, binary_sensor, button, camera, cover, date, datetime,
+    device_tracker, event, image, lawn_mower, light, lock, notify, number, scene, select, sensor,
+    siren, switch, text, time, update, valve,
 };
 pub use discovery::{DeviceDiscovery, SharedOptions};
 pub use string_enum::UnknownValue;

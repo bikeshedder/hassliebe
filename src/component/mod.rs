@@ -6,6 +6,7 @@
 use serde::{Deserialize, Deserializer, ser::SerializeMap};
 use serde::{Serialize, Serializer};
 
+pub mod alarm_control_panel;
 pub mod binary_sensor;
 pub mod button;
 pub mod camera;
@@ -177,6 +178,7 @@ macro_rules! components {
 }
 
 components! {
+    AlarmControlPanel(alarm_control_panel::AlarmControlPanel),
     BinarySensor(binary_sensor::BinarySensor),
     Button(button::Button),
     Camera(camera::Camera),

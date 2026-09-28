@@ -1,0 +1,9 @@
+{
+  "name": "Alarm Panel",
+  "supported_features": [
+    "arm_home",
+    "arm_away"
+  ],
+  "state_topic": "alarmdecoder/panel",
+  "command_topic": "alarmdecoder/panel/set"
+}
