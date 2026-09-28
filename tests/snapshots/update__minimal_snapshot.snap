@@ -1,0 +1,8 @@
+---
+source: tests/update.rs
+expression: "Update\n{\n    latest_version_topic: Some(\"topic-latest\".into()), state_topic:\n    Some(\"topic-installed\".into()), ..Default::default()\n}"
+---
+{
+  "latest_version_topic": "topic-latest",
+  "state_topic": "topic-installed"
+}

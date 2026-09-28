@@ -1014,6 +1014,60 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "update",
+        struct_name: "Update",
+        noun: "update",
+        doc: &[
+            "An MQTT update: the installed and latest firmware or software versions",
+            "of a device; publishing `payload_install` starts the installation.",
+        ],
+        url: "https://www.home-assistant.io/integrations/update.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(entity("update.living_room_plug_firmware", "mdi:package-up", "MQTT Update", true)),
+        fields: &[
+            field("command_topic", Opt, "String", &[
+                "Topic to publish `payload_install` to, which starts the installation.",
+            ]),
+            field("device_class", Opt, "UpdateDeviceClass", &[
+                "Type of the update, which sets its icon.",
+            ]),
+            field("display_precision", Opt, "u32", &[
+                "Number of decimals shown for the update progress. Default: `0`.",
+            ]),
+            field("latest_version_template", Opt, "String", &[
+                "Template to extract the latest version from messages on",
+                "`latest_version_topic`.",
+            ]),
+            field("latest_version_topic", Opt, "String", &[
+                "Topic to receive the latest version from.",
+            ]),
+            field("payload_install", Opt, "String", &[
+                "Payload sent to `command_topic` to start the installation.",
+            ]),
+            field("release_summary", Opt, "String", &[
+                "Short summary of the release notes, at most 255 characters.",
+            ]),
+            field("release_url", Opt, "String", &[
+                "URL of the full release notes of the latest version.",
+            ]),
+            RETAIN,
+            field("state_topic", Enforced, "String", &[
+                "Topic to receive the installed version, or a JSON state object, from.",
+                "Optional per the docs, but required by Home Assistant; the builder",
+                "requires it.",
+            ]),
+            field("title", Opt, "String", &[
+                "Title of the software or firmware, to tell it apart from the entity",
+                "name.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template to extract the installed version, or to render a JSON state",
+                "object, from messages on `state_topic`.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

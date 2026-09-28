@@ -1,0 +1,49 @@
+---
+source: tests/update.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "shellies/shellyplug-s-112233/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_topic": "shellies/shellyplug-s-112233/command",
+  "default_entity_id": "update.shellies_shellyplug_s_112233",
+  "device": {
+    "identifiers": [
+      "shellies_shellyplug_s_112233_device"
+    ],
+    "name": "Shelly Plug S"
+  },
+  "device_class": "firmware",
+  "display_precision": 1,
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/shellies_shellyplug_s_112233.png",
+  "group": [
+    "shellies_shellyplug_s_112233_2"
+  ],
+  "icon": "mdi:package-up",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "shellies/shellyplug-s-112233/attributes",
+  "latest_version_template": "{{ value_json.new_version }}",
+  "latest_version_topic": "shellies/shellyplug-s-112233/latest",
+  "message_expiry_interval": 60,
+  "name": "Firmware",
+  "origin": {
+    "name": "shellies_shellyplug_s_1122332mqtt"
+  },
+  "payload_install": "update_fw",
+  "qos": 1,
+  "release_summary": "Bug fixes",
+  "release_url": "https://shelly-api-docs.shelly.cloud/gen1/#changelog",
+  "retain": false,
+  "state_topic": "shellies/shellyplug-s-112233/info",
+  "title": "Shelly Plug S Firmware",
+  "unique_id": "shellies_shellyplug_s_112233",
+  "value_template": "{{ value_json.old_version }}",
+  "visible_by_default": true
+}

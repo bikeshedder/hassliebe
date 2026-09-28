@@ -267,7 +267,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add valve`**
 - [x] **`Add siren`**
 - [x] **`Add lawn_mower`**
-- [ ] **`Add update`**
+- [x] **`Add update`**
 - [ ] **`Add alarm_control_panel`**
 - [ ] **`Add vacuum`**
 - [ ] **`Add fan`**

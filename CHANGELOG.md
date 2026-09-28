@@ -69,3 +69,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Valve` and `ValveDeviceClass`.
 - Add `Siren` and `SirenTone`.
 - Add `LawnMower`.
+- Add `Update` and `UpdateDeviceClass`.

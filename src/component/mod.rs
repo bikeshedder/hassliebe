@@ -27,6 +27,7 @@ pub mod siren;
 pub mod switch;
 pub mod text;
 pub mod time;
+pub mod update;
 pub mod valve;
 
 /// Implemented by every platform config struct.
@@ -197,5 +198,6 @@ components! {
     Switch(switch::Switch),
     Text(text::Text),
     Time(time::Time),
+    Update(update::Update),
     Valve(valve::Valve),
 }
