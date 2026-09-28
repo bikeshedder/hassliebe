@@ -252,7 +252,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
   Std-only `xtask` workspace member with `generate`/`check`; region kinds
   `unit-classes`, `unit-wrapper`, `device-class`, `abbreviations`, `component`.
   Regenerating the existing modules only rewrapped one doc comment.
-- [ ] **`Add schema tags to Platform and Component`** (decision 17)
+- [x] **`Add schema tags to Platform and Component`** (decision 17)
   `Platform::SCHEMA`, dispatch on `(platform, schema)`.
 - [ ] **`Add date`**
 - [ ] **`Add time`**

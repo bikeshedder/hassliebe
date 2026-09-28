@@ -21,6 +21,16 @@ pub trait Platform {
     /// The platform name Home Assistant uses in discovery topics and in the
     /// `platform` key of device discovery components, e.g. `"sensor"`.
     const PLATFORM: &'static str;
+
+    /// For platforms with several config schemas (`light`, `infrared`): the
+    /// value of the `schema` key this struct models, e.g. `"json"`.
+    const SCHEMA: Option<&'static str> = None;
+}
+
+/// The schema Home Assistant assumes when a config has no `schema` key.
+#[cfg(feature = "json")]
+fn default_schema(platform: &str) -> Option<&'static str> {
+    (platform == <light::Light as Platform>::PLATFORM).then_some("basic")
 }
 
 macro_rules! components {
@@ -51,8 +61,9 @@ macro_rules! components {
                 /// The platform of the removed component.
                 platform: String,
             },
-            /// A platform this crate does not model, or a light with a schema
-            /// other than `basic`. `config` holds all keys except `platform`.
+            /// A platform this crate does not model, or a schema of a platform
+            /// that it does not model. `config` holds all keys except
+            /// `platform`.
             #[cfg(feature = "json")]
             Other {
                 /// The platform, e.g. `"climate"`.
@@ -129,23 +140,23 @@ macro_rules! components {
                 if config.is_empty() {
                     return Ok(Self::Removed { platform });
                 }
-                let non_basic_light = platform == <light::Light as Platform>::PLATFORM
-                    && config
-                        .get("schema")
-                        .is_some_and(|schema| schema.as_str() != Some("basic"));
-                if non_basic_light {
-                    return Ok(Self::Other { platform, config });
-                }
-                match platform.as_str() {
-                    $(
-                        <$module::$ty as Platform>::PLATFORM => {
-                            serde_json::from_value(Value::Object(config))
-                                .map(Self::$variant)
-                                .map_err(D::Error::custom)
-                        }
-                    )*
-                    _ => Ok(Self::Other { platform, config }),
-                }
+                // Structs of platforms with schemas only match their schema;
+                // an unknown schema is kept as `Other`.
+                let schema = match config.get("schema") {
+                    Some(schema) => schema.as_str().map(str::to_owned),
+                    None => default_schema(&platform).map(str::to_owned),
+                };
+                $(
+                    if platform == <$module::$ty as Platform>::PLATFORM
+                        && <$module::$ty as Platform>::SCHEMA
+                            .is_none_or(|expected| schema.as_deref() == Some(expected))
+                    {
+                        return serde_json::from_value(Value::Object(config))
+                            .map(Self::$variant)
+                            .map_err(D::Error::custom);
+                    }
+                )*
+                Ok(Self::Other { platform, config })
             }
         }
     };

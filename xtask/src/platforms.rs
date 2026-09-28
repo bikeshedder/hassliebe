@@ -56,6 +56,8 @@ pub struct Platform {
     pub noun: &'static str,
     pub doc: &'static [&'static str],
     pub url: &'static str,
+    /// The `schema` this struct models, for platforms with several schemas.
+    pub schema: Option<&'static str>,
     /// `None` for platforms that are not entities (no common entity fields).
     pub entity: Option<Entity>,
     pub fields: &'static [Field],
@@ -149,6 +151,7 @@ pub const PLATFORMS: &[Platform] = &[
             "`state_topic`.",
         ],
         url: "https://www.home-assistant.io/integrations/sensor.mqtt/",
+        schema: None,
         entity: Some(Entity {
             entity_category_doc: SENSOR_CATEGORY,
             expiry_documented: false,
@@ -196,6 +199,7 @@ pub const PLATFORMS: &[Platform] = &[
             "received on `state_topic`.",
         ],
         url: "https://www.home-assistant.io/integrations/binary_sensor.mqtt/",
+        schema: None,
         entity: Some(Entity {
             entity_category_doc: SENSOR_CATEGORY,
             expiry_documented: false,
@@ -231,6 +235,7 @@ pub const PLATFORMS: &[Platform] = &[
             "`command_topic`.",
         ],
         url: "https://www.home-assistant.io/integrations/switch.mqtt/",
+        schema: None,
         entity: Some(entity("switch.garden_irrigation", "mdi:sprinkler", "MQTT Switch", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -261,6 +266,7 @@ pub const PLATFORMS: &[Platform] = &[
             "`command_topic`.",
         ],
         url: "https://www.home-assistant.io/integrations/number.mqtt/",
+        schema: None,
         entity: Some(entity("number.heating_setpoint", "mdi:thermostat", "MQTT Number", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -293,6 +299,7 @@ pub const PLATFORMS: &[Platform] = &[
             "`command_topic`.",
         ],
         url: "https://www.home-assistant.io/integrations/select.mqtt/",
+        schema: None,
         entity: Some(entity("select.fan_mode", "mdi:fan", "MQTT Select", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -315,6 +322,7 @@ pub const PLATFORMS: &[Platform] = &[
             "`command_topic`.",
         ],
         url: "https://www.home-assistant.io/integrations/button.mqtt/",
+        schema: None,
         entity: Some(Entity {
             encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
             qos_doc: &["QoS level for publishing. Default: `0`."],
@@ -336,6 +344,7 @@ pub const PLATFORMS: &[Platform] = &[
         noun: "text",
         doc: &["An MQTT text: a text value that is set by publishing to `command_topic`."],
         url: "https://www.home-assistant.io/integrations/text.mqtt/",
+        schema: None,
         entity: Some(entity("text.remote_lcd_screen", "mdi:ab-testing", "MQTT Text", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -360,6 +369,7 @@ pub const PLATFORMS: &[Platform] = &[
         noun: "cover",
         doc: &["An MQTT cover, such as a blind, shutter or garage door."],
         url: "https://www.home-assistant.io/integrations/cover.mqtt/",
+        schema: None,
         entity: Some(entity("cover.living_room", "mdi:blinds", "MQTT Cover", true)),
         fields: &[
             field("command_topic", Opt, "String", &["Topic to publish open, close and stop commands to."]),
@@ -434,6 +444,7 @@ pub const PLATFORMS: &[Platform] = &[
         noun: "light",
         doc: &["An MQTT light with the default (`basic`) schema."],
         url: "https://www.home-assistant.io/integrations/light.mqtt/#default-schema",
+        schema: Some("basic"),
         entity: Some(entity("light.office", "mdi:ceiling-light", "MQTT Light", true)),
         fields: LIGHT_BASIC,
     },
@@ -850,9 +861,14 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
         out,
         "    pub fn builder() -> {struct_name}Builder {{\n        {struct_name}Builder::default()\n    }}\n}}\n"
     )?;
-    writeln!(
-        out,
-        "impl Platform for {struct_name} {{\n    const PLATFORM: &'static str = \"{name}\";\n}}"
-    )?;
+    writeln!(out, "impl Platform for {struct_name} {{")?;
+    writeln!(out, "    const PLATFORM: &'static str = \"{name}\";")?;
+    if let Some(schema) = platform.schema {
+        writeln!(
+            out,
+            "    const SCHEMA: Option<&'static str> = Some(\"{schema}\");"
+        )?;
+    }
+    writeln!(out, "}}")?;
     Ok(out)
 }

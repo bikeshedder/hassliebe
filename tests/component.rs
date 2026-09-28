@@ -102,6 +102,12 @@ mod json {
         }))
         .unwrap();
         assert!(matches!(basic, Component::Light(_)));
+        let default =
+            parse(json!({"platform": "light", "command_topic": "kitchen/light/set"})).unwrap();
+        assert!(matches!(default, Component::Light(_)));
+        let unknown =
+            parse(json!({"platform": "light", "schema": 1, "command_topic": "t"})).unwrap();
+        assert!(matches!(unknown, Component::Other { .. }));
     }
 
     #[test]

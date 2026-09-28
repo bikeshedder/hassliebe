@@ -335,6 +335,7 @@ impl Light {
 
 impl Platform for Light {
     const PLATFORM: &'static str = "light";
+    const SCHEMA: Option<&'static str> = Some("basic");
 }
 // @generated end
 
