@@ -148,9 +148,10 @@ Assistant's birth/last-will topic (`homeassistant/status`, `online`/`offline`).
 
 Home Assistant accepts abbreviated keys (`stat_t`, `dev_cla`, `uniq_id`, `dev`,
 `o`, `cmps`, `p`, …). The crate always **serializes full names**. For reading,
-the `json` feature offers a function that expands abbreviations in a
-`serde_json::Value` before deserializing, mirroring what Home Assistant does in
-`mqtt/discovery.py`. The tables are ported from
+the `json` feature offers `expand_component_payload` and `expand_device_payload`,
+which expand abbreviations and the `~` base topic in a `serde_json::Value` before
+deserializing (the device variant also merges shared options into the
+components), mirroring what Home Assistant does in `mqtt/discovery.py`. The tables are ported from
 `homeassistant/components/mqtt/abbreviations.py`. This keeps the structs free of
 dozens of `#[serde(alias)]` attributes.
 

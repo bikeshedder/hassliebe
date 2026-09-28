@@ -7,6 +7,8 @@
 
 mod string_enum;
 
+#[cfg(feature = "json")]
+pub mod abbreviations;
 pub mod common;
 pub mod component;
 pub mod discovery;

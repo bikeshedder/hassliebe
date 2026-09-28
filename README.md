@@ -42,7 +42,7 @@ let payload = serde_json::to_string(&sensor)?;
 | Feature   | Default | Description |
 |-----------|---------|-------------|
 | `builder` | yes     | `derive_builder` builders for all structs |
-| `json`    | no      | Expand abbreviated keys (`stat_t`, `dev_cla`, …) when reading payloads |
+| `json`    | no      | Reading device discovery payloads, expanding abbreviated keys (`stat_t`, `dev_cla`, …) and the `~` base topic |
 
 ## Why the name?
 

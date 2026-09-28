@@ -227,7 +227,7 @@ Same checklist as Phase D.
   a platform or `device` (decision 9), `homeassistant/status`,
   `online`/`offline`, default prefix `homeassistant`. Validate or document the
   `[a-zA-Z0-9_-]` restriction for `node_id`/`object_id`.
-- [ ] **`Add abbreviation expansion`**
+- [x] **`Add abbreviation expansion`** (`expand_component_payload`, `expand_device_payload`)
   Port `ABBREVIATIONS` (275), `DEVICE_ABBREVIATIONS` (11),
   `ORIGIN_ABBREVIATIONS` (3) from `abbreviations.py`; apply like
   `discovery.py` (root, each availability entry, each `cmps` entry; device/origin

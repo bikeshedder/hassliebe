@@ -48,3 +48,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   deserializing (feature `json`) applies shared options like Home Assistant.
 - Add discovery topic helpers (`discovery_topic`, `component_topic`,
   `device_topic`, `is_valid_id`) and the status topic constants.
+- Add `abbreviations::{expand_component_payload, expand_device_payload}`
+  (feature `json`) to expand abbreviated keys and the `~` base topic.

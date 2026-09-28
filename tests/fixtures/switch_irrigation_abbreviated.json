@@ -1,0 +1,6 @@
+{
+   "~":"homeassistant/switch/irrigation",
+   "name":"garden",
+   "cmd_t":"~/set",
+   "stat_t":"~/state"
+}
