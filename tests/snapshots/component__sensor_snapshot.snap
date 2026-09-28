@@ -1,0 +1,12 @@
+---
+source: tests/component.rs
+expression: temperature()
+---
+{
+  "platform": "sensor",
+  "device_class": "temperature",
+  "name": null,
+  "state_topic": "sensorBedroom/state",
+  "unique_id": "bla_sensor001",
+  "value_template": "{{ value_json.temperature}}"
+}

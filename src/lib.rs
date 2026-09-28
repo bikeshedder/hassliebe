@@ -23,6 +23,6 @@ pub use common::{
     unit::Unit,
 };
 pub use component::{
-    Platform, binary_sensor, button, cover, light, number, select, sensor, switch, text,
+    Component, Platform, binary_sensor, button, cover, light, number, select, sensor, switch, text,
 };
 pub use string_enum::UnknownValue;

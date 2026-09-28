@@ -42,3 +42,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Text` and `TextMode`.
 - Add `Cover` and `CoverDeviceClass`.
 - Add `Light` (default schema only), `LightSchema` and `OnCommandType`.
+- Add `Component`, the platform-tagged entry of device discovery, with
+  `Removed` and (feature `json`) `Other` for unmodeled platforms.

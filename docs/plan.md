@@ -212,7 +212,7 @@ Same checklist as Phase D.
 
 ### Phase F — discovery
 
-- [ ] **`Add Component enum`** (tagged with `platform`, one variant per
+- [x] **`Add Component enum`** (tagged with `platform`, one variant per
   platform, plus `Removed { platform }` for removal entries (decision 6) and,
   with feature `json`, `Other { platform, config: serde_json::Map }` for unknown
   platforms and non-basic lights (decisions 3, 7). `Serialize` always;
