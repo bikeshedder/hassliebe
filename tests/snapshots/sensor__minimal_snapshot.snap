@@ -1,0 +1,7 @@
+---
+source: tests/sensor.rs
+expression: "Sensor\n{ state_topic: \"home/kitchen/temperature\".into(), ..Default::default() }"
+---
+{
+  "state_topic": "home/kitchen/temperature"
+}

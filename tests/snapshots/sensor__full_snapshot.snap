@@ -1,0 +1,46 @@
+---
+source: tests/sensor.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "wallbox/garage/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "default_entity_id": "sensor.wallbox_garage_power",
+  "device": {
+    "identifiers": [
+      "wallbox_garage"
+    ],
+    "manufacturer": "Example Chargers",
+    "model": "WB-11",
+    "name": "Wallbox Garage",
+    "sw_version": "1.4.2"
+  },
+  "device_class": "power",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/wallbox.png",
+  "expire_after": 300,
+  "force_update": false,
+  "icon": "mdi:ev-station",
+  "json_attributes_template": "{{ value_json.attributes | tojson }}",
+  "json_attributes_topic": "wallbox/garage/attributes",
+  "message_expiry_interval": 3600,
+  "name": "Power",
+  "origin": {
+    "name": "wallbox2mqtt",
+    "sw_version": "0.3.0"
+  },
+  "qos": 1,
+  "state_class": "measurement",
+  "state_topic": "wallbox/garage/power",
+  "suggested_display_precision": 1,
+  "unique_id": "wallbox_garage_power",
+  "unit_of_measurement": "W",
+  "value_template": "{{ value_json.power }}",
+  "visible_by_default": true
+}

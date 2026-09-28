@@ -4,9 +4,10 @@
 pub mod availability;
 pub mod device;
 pub mod entity_category;
+pub mod entity_name;
 pub mod message_expiry_interval;
 pub mod origin;
 pub mod qos;
 pub mod state_class;
-mod string_list;
+pub(crate) mod string_list;
 pub mod unit;

@@ -15,6 +15,7 @@ pub use common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
     entity_category::EntityCategory,
+    entity_name::EntityName,
     message_expiry_interval::{MessageExpiryInterval, TimePeriod},
     origin::Origin,
     qos::Qos,

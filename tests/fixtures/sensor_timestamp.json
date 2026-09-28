@@ -1,0 +1,13 @@
+{
+  "name": "turned on",
+  "state_topic": "pump/timestamp_on",
+  "device_class": "timestamp",
+  "value_template": "{{ as_datetime(value) }}",
+  "unique_id": "hp_1231232_ts_on",
+  "device": {
+    "name": "Heat pump",
+    "identifiers": [
+      "hp_1231232"
+    ]
+  }
+}
