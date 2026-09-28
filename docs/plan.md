@@ -256,7 +256,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
   `Platform::SCHEMA`, dispatch on `(platform, schema)`.
 - [x] **`Add date`**
 - [x] **`Add time`**
-- [ ] **`Add datetime`**
+- [x] **`Add datetime`**
 - [ ] **`Add scene`**
 - [ ] **`Add notify`**
 - [ ] **`Add event`**

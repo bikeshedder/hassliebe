@@ -10,6 +10,7 @@ pub mod binary_sensor;
 pub mod button;
 pub mod cover;
 pub mod date;
+pub mod datetime;
 pub mod light;
 pub mod number;
 pub mod select;
@@ -169,6 +170,7 @@ components! {
     Button(button::Button),
     Cover(cover::Cover),
     Date(date::Date),
+    DateTime(datetime::DateTime),
     Light(light::Light),
     Number(number::Number),
     Select(select::Select),

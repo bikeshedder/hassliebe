@@ -1,0 +1,44 @@
+---
+source: tests/datetime.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "scheduler/job/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"at\": \"{{ value }}\"}",
+  "command_topic": "scheduler/job/at/set",
+  "default_entity_id": "datetime.scheduler_job",
+  "device": {
+    "identifiers": [
+      "scheduler_job_device"
+    ],
+    "name": "Scheduler"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/scheduler_job.png",
+  "group": [
+    "scheduler_job_2"
+  ],
+  "icon": "mdi:calendar-clock",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "scheduler/job/attributes",
+  "message_expiry_interval": 60,
+  "name": "Next run",
+  "optimistic": false,
+  "origin": {
+    "name": "scheduler_job2mqtt"
+  },
+  "qos": 1,
+  "retain": true,
+  "state_topic": "scheduler/job/at",
+  "timezone": "Europe/Berlin",
+  "unique_id": "scheduler_job",
+  "value_template": "{{ value_json.at }}",
+  "visible_by_default": true
+}

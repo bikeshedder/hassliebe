@@ -1,0 +1,6 @@
+{
+  "name": "Scheduled task",
+  "icon": "mdi:ab-testing",
+  "command_topic": "date_selector/set",
+  "state_topic": "date_selector/state"
+}
