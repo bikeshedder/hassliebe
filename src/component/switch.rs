@@ -1,7 +1,7 @@
 use serde::Serialize;
 
+use super::Platform;
 use super::device_class::DeviceClass;
-use crate::discovery::Discovery;
 
 use crate::common::{
     availability::{Availability, AvailabilityMode},
@@ -70,10 +70,8 @@ pub struct Switch {
     pub state_on: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub state_topic: Option<String>,
-    // This field is marked as optional in the docs but since we
-    // use this to construct the state topics it is required by
-    // this implementation.
-    pub unique_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unique_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub value_template: Option<String>,
 }
@@ -85,9 +83,6 @@ impl Switch {
     }
 }
 
-impl Discovery for Switch {
-    const COMPONENT: &'static str = "switch";
-    fn unique_id(&self) -> &str {
-        &self.unique_id
-    }
+impl Platform for Switch {
+    const PLATFORM: &'static str = "switch";
 }

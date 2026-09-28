@@ -176,7 +176,7 @@ All string-valued enums use `string_enum!`, including closed sets (decision 11).
 - [x] **`Add MessageExpiryInterval`** (decision 12)
   Untagged enum: `Seconds(u32)` or a time period struct. Derive the period keys
   from `cv.time_period_dict` in `helpers/config_validation.py`.
-- [ ] **`Replace Discovery trait with Platform`**
+- [x] **`Replace Discovery trait with Platform`**
   `trait Platform { const PLATFORM: &'static str; }`, implemented for all
   existing components; `unique_id` becomes a plain `Option<String>` field.
 

@@ -8,3 +8,10 @@ pub mod number;
 pub mod select;
 pub mod sensor;
 pub mod switch;
+
+/// Implemented by every platform config struct.
+pub trait Platform {
+    /// The platform name Home Assistant uses in discovery topics and in the
+    /// `platform` key of device discovery components, e.g. `"sensor"`.
+    const PLATFORM: &'static str;
+}

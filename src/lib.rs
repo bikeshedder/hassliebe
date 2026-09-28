@@ -9,7 +9,6 @@ mod string_enum;
 
 pub mod common;
 pub mod component;
-pub mod discovery;
 
 pub use common::unit;
 pub use common::{
@@ -22,5 +21,5 @@ pub use common::{
     state_class::StateClass,
     unit::Unit,
 };
-pub use component::{binary_sensor, number, select, sensor, switch};
+pub use component::{Platform, binary_sensor, number, select, sensor, switch};
 pub use string_enum::UnknownValue;

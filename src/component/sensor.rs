@@ -1,7 +1,7 @@
 use std::num::NonZeroU32;
 
+use super::Platform;
 use super::device_class::DeviceClass;
-use crate::discovery::Discovery;
 
 use crate::common::{
     availability::{Availability, AvailabilityMode},
@@ -68,10 +68,8 @@ pub struct Sensor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub state_class: Option<StateClass>,
     pub state_topic: String,
-    // This field is marked as optional in the docs but since we
-    // use this to construct the state topics it is required by
-    // this implementation.
-    pub unique_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unique_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unit_of_measurement: Option<Unit>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -85,9 +83,6 @@ impl Sensor {
     }
 }
 
-impl Discovery for Sensor {
-    const COMPONENT: &'static str = "sensor";
-    fn unique_id(&self) -> &str {
-        &self.unique_id
-    }
+impl Platform for Sensor {
+    const PLATFORM: &'static str = "sensor";
 }

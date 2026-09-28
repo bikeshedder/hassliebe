@@ -24,3 +24,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   identifier or connection.
 - Add `Origin`.
 - Add `MessageExpiryInterval` (seconds or a `TimePeriod`).
+- Replace the `Discovery` trait with `Platform`; `unique_id` is optional.

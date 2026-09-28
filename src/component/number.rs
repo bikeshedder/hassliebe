@@ -1,17 +1,14 @@
 use serde::Serialize;
 
-use crate::{
-    common::{
-        availability::{Availability, AvailabilityMode},
-        device::Device,
-        entity_category::EntityCategory,
-        qos::Qos,
-        unit::Unit,
-    },
-    discovery::Discovery,
+use crate::common::{
+    availability::{Availability, AvailabilityMode},
+    device::Device,
+    entity_category::EntityCategory,
+    qos::Qos,
+    unit::Unit,
 };
 
-use super::device_class::DeviceClass;
+use super::{Platform, device_class::DeviceClass};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Serialize)]
 #[serde(rename_all = "lowercase")]
@@ -76,7 +73,8 @@ pub struct Number {
     pub state_topic: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub step: Option<f64>,
-    pub unique_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unique_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unit_of_measurement: Option<Unit>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -90,9 +88,6 @@ impl Number {
     }
 }
 
-impl Discovery for Number {
-    const COMPONENT: &'static str = "number";
-    fn unique_id(&self) -> &str {
-        &self.unique_id
-    }
+impl Platform for Number {
+    const PLATFORM: &'static str = "number";
 }
