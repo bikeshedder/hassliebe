@@ -1,9 +1,5 @@
-//! Typed Home Assistant MQTT discovery payloads.
-//!
-//! Plain structs and enums with `serde` support that describe the JSON Home
-//! Assistant expects on its discovery topics. No MQTT client, no I/O.
-//!
-//! <https://www.home-assistant.io/integrations/mqtt/>
+#![doc = include_str!("../README.md")]
+#![warn(missing_docs)]
 
 mod string_enum;
 

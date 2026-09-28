@@ -1,3 +1,5 @@
+//! Values that can also be an explicit `null`.
+
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 /// A value that Home Assistant also accepts as an explicit `null`, with a

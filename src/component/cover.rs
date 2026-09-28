@@ -1,3 +1,5 @@
+//! MQTT cover: <https://www.home-assistant.io/integrations/cover.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

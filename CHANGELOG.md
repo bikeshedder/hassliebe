@@ -50,3 +50,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `device_topic`, `is_valid_id`) and the status topic constants.
 - Add `abbreviations::{expand_component_payload, expand_device_payload}`
   (feature `json`) to expand abbreviated keys and the `~` base topic.
+- The README is the crate documentation; its example is a doctest.

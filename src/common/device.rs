@@ -1,3 +1,5 @@
+//! The `device` block that ties entities to a device.
+
 use serde::{Deserialize, Serialize};
 
 /// Information about the device an entity belongs to, used to tie it into the

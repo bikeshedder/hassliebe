@@ -1,3 +1,5 @@
+//! MQTT sensor: <https://www.home-assistant.io/integrations/sensor.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

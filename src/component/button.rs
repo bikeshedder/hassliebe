@@ -1,3 +1,5 @@
+//! MQTT button: <https://www.home-assistant.io/integrations/button.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

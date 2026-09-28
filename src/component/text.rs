@@ -1,3 +1,5 @@
+//! MQTT text: <https://www.home-assistant.io/integrations/text.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

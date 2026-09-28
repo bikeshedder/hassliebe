@@ -1,3 +1,5 @@
+//! MQTT select: <https://www.home-assistant.io/integrations/select.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

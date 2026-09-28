@@ -17,24 +17,27 @@ inspect discovery payloads.
 ```rust
 use hassliebe::{Device, sensor::{Sensor, SensorDeviceClass}, StateClass, unit::UnitOfPower};
 
-let sensor = Sensor {
-    name: Some("Power".into()),
-    unique_id: Some("wallbox_garage_power".into()),
-    state_topic: "wallbox/garage/power".into(),
-    device_class: Some(SensorDeviceClass::Power),
-    state_class: Some(StateClass::Measurement),
-    unit_of_measurement: Some(UnitOfPower::Watt.into()),
-    device: Some(Device {
-        identifiers: vec!["wallbox_garage".into()],
-        name: Some("Wallbox Garage".into()),
+fn main() -> Result<(), serde_json::Error> {
+    let sensor = Sensor {
+        name: Some("Power".into()),
+        unique_id: Some("wallbox_garage_power".into()),
+        state_topic: "wallbox/garage/power".into(),
+        device_class: Some(SensorDeviceClass::Power),
+        state_class: Some(StateClass::Measurement),
+        unit_of_measurement: Some(UnitOfPower::Watt.into()),
+        device: Some(Device {
+            identifiers: vec!["wallbox_garage".into()],
+            name: Some("Wallbox Garage".into()),
+            ..Default::default()
+        }),
         ..Default::default()
-    }),
-    ..Default::default()
-};
+    };
 
-let topic = hassliebe::discovery::component_topic("homeassistant", &sensor, None, "wallbox_garage_power");
-let payload = serde_json::to_string(&sensor)?;
-// publish `payload` retained on `topic` with the MQTT client of your choice
+    let topic = hassliebe::discovery::component_topic("homeassistant", &sensor, None, "wallbox_garage_power");
+    let payload = serde_json::to_string(&sensor)?;
+    // publish `payload` retained on `topic` with the MQTT client of your choice
+    Ok(())
+}
 ```
 
 ## Features

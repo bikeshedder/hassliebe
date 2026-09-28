@@ -1,3 +1,5 @@
+//! Availability topics of an entity.
+
 use serde::{Deserialize, Serialize};
 
 use crate::string_enum::string_enum;

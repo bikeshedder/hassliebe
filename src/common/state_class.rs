@@ -1,3 +1,5 @@
+//! State classes of sensors.
+
 use crate::string_enum::string_enum;
 
 string_enum! {

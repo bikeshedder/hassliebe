@@ -1,3 +1,5 @@
+//! MQTT switch: <https://www.home-assistant.io/integrations/switch.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

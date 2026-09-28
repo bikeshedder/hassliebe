@@ -1,3 +1,5 @@
+//! MQTT binary sensor: <https://www.home-assistant.io/integrations/binary_sensor.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

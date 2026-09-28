@@ -1,3 +1,5 @@
+//! MQTT light, default schema: <https://www.home-assistant.io/integrations/light.mqtt/>
+
 use serde::{Deserialize, Serialize};
 
 use super::Platform;

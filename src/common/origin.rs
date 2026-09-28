@@ -1,3 +1,5 @@
+//! The `origin` block that names the sending application.
+
 use serde::{Deserialize, Serialize};
 
 /// Information about the application that sent a discovery message (the `o`

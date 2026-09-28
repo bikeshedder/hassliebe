@@ -1,3 +1,5 @@
+//! The MQTT message expiry interval.
+
 use serde::{Deserialize, Serialize};
 
 /// MQTT message expiry interval that Home Assistant sets on the command

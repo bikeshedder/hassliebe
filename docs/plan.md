@@ -236,7 +236,7 @@ Same checklist as Phase D.
 
 ### Phase G — polish
 
-- [ ] **`Add crate docs and test README example`**
+- [x] **`Add crate docs and test README example`**
   `#![doc = include_str!("../README.md")]` or an equivalent tested example; enable
   `#![warn(missing_docs)]`.
 - [ ] **`Audit all types against HA`**
