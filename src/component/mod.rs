@@ -8,6 +8,7 @@ pub mod number;
 pub mod select;
 pub mod sensor;
 pub mod switch;
+pub mod text;
 
 /// Implemented by every platform config struct.
 pub trait Platform {

@@ -1,0 +1,7 @@
+---
+source: tests/text.rs
+expression: "Text { command_topic: \"command-topic\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "command-topic"
+}

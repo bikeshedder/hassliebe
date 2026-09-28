@@ -1,0 +1,9 @@
+{
+  "name": "Remote LCD screen",
+  "icon": "mdi:ab-testing",
+  "mode": "text",
+  "command_topic": "txt/cmd",
+  "state_topic": "txt/state",
+  "min": 2,
+  "max": 20
+}

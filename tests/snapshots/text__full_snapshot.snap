@@ -1,0 +1,47 @@
+---
+source: tests/text.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "lcd/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"text\": \"{{ value }}\"}",
+  "command_topic": "lcd/text/set",
+  "default_entity_id": "text.remote_lcd_screen",
+  "device": {
+    "identifiers": [
+      "lcd01"
+    ],
+    "name": "LCD"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/lcd.png",
+  "group": [
+    "lcd02_text"
+  ],
+  "icon": "mdi:ab-testing",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "lcd/attributes",
+  "max": 20,
+  "message_expiry_interval": 60,
+  "min": 2,
+  "mode": "text",
+  "name": "Screen",
+  "optimistic": false,
+  "origin": {
+    "name": "lcd2mqtt"
+  },
+  "pattern": "^[A-Z ]*$",
+  "qos": 0,
+  "retain": true,
+  "state_topic": "lcd/text",
+  "unique_id": "lcd01_text",
+  "value_template": "{{ value_json.text }}",
+  "visible_by_default": true
+}

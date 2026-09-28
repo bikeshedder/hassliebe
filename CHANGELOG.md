@@ -39,3 +39,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `entity_category`.
 - Remove the shared `DeviceClass`; each platform has its own device class enum.
 - Add `Button` and `ButtonDeviceClass`.
+- Add `Text` and `TextMode`.
