@@ -71,3 +71,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `LawnMower`.
 - Add `Update` and `UpdateDeviceClass`.
 - Add `AlarmControlPanel` and `AlarmControlPanelFeature`.
+- Add `Vacuum` and `VacuumFeature`; the builder requires `unique_id` with `clean_segments_command_topic`.

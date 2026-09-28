@@ -1,0 +1,62 @@
+---
+source: tests/vacuum.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "vacuum/living_room/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "clean_segments_command_template": "{{ value | tojson }}",
+  "clean_segments_command_topic": "vacuum/living_room/clean_segments",
+  "command_topic": "vacuum/living_room/command",
+  "default_entity_id": "vacuum.vacuum_living_room",
+  "device": {
+    "identifiers": [
+      "vacuum_living_room_device"
+    ],
+    "name": "Robot vacuum"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/vacuum_living_room.png",
+  "fan_speed_list": [
+    "min",
+    "medium",
+    "high",
+    "max"
+  ],
+  "group": [
+    "vacuum_living_room_2"
+  ],
+  "icon": "mdi:robot-vacuum",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "vacuum/living_room/attributes",
+  "message_expiry_interval": 60,
+  "name": "Living room",
+  "origin": {
+    "name": "vacuum_living_room2mqtt"
+  },
+  "payload_clean_spot": "clean_spot",
+  "payload_locate": "locate",
+  "payload_pause": "pause",
+  "payload_return_to_base": "return_to_base",
+  "payload_start": "start",
+  "payload_stop": "stop",
+  "qos": 1,
+  "retain": false,
+  "send_command_topic": "vacuum/living_room/send_command",
+  "set_fan_speed_topic": "vacuum/living_room/set_fan_speed",
+  "state_topic": "vacuum/living_room/state",
+  "supported_features": [
+    "start",
+    "stop",
+    "return_home",
+    "fan_speed"
+  ],
+  "unique_id": "vacuum_living_room",
+  "visible_by_default": true
+}

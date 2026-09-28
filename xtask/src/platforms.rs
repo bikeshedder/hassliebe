@@ -8,7 +8,6 @@ use std::{error::Error, fmt::Write as _};
 
 /// How a field is declared.
 #[derive(Clone, Copy)]
-#[expect(dead_code, reason = "used by the remaining platforms")]
 pub enum Kind {
     /// Required: `T`.
     Req,
@@ -1130,6 +1129,64 @@ pub const PLATFORMS: &[Platform] = &[
                 "`arm_night`, `arm_vacation`, `arm_custom_bypass` and `trigger`.",
             ]),
             field("value_template", Opt, "String", &["Template to extract the state from the payload."]),
+        ],
+    },
+    Platform {
+        name: "vacuum",
+        struct_name: "Vacuum",
+        noun: "vacuum",
+        doc: &[
+            "An MQTT vacuum: controlled by publishing to `command_topic`; its state",
+            "is received as a JSON object on `state_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/vacuum.mqtt/",
+        schema: None,
+        validate: true,
+        entity: Some(Entity {
+            name_default: Some("`MQTT Vacuum` per the docs (`MQTT State Vacuum` in Home Assistant's source)"),
+            undocumented: &["entity_category", "entity_picture", "icon", "origin"],
+            ..entity("vacuum.living_room", "mdi:robot-vacuum", "MQTT Vacuum", true)
+        }),
+        fields: &[
+            field("clean_segments_command_template", Opt, "String", &[
+                "Template to generate the payload sent to",
+                "`clean_segments_command_topic`; `value` is the list of segment IDs.",
+            ]),
+            field("clean_segments_command_topic", Opt, "String", &[
+                "Topic to publish a JSON list of segment IDs to clean to. Requires",
+                "`unique_id`; the builder checks this.",
+            ]),
+            field("command_topic", Opt, "String", &[
+                "Topic to publish commands such as `payload_start` to.",
+            ]),
+            field("fan_speed_list", OneOrMany, "String", &[
+                "Possible fan speeds. Home Assistant also accepts a single string.",
+            ]),
+            field("payload_clean_spot", Opt, "String", &[
+                "Payload sent to start a spot cleaning cycle. Default: `clean_spot`.",
+            ]),
+            field("payload_locate", Opt, "String", &[
+                "Payload sent to locate the vacuum. Default: `locate`.",
+            ]),
+            field("payload_pause", Opt, "String", &["Payload sent to pause cleaning. Default: `pause`."]),
+            field("payload_return_to_base", Opt, "String", &[
+                "Payload sent to return the vacuum to its base. Default:",
+                "`return_to_base`.",
+            ]),
+            field("payload_start", Opt, "String", &["Payload sent to start cleaning. Default: `start`."]),
+            field("payload_stop", Opt, "String", &["Payload sent to stop cleaning. Default: `stop`."]),
+            RETAIN,
+            field("send_command_topic", Opt, "String", &["Topic to publish custom commands to."]),
+            field("set_fan_speed_topic", Opt, "String", &["Topic to publish fan speed commands to."]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the state from, a JSON object with `state` and",
+                "optionally `fan_speed` and `segments`.",
+            ]),
+            field("supported_features", OptOneOrMany, "VacuumFeature", &[
+                "Features the vacuum supports. Default: `start`, `stop`, `return_home`,",
+                "`status` and `clean_spot` per the docs (without `status` in Home",
+                "Assistant's source). Home Assistant also accepts a single string.",
+            ]),
         ],
     },
 ];

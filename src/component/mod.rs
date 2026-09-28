@@ -29,6 +29,7 @@ pub mod switch;
 pub mod text;
 pub mod time;
 pub mod update;
+pub mod vacuum;
 pub mod valve;
 
 /// Implemented by every platform config struct.
@@ -201,5 +202,6 @@ components! {
     Text(text::Text),
     Time(time::Time),
     Update(update::Update),
+    Vacuum(vacuum::Vacuum),
     Valve(valve::Valve),
 }

@@ -1,0 +1,8 @@
+---
+source: tests/vacuum.rs
+expression: "Vacuum\n{\n    command_topic: Some(\"command-topic\".into()), state_topic:\n    Some(\"state-topic\".into()), ..Default::default()\n}"
+---
+{
+  "command_topic": "command-topic",
+  "state_topic": "state-topic"
+}

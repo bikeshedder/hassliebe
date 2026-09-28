@@ -30,7 +30,6 @@ where
 
 /// Like [`deserialize`], for `Option<Vec<T>>` fields (use with
 /// `#[serde(default)]`).
-#[cfg_attr(not(test), expect(dead_code, reason = "used by upcoming platforms"))]
 pub(crate) fn deserialize_option<'de, D, T>(deserializer: D) -> Result<Option<Vec<T>>, D::Error>
 where
     D: Deserializer<'de>,

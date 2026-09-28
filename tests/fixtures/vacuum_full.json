@@ -1,0 +1,24 @@
+{
+  "name": "MQTT Vacuum",
+  "supported_features": [
+    "start",
+    "pause",
+    "stop",
+    "return_home",
+    "status",
+    "locate",
+    "clean_spot",
+    "fan_speed",
+    "send_command"
+  ],
+  "command_topic": "vacuum/command",
+  "clean_segments_command_topic": "vacuum/clean_segments",
+  "set_fan_speed_topic": "vacuum/set_fan_speed",
+  "fan_speed_list": [
+    "min",
+    "medium",
+    "high",
+    "max"
+  ],
+  "send_command_topic": "vacuum/send_command"
+}
