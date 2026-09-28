@@ -1,15 +1,17 @@
 use serde::Serialize;
 
 use crate::{
-    discovery::Discovery,
-    models::{
+    common::{
         availability::{Availability, AvailabilityMode},
+        device::Device,
         entity_category::EntityCategory,
         qos::Qos,
+        unit::UnitOfMeasurement,
     },
+    discovery::Discovery,
 };
 
-use super::{device::Device, device_class::DeviceClass, unit::UnitOfMeasurement};
+use super::device_class::DeviceClass;
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Serialize)]
 #[serde(rename_all = "lowercase")]

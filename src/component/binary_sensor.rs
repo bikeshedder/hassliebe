@@ -1,23 +1,21 @@
 use std::num::NonZeroU32;
 
+use super::device_class::DeviceClass;
 use crate::discovery::Discovery;
 
-use super::{
+use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
-    device_class::DeviceClass,
     entity_category::EntityCategory,
     qos::Qos,
-    state_class::StateClass,
-    unit::UnitOfMeasurement,
 };
 use serde::Serialize;
 
-/// <https://www.home-assistant.io/integrations/sensor.mqtt/>
+/// <https://www.home-assistant.io/integrations/binary_sensor.mqtt/>
 #[derive(Clone, Debug, Default, Serialize)]
 #[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
 #[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
-pub struct Sensor {
+pub struct BinarySensor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub availabilty: Option<Vec<Availability>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -45,7 +43,7 @@ pub struct Sensor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub force_update: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub group: Option<Vec<String>>,
+    pub group: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub icon: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -53,40 +51,37 @@ pub struct Sensor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub json_attributes_topic: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub last_reset_value_template: Option<String>,
-    pub name: String,
+    pub name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub options: Option<Vec<String>>,
+    pub off_delay: Option<NonZeroU32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub payload_available: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub payload_not_available: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub suggested_display_precision: Option<u32>,
+    pub payload_off: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub payload_on: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub qos: Option<Qos>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub state_class: Option<StateClass>,
     pub state_topic: String,
     // This field is marked as optional in the docs but since we
     // use this to construct the state topics it is required by
     // this implementation.
     pub unique_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub unit_of_measurement: Option<UnitOfMeasurement>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub value_template: Option<String>,
 }
 
 #[cfg(feature = "builder")]
-impl Sensor {
-    pub fn builder() -> SensorBuilder {
-        SensorBuilder::default()
+impl BinarySensor {
+    pub fn builder() -> BinarySensorBuilder {
+        BinarySensorBuilder::default()
     }
 }
 
-impl Discovery for Sensor {
-    const COMPONENT: &'static str = "sensor";
+impl Discovery for BinarySensor {
+    const COMPONENT: &'static str = "binary_sensor";
     fn unique_id(&self) -> &str {
         &self.unique_id
     }

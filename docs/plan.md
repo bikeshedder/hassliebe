@@ -126,7 +126,7 @@ Noted docs/source discrepancies (resolved in favour of the docs, decision 4):
 
 ### Phase B — foundations
 
-- [ ] **`Move modules to common/ and component/`**
+- [x] **`Move modules to common/ and component/`**
   Pure `git mv` + path fixes, no behaviour change: `availability`, `device`,
   `entity_category`, `qos`, `state_class`, `unit` → `src/common/`;
   `sensor`, `binary_sensor`, `switch`, `number`, `select`, `device_class` →

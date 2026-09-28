@@ -1,70 +1,58 @@
-use std::num::NonZeroU32;
+use serde::Serialize;
 
 use crate::discovery::Discovery;
 
-use super::{
+use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
-    device_class::DeviceClass,
-    entity_category::EntityCategory,
     qos::Qos,
 };
-use serde::Serialize;
 
-/// <https://www.home-assistant.io/integrations/binary_sensor.mqtt/>
+/// <https://www.home-assistant.io/integrations/select.mqtt/>
 #[derive(Clone, Debug, Default, Serialize)]
 #[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
 #[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
-pub struct BinarySensor {
+pub struct Select {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub availabilty: Option<Vec<Availability>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub availability_topic: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub availability_mode: Option<AvailabilityMode>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub availability_template: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub availability_topic: Option<String>,
+    pub command_template: Option<String>,
+    pub command_topic: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub default_entity_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub device: Option<Device>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub device_class: Option<DeviceClass>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub enabled_by_default: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub encoding: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub entity_category: Option<EntityCategory>,
+    pub entity_category: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub entity_picture: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub expire_after: Option<NonZeroU32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub force_update: Option<bool>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub group: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub icon: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub json_attributes_template: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub json_attributes_topic: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub icon: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub off_delay: Option<NonZeroU32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub payload_available: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub payload_not_available: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub payload_off: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub payload_on: Option<String>,
+    pub optimistic: Option<bool>,
+    pub options: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub qos: Option<Qos>,
-    pub state_topic: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retain: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub state_topic: Option<String>,
     // This field is marked as optional in the docs but since we
     // use this to construct the state topics it is required by
     // this implementation.
@@ -74,14 +62,14 @@ pub struct BinarySensor {
 }
 
 #[cfg(feature = "builder")]
-impl BinarySensor {
-    pub fn builder() -> BinarySensorBuilder {
-        BinarySensorBuilder::default()
+impl Select {
+    pub fn builder() -> SelectBuilder {
+        SelectBuilder::default()
     }
 }
 
-impl Discovery for BinarySensor {
-    const COMPONENT: &'static str = "binary_sensor";
+impl Discovery for Select {
+    const COMPONENT: &'static str = "select";
     fn unique_id(&self) -> &str {
         &self.unique_id
     }

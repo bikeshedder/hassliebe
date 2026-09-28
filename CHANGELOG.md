@@ -8,3 +8,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Initial import of the discovery types from `nrg-hass`.
+- Move modules to `common` and `component`; re-export common types and platform
+  modules at the crate root.
