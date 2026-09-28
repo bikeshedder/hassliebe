@@ -17,5 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace `UnitOfMeasurement` with `Unit` and the `UnitOf*` classes from Home
   Assistant. Adds all current units, fixes `ft³/min` and serializes the micro sign
   as U+03BC.
-- All structs derive `Deserialize` and `PartialEq` (starting with `Availability`);
-  builders fail on missing required fields.
+- Structs derive `Deserialize` and `PartialEq`; builders fail on missing required
+  fields.
+- `Device.identifiers` and `Device.connections` are plain `Vec`s; `identifiers`
+  also reads a single string. The `Device` builder requires `name` and an
+  identifier or connection.

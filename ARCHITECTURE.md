@@ -155,6 +155,13 @@ top-level `availability_topic`, `availability_template`, `payload_available` and
 `payload_not_available` are not; when reading, they are ignored like any unknown
 key.
 
+### Builders enforce, reading tolerates
+
+What Home Assistant or its docs require (required fields, device `name`, at
+least one of `identifiers`/`connections`) is enforced by the builders.
+Deserialization only requires what is needed to build the Rust value, so tools
+can inspect payloads Home Assistant would reject or only warn about.
+
 ### Docs over source
 
 The Home Assistant MQTT docs decide. Where the core source differs (defaults,

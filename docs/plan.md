@@ -167,9 +167,9 @@ All string-valued enums use `string_enum!`, including closed sets (decision 11).
 - [x] **`Make Availability deserializable and document it`**
   `Deserialize`, `PartialEq`, `#[serde(default)]`, docs with HA defaults
   (`online`/`offline`), fields verified against `schemas.py`.
-- [ ] **`Make Device deserializable and document it`**
+- [x] **`Make Device deserializable and document it`**
   Verify the 12 fields; `connections` as `Vec<(String, String)>` (or a named
-  type); `name: String` (required per docs, decision 4); `identifiers:
+  type); `name` per decision 4; `identifiers:
   Vec<String>`, skipped when empty, deserializer also accepts a single string
   (decision 5; shared helper in `common/`, reused for `group`); no `Arc`.
 - [ ] **`Add Origin`** (`name` required, `sw_version`, `support_url`).
@@ -261,12 +261,18 @@ are the source of truth; the core source only fills gaps the docs leave open.
 3. **Unknown platforms in `cmps`:** fallback `Component::Other { platform, config }`
    holding a `serde_json::Map`, feature `json`. Without `json`, `Component` and
    `DeviceDiscovery` are serialize-only.
-4. **Docs vs source on defaults:** follow the docs. Device `name` is required;
-   `number` `min` default 1; `sensor` `expire_after` default 0. Doc comments
-   mention the differing source value.
+4. **Docs vs source on defaults:** follow the docs: `number` `min` default 1;
+   `sensor` `expire_after` default 0. Doc comments mention the differing source
+   value. Device `name` (docs contradict each other; HA only logs when it is
+   missing): `Option<String>`, but the builder requires it.
+4a. **Builders enforce, reading tolerates.** What HA requires or the docs call
+   mandatory is enforced by the builders (e.g. device `name`, at least one of
+   `identifiers`/`connections`). Deserialization stays lenient so payloads HA
+   would reject can still be inspected.
 5. **String-or-list fields** (`identifiers`, `group`): plain `Vec<String>`,
    skipped when empty. Because HA accepts a single string, deserialization also
-   accepts one.
+   accepts one. `connections` (list only, HA default `[]`) is also a plain
+   `Vec`.
 6. **Removal entries:** `Component::Removed { platform }` (always available; also
    useful when writing).
 7. **Light schemas:** only the basic schema is modeled. Other schemas go to

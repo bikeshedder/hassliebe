@@ -26,7 +26,7 @@ let sensor = Sensor {
     unit_of_measurement: Some(UnitOfPower::Watt.into()),
     device: Some(Device {
         identifiers: vec!["wallbox_garage".into()],
-        name: "Wallbox Garage".into(),
+        name: Some("Wallbox Garage".into()),
         ..Default::default()
     }),
     ..Default::default()

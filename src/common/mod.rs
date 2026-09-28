@@ -6,4 +6,5 @@ pub mod device;
 pub mod entity_category;
 pub mod qos;
 pub mod state_class;
+mod string_list;
 pub mod unit;
