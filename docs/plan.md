@@ -131,7 +131,7 @@ Noted docs/source discrepancies (resolved in favour of the docs, decision 4):
   `entity_category`, `qos`, `state_class`, `unit` → `src/common/`;
   `sensor`, `binary_sensor`, `switch`, `number`, `select`, `device_class` →
   `src/component/`. `lib.rs` with module docs and the re-exports from the README.
-- [ ] **`Add string_enum! macro`** (`src/string_enum.rs`)
+- [x] **`Add string_enum! macro`** (`src/string_enum.rs`)
   `macro_rules!` that generates a `#[non_exhaustive]` enum with `Other(String)`,
   `as_str()`, `Display`, `FromStr` (infallible), per-variant doc comments and
   optional input-only aliases (decision 1). Serde via plain derives: each variant
