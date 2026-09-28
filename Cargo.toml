@@ -2,7 +2,7 @@
 name = "hassliebe"
 version = "0.1.0"
 edition = "2024"
-rust-version = "1.85"
+rust-version = "1.98"
 description = "Typed Home Assistant MQTT discovery payloads. Serde structs, no MQTT client, no runtime."
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/bikeshedder/hassliebe"

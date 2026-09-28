@@ -1,0 +1,34 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/rust
+{
+	"name": "Hassliebe",
+	"image": "mcr.microsoft.com/devcontainers/rust:2-1-trixie",
+
+	// Mount only this project, at /workspace.
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+	"workspaceFolder": "/workspace",
+
+	// Keep Claude Code state (history, settings, credentials, memory) across rebuilds.
+	// CLAUDE_CONFIG_DIR moves ~/.claude.json into the volume as well.
+	"mounts": [
+		{
+			"source": "hassliebe_devcontainer_claude-config",
+			//"source": "claude-config-${devcontainerId}",
+			"target": "/home/vscode/.claude",
+			"type": "volume"
+		}
+	],
+	"containerEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
+	},
+
+	// New volumes are created root-owned.
+	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Anthropic.claude-code"
+			]
+		}
+	}
+}

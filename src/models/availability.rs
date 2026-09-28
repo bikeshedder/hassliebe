@@ -14,7 +14,7 @@ pub struct Availability {
     pub value_template: Option<String>,
 }
 
-/// https://www.home-assistant.io/integrations/sensor.mqtt/#availability_mode
+/// <https://www.home-assistant.io/integrations/sensor.mqtt/#availability_mode>
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum AvailabilityMode {

@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-/// https://www.home-assistant.io/integrations/sensor/#device-class
+/// <https://www.home-assistant.io/integrations/sensor/#device-class>
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum DeviceClass {

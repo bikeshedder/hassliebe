@@ -1,4 +1,4 @@
-//! https://www.home-assistant.io/integrations/#search/mqtt
+//! <https://www.home-assistant.io/integrations/#search/mqtt>
 pub mod availability;
 pub mod binary_sensor;
 pub mod device;

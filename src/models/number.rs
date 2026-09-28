@@ -20,7 +20,7 @@ pub enum NumberMode {
     Slider,
 }
 
-/// https://www.home-assistant.io/integrations/number.mqtt/
+/// <https://www.home-assistant.io/integrations/number.mqtt/>
 #[derive(Clone, Debug, Default, Serialize)]
 #[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
 #[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]

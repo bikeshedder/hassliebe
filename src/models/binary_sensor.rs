@@ -11,7 +11,7 @@ use super::{
 };
 use serde::Serialize;
 
-/// https://www.home-assistant.io/integrations/binary_sensor.mqtt/
+/// <https://www.home-assistant.io/integrations/binary_sensor.mqtt/>
 #[derive(Clone, Debug, Default, Serialize)]
 #[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
 #[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
