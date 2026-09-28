@@ -1,0 +1,73 @@
+---
+source: tests/humidifier.rs
+expression: full()
+---
+{
+  "action_template": "{{ value_json.action }}",
+  "action_topic": "bedroom_humidifier/action",
+  "availability": [
+    {
+      "topic": "bedroom_humidifier/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"state\": \"{{ value }}\"}",
+  "command_topic": "bedroom_humidifier/on/set",
+  "current_humidity_template": "{{ value_json.humidity }}",
+  "current_humidity_topic": "bedroom_humidifier/humidity/current",
+  "default_entity_id": "humidifier.bedroom_humidifier",
+  "device": {
+    "identifiers": [
+      "bedroom_humidifier_device"
+    ],
+    "name": "Humidifier"
+  },
+  "device_class": "humidifier",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/bedroom_humidifier.png",
+  "group": [
+    "bedroom_humidifier_2"
+  ],
+  "icon": "mdi:air-humidifier",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "bedroom_humidifier/attributes",
+  "max_humidity": 80.0,
+  "message_expiry_interval": 60,
+  "min_humidity": 30.0,
+  "mode_command_template": "{{ value }}",
+  "mode_command_topic": "bedroom_humidifier/preset/preset_mode",
+  "mode_state_template": "{{ value_json.mode }}",
+  "mode_state_topic": "bedroom_humidifier/mode/state",
+  "modes": [
+    "normal",
+    "eco",
+    "away",
+    "boost",
+    "comfort",
+    "home",
+    "sleep",
+    "auto",
+    "baby"
+  ],
+  "name": "Bedroom humidifier",
+  "optimistic": false,
+  "origin": {
+    "name": "bedroom_humidifier2mqtt"
+  },
+  "payload_off": "false",
+  "payload_on": "true",
+  "payload_reset_humidity": "None",
+  "payload_reset_mode": "None",
+  "qos": 1,
+  "retain": true,
+  "state_topic": "bedroom_humidifier/on/state",
+  "state_value_template": "{{ value_json.state }}",
+  "target_humidity_command_template": "{{ value | int }}",
+  "target_humidity_command_topic": "bedroom_humidifier/humidity/set",
+  "target_humidity_state_template": "{{ value_json.target }}",
+  "target_humidity_state_topic": "bedroom_humidifier/humidity/state",
+  "unique_id": "bedroom_humidifier",
+  "visible_by_default": true
+}

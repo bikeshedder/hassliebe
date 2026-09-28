@@ -16,6 +16,7 @@ pub mod datetime;
 pub mod device_tracker;
 pub mod event;
 pub mod fan;
+pub mod humidifier;
 pub mod image;
 pub mod lawn_mower;
 pub mod light;
@@ -190,6 +191,7 @@ components! {
     DeviceTracker(device_tracker::DeviceTracker),
     Event(event::Event),
     Fan(fan::Fan),
+    Humidifier(humidifier::Humidifier),
     Image(image::Image),
     LawnMower(lawn_mower::LawnMower),
     Light(light::Light),

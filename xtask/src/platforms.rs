@@ -1289,6 +1289,99 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "humidifier",
+        struct_name: "Humidifier",
+        noun: "humidifier",
+        doc: &[
+            "An MQTT humidifier or dehumidifier with a target humidity, switched on",
+            "and off by publishing to `command_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/humidifier.mqtt/",
+        schema: None,
+        validate: true,
+        entity: Some(Entity {
+            name_default: Some("`MQTT humidifier` per the docs (`MQTT Humidifier` in Home Assistant's source)"),
+            undocumented: &["group", "origin"],
+            ..entity("humidifier.bedroom_humidifier", "mdi:air-humidifier", "MQTT humidifier", true)
+        }),
+        fields: &[
+            field("action_template", Opt, "String", &[
+                "Template to extract the current action from `action_topic`.",
+            ]),
+            field("action_topic", Opt, "String", &[
+                "Topic to receive the current action (`off`, `humidifying`, `drying`,",
+                "`idle`) from.",
+            ]),
+            COMMAND_TEMPLATE,
+            field("command_topic", Req, "String", &["Topic to publish on/off commands to. Required."]),
+            field("current_humidity_template", Opt, "String", &[
+                "Template to extract the current humidity from",
+                "`current_humidity_topic`.",
+            ]),
+            field("current_humidity_topic", Opt, "String", &[
+                "Topic to receive the current humidity from. `payload_reset_humidity`",
+                "resets it.",
+            ]),
+            field("device_class", Nullable, "HumidifierDeviceClass", &[
+                "Type of the device; [`Nullable::Null`] for none. Default:",
+                "`humidifier`.",
+            ]),
+            field("max_humidity", Opt, "f64", &["Maximum target humidity in percent. Default: `100`."]),
+            field("min_humidity", Opt, "f64", &["Minimum target humidity in percent. Default: `0`."]),
+            field("mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `mode_command_topic`.",
+            ]),
+            field("mode_command_topic", Opt, "String", &[
+                "Topic to publish mode commands to. Must be set together with `modes`;",
+                "the builder checks this.",
+            ]),
+            field("mode_state_template", Opt, "String", &[
+                "Template to extract the mode from `mode_state_topic`.",
+            ]),
+            field("mode_state_topic", Opt, "String", &["Topic to receive the mode from."]),
+            field("modes", OneOrMany, "String", &[
+                "Available modes, e.g. `normal`, `eco` or `baby`; custom modes are",
+                "allowed. Must be set together with `mode_command_topic`. Home",
+                "Assistant also accepts a single string.",
+            ]),
+            OPTIMISTIC_STATE,
+            field("payload_off", Opt, "String", &["Payload that means off. Default: `OFF`."]),
+            field("payload_on", Opt, "String", &["Payload that means on. Default: `ON`."]),
+            field("payload_reset_humidity", Opt, "String", &[
+                "Payload that resets the target or current humidity to unknown.",
+                "Default: the string `None`.",
+            ]),
+            field("payload_reset_mode", Opt, "String", &[
+                "Payload on `mode_state_topic` that resets the mode to unknown.",
+                "Default: the string `None`.",
+            ]),
+            field("retain", Opt, "bool", &[
+                "Publish commands with the retain flag. Default: `true` per the docs",
+                "(`false` in Home Assistant's source).",
+            ]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the on/off state from. A `None` payload resets it.",
+            ]),
+            field("state_value_template", Opt, "String", &[
+                "Template to extract the on/off state from `state_topic`.",
+            ]),
+            field("target_humidity_command_template", Opt, "String", &[
+                "Template to generate the payload sent to",
+                "`target_humidity_command_topic`.",
+            ]),
+            field("target_humidity_command_topic", Req, "String", &[
+                "Topic to publish target humidity commands to. Required.",
+            ]),
+            field("target_humidity_state_template", Opt, "String", &[
+                "Template to extract the target humidity from",
+                "`target_humidity_state_topic`.",
+            ]),
+            field("target_humidity_state_topic", Opt, "String", &[
+                "Topic to receive the target humidity from.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

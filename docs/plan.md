@@ -271,7 +271,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add alarm_control_panel`**
 - [x] **`Add vacuum`**
 - [x] **`Add fan`**
-- [ ] **`Add humidifier`**
+- [x] **`Add humidifier`**
 - [ ] **`Add water_heater`**
 - [ ] **`Add climate`**
 - [ ] **`Add JSON schema light`**

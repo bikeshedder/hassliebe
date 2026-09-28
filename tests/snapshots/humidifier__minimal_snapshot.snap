@@ -1,0 +1,8 @@
+---
+source: tests/humidifier.rs
+expression: "Humidifier\n{\n    command_topic: \"bedroom_humidifier/on/set\".into(),\n    target_humidity_command_topic: \"bedroom_humidifier/humidity/set\".into(),\n    ..Default::default()\n}"
+---
+{
+  "command_topic": "bedroom_humidifier/on/set",
+  "target_humidity_command_topic": "bedroom_humidifier/humidity/set"
+}
