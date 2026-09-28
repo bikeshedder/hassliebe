@@ -206,8 +206,9 @@ Same checklist as Phase D.
 - [x] **`Add button`**
 - [x] **`Add text`**
 - [x] **`Add cover`** (nullable command payloads, decision 14)
-- [ ] **`Add light (default schema)`** (decision 7: deserializing `Light`
-  rejects `schema` values other than `basic`)
+- [x] **`Add light (default schema)`** (decision 7: deserializing `Light`
+  rejects `schema` values other than `basic`; `LightSchema` is a closed
+  `string_enum!` with only `Basic`, an intended exception to decision 11)
 
 ### Phase F — discovery
 

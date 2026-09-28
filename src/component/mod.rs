@@ -5,6 +5,7 @@
 pub mod binary_sensor;
 pub mod button;
 pub mod cover;
+pub mod light;
 pub mod number;
 pub mod select;
 pub mod sensor;

@@ -22,5 +22,7 @@ pub use common::{
     state_class::StateClass,
     unit::Unit,
 };
-pub use component::{Platform, binary_sensor, button, cover, number, select, sensor, switch, text};
+pub use component::{
+    Platform, binary_sensor, button, cover, light, number, select, sensor, switch, text,
+};
 pub use string_enum::UnknownValue;

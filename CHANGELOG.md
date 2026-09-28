@@ -41,3 +41,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Button` and `ButtonDeviceClass`.
 - Add `Text` and `TextMode`.
 - Add `Cover` and `CoverDeviceClass`.
+- Add `Light` (default schema only), `LightSchema` and `OnCommandType`.

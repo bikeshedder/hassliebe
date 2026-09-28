@@ -1,0 +1,92 @@
+---
+source: tests/light.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "office/light/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "brightness_command_template": "{{ value }}",
+  "brightness_command_topic": "office/light/brightness/command",
+  "brightness_scale": 100,
+  "brightness_state_topic": "office/light/brightness/state",
+  "brightness_value_template": "{{ value_json.brightness_value }}",
+  "color_mode_state_topic": "office/light/color/mode/state",
+  "color_mode_value_template": "{{ value_json.color_mode_value }}",
+  "color_temp_command_template": "{{ value }}",
+  "color_temp_command_topic": "office/light/color/temp/command",
+  "color_temp_kelvin": true,
+  "color_temp_state_topic": "office/light/color/temp/state",
+  "color_temp_value_template": "{{ value_json.color_temp_value }}",
+  "command_topic": "office/light/switch",
+  "default_entity_id": "light.office",
+  "device": {
+    "identifiers": [
+      "office_light"
+    ],
+    "name": "Office light"
+  },
+  "effect_command_template": "{{ value }}",
+  "effect_command_topic": "office/light/effect/command",
+  "effect_list": [
+    "rainbow",
+    "colorloop"
+  ],
+  "effect_state_topic": "office/light/effect/state",
+  "effect_value_template": "{{ value_json.effect_value }}",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/light.png",
+  "group": [
+    "office_lamp"
+  ],
+  "hs_command_template": "{{ value }}",
+  "hs_command_topic": "office/light/hs/command",
+  "hs_state_topic": "office/light/hs/state",
+  "hs_value_template": "{{ value_json.hs_value }}",
+  "icon": "mdi:ceiling-light",
+  "json_attributes_template": "{{ value_json.json_attributes }}",
+  "json_attributes_topic": "office/light/json/attributes",
+  "max_kelvin": 6500,
+  "max_mireds": 370,
+  "message_expiry_interval": 60,
+  "min_kelvin": 2700,
+  "min_mireds": 153,
+  "name": "Office",
+  "on_command_type": "brightness",
+  "optimistic": false,
+  "origin": {
+    "name": "light2mqtt"
+  },
+  "payload_off": "off",
+  "payload_on": "on",
+  "qos": 0,
+  "retain": false,
+  "rgb_command_template": "{{ value }}",
+  "rgb_command_topic": "office/light/rgb/command",
+  "rgb_state_topic": "office/light/rgb/state",
+  "rgb_value_template": "{{ value_json.rgb_value }}",
+  "rgbw_command_template": "{{ value }}",
+  "rgbw_command_topic": "office/light/rgbw/command",
+  "rgbw_state_topic": "office/light/rgbw/state",
+  "rgbw_value_template": "{{ value_json.rgbw_value }}",
+  "rgbww_command_template": "{{ value }}",
+  "rgbww_command_topic": "office/light/rgbww/command",
+  "rgbww_state_topic": "office/light/rgbww/state",
+  "rgbww_value_template": "{{ value_json.rgbww_value }}",
+  "schema": "basic",
+  "state_topic": "office/light/state",
+  "state_value_template": "{{ value_json.state_value }}",
+  "unique_id": "office_light",
+  "visible_by_default": true,
+  "white_command_topic": "office/light/white/command",
+  "white_scale": 100,
+  "xy_command_template": "{{ value }}",
+  "xy_command_topic": "office/light/xy/command",
+  "xy_state_topic": "office/light/xy/state",
+  "xy_value_template": "{{ value_json.xy_value }}"
+}

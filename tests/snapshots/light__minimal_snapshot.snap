@@ -1,0 +1,7 @@
+---
+source: tests/light.rs
+expression: "Light { command_topic: \"office/light/switch\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "office/light/switch"
+}
