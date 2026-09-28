@@ -3,7 +3,6 @@
 // @generated begin component lawn_mower
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -13,6 +12,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT lawn mower: started, paused, docked and stopped by publishing
 /// to per-command topics; its activity is received on `activity_state_topic`.

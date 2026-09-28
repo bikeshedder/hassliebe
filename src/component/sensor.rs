@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component sensor
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -17,6 +16,7 @@ use crate::common::{
     state_class::StateClass,
     unit::Unit,
 };
+use crate::component::Platform;
 
 /// An MQTT sensor: a read-only entity whose state is received on
 /// `state_topic`.

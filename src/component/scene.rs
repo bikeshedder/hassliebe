@@ -3,7 +3,6 @@
 // @generated begin component scene
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -13,6 +12,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT scene: activating it publishes `payload_on` to `command_topic`.
 ///

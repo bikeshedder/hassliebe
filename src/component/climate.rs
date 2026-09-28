@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component climate
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -16,6 +15,7 @@ use crate::common::{
     qos::Qos,
     temperature_unit::TemperatureUnit,
 };
+use crate::component::Platform;
 
 /// An MQTT climate (HVAC) device, such as a thermostat or an air
 /// conditioner.

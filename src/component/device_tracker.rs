@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component device_tracker
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -15,6 +14,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT device tracker: a location received on `state_topic`, or GPS
 /// coordinates received as attributes on `json_attributes_topic`.

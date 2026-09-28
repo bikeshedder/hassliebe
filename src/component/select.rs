@@ -3,7 +3,6 @@
 // @generated begin component select
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -13,6 +12,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT select: one option out of a fixed list, chosen by publishing to
 /// `command_topic`.

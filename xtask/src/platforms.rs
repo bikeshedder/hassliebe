@@ -2000,7 +2000,7 @@ fn ident(name: &str) -> String {
 pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
     let platform = PLATFORMS
         .iter()
-        .find(|platform| platform.name == name)
+        .find(|platform| platform.struct_name == name || platform.name == name)
         .ok_or_else(|| format!("unknown platform {name}"))?;
     let mut fields: Vec<Owned> = platform.fields.iter().map(owned).collect();
     if let Some(entity) = &platform.entity {
@@ -2032,7 +2032,7 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
 
     let mut out = String::new();
     writeln!(out, "use serde::{{Deserialize, Serialize}};\n")?;
-    writeln!(out, "use super::Platform;")?;
+    writeln!(out, "use crate::component::Platform;")?;
     writeln!(out, "use crate::{{\n    common::{{")?;
     for import in imports {
         writeln!(out, "        {import},")?;
@@ -2128,7 +2128,11 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
         "    pub fn builder() -> {struct_name}Builder {{\n        {struct_name}Builder::default()\n    }}\n}}\n"
     )?;
     writeln!(out, "impl Platform for {struct_name} {{")?;
-    writeln!(out, "    const PLATFORM: &'static str = \"{name}\";")?;
+    writeln!(
+        out,
+        "    const PLATFORM: &'static str = \"{}\";",
+        platform.name
+    )?;
     if let Some(schema) = platform.schema {
         writeln!(
             out,

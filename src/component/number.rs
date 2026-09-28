@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component number
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -16,6 +15,7 @@ use crate::common::{
     qos::Qos,
     unit::Unit,
 };
+use crate::component::Platform;
 
 /// An MQTT number: a numeric value that is set by publishing to
 /// `command_topic`.

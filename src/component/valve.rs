@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component valve
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -15,6 +14,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT valve, such as a gas or water valve.
 ///

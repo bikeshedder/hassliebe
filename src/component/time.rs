@@ -3,7 +3,6 @@
 // @generated begin component time
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -13,6 +12,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT time: a time of day that is set by publishing to `command_topic`.
 ///

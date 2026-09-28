@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component water_heater
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -16,6 +15,7 @@ use crate::common::{
     qos::Qos,
     temperature_unit::TemperatureUnit,
 };
+use crate::component::Platform;
 
 /// An MQTT water heater, such as a boiler or a heat pump water heater.
 ///

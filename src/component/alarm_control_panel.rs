@@ -5,7 +5,6 @@ use crate::string_enum::string_enum;
 // @generated begin component alarm_control_panel
 use serde::{Deserialize, Serialize};
 
-use super::Platform;
 use crate::common::{
     availability::{Availability, AvailabilityMode},
     device::Device,
@@ -15,6 +14,7 @@ use crate::common::{
     origin::Origin,
     qos::Qos,
 };
+use crate::component::Platform;
 
 /// An MQTT alarm control panel: its state is received on `state_topic`,
 /// and it is armed, disarmed and triggered by publishing to `command_topic`.
