@@ -67,6 +67,8 @@ pub struct Platform {
     pub url: &'static str,
     /// The `schema` this struct models, for platforms with several schemas.
     pub schema: Option<&'static str>,
+    /// Whether the builder calls a hand-written `validate` on the builder.
+    pub validate: bool,
     /// `None` for platforms that are not entities (no common entity fields).
     pub entity: Option<Entity>,
     pub fields: &'static [Field],
@@ -165,6 +167,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/sensor.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(Entity {
             entity_category_doc: SENSOR_CATEGORY,
             undocumented: &["message_expiry_interval", "origin"],
@@ -213,6 +216,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/binary_sensor.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(Entity {
             entity_category_doc: SENSOR_CATEGORY,
             undocumented: &["message_expiry_interval", "origin"],
@@ -249,6 +253,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/switch.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("switch.garden_irrigation", "mdi:sprinkler", "MQTT Switch", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -280,6 +285,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/number.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("number.heating_setpoint", "mdi:thermostat", "MQTT Number", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -313,6 +319,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/select.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("select.fan_mode", "mdi:fan", "MQTT Select", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -339,6 +346,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/button.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(Entity {
             encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
             qos_doc: &["QoS level for publishing. Default: `0`."],
@@ -361,6 +369,7 @@ pub const PLATFORMS: &[Platform] = &[
         doc: &["An MQTT text: a text value that is set by publishing to `command_topic`."],
         url: "https://www.home-assistant.io/integrations/text.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("text.remote_lcd_screen", "mdi:ab-testing", "MQTT Text", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -386,6 +395,7 @@ pub const PLATFORMS: &[Platform] = &[
         doc: &["An MQTT cover, such as a blind, shutter or garage door."],
         url: "https://www.home-assistant.io/integrations/cover.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("cover.living_room", "mdi:blinds", "MQTT Cover", true)),
         fields: &[
             field("command_topic", Opt, "String", &["Topic to publish open, close and stop commands to."]),
@@ -461,6 +471,7 @@ pub const PLATFORMS: &[Platform] = &[
         doc: &["An MQTT light with the default (`basic`) schema."],
         url: "https://www.home-assistant.io/integrations/light.mqtt/#default-schema",
         schema: Some("basic"),
+        validate: false,
         entity: Some(entity("light.office", "mdi:ceiling-light", "MQTT Light", true)),
         fields: LIGHT_BASIC,
     },
@@ -471,6 +482,7 @@ pub const PLATFORMS: &[Platform] = &[
         doc: &["An MQTT date: a date value that is set by publishing to `command_topic`."],
         url: "https://www.home-assistant.io/integrations/date.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("date.scheduled_task", "mdi:calendar", "MQTT Date", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -496,6 +508,7 @@ pub const PLATFORMS: &[Platform] = &[
         doc: &["An MQTT time: a time of day that is set by publishing to `command_topic`."],
         url: "https://www.home-assistant.io/integrations/time.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("time.alarm_clock", "mdi:clock-outline", "MQTT Time", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -524,6 +537,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/datetime.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(entity("datetime.scheduled_task", "mdi:calendar-clock", "MQTT Date/Time", true)),
         fields: &[
             COMMAND_TEMPLATE,
@@ -556,6 +570,7 @@ pub const PLATFORMS: &[Platform] = &[
         doc: &["An MQTT scene: activating it publishes `payload_on` to `command_topic`."],
         url: "https://www.home-assistant.io/integrations/scene.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(Entity {
             encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
             qos_doc: &["QoS level for publishing. Default: `0`."],
@@ -585,6 +600,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/notify.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(Entity {
             encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
             qos_doc: &["QoS level for publishing. Default: `0`."],
@@ -610,6 +626,7 @@ pub const PLATFORMS: &[Platform] = &[
         ],
         url: "https://www.home-assistant.io/integrations/event.mqtt/",
         schema: None,
+        validate: false,
         entity: Some(Entity {
             undocumented: &["group", "message_expiry_interval", "origin"],
             ..entity("event.doorbell", "mdi:doorbell", "MQTT Event", false)
@@ -627,6 +644,31 @@ pub const PLATFORMS: &[Platform] = &[
             field("value_template", Opt, "String", &[
                 "Template that renders the payload into a JSON event payload.",
             ]),
+        ],
+    },
+    Platform {
+        name: "camera",
+        struct_name: "Camera",
+        noun: "camera",
+        doc: &[
+            "An MQTT camera: shows the image file received on `topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/camera.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(Entity {
+            encoding_doc: &[
+                "Encoding of received payloads; an empty string disables decoding. Not",
+                "applied to images on `topic`, see `image_encoding`. Default: `utf-8`.",
+            ],
+            undocumented: &["group", "message_expiry_interval", "origin", "qos"],
+            ..entity("camera.front_door", "mdi:cctv", "MQTT Camera", false)
+        }),
+        fields: &[
+            field("image_encoding", Opt, "CameraImageEncoding", &[
+                "Encoding of the image payloads. Unset: raw binary image data.",
+            ]),
+            field("topic", Req, "String", &["Topic to receive image files from. Required."]),
         ],
     },
 ];
@@ -998,10 +1040,17 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
         out,
         "#[cfg_attr(feature = \"builder\", derive(derive_builder::Builder))]"
     )?;
-    writeln!(
-        out,
-        "#[cfg_attr(feature = \"builder\", builder(setter(into, strip_option)))]"
-    )?;
+    if platform.validate {
+        writeln!(
+            out,
+            "#[cfg_attr(feature = \"builder\", builder(setter(into, strip_option), build_fn(validate = \"Self::validate\")))]"
+        )?;
+    } else {
+        writeln!(
+            out,
+            "#[cfg_attr(feature = \"builder\", builder(setter(into, strip_option)))]"
+        )?;
+    }
     let struct_name = platform.struct_name;
     writeln!(out, "pub struct {struct_name} {{")?;
     for field in &fields {

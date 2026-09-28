@@ -1,0 +1,7 @@
+---
+source: tests/camera.rs
+expression: "Camera { topic: \"home/front_door/camera/image\".into(), ..Default::default() }"
+---
+{
+  "topic": "home/front_door/camera/image"
+}

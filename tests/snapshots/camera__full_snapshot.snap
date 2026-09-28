@@ -1,0 +1,39 @@
+---
+source: tests/camera.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/front_door/camera/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "default_entity_id": "camera.home_front_door_camera",
+  "device": {
+    "identifiers": [
+      "home_front_door_camera_device"
+    ],
+    "name": "Front door camera"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/home_front_door_camera.png",
+  "group": [
+    "home_front_door_camera_2"
+  ],
+  "icon": "mdi:cctv",
+  "image_encoding": "b64",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/front_door/camera/attributes",
+  "message_expiry_interval": 60,
+  "name": "Front door",
+  "origin": {
+    "name": "home_front_door_camera2mqtt"
+  },
+  "qos": 1,
+  "topic": "home/front_door/camera/image",
+  "unique_id": "home_front_door_camera",
+  "visible_by_default": true
+}

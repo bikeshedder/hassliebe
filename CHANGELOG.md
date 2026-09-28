@@ -62,3 +62,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Notify`.
 - Add `Event` and `EventDeviceClass`.
 - `Select.options` also reads a single string.
+- Add `Camera` and `CameraImageEncoding`.

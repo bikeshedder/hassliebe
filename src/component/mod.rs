@@ -8,6 +8,7 @@ use serde::{Serialize, Serializer};
 
 pub mod binary_sensor;
 pub mod button;
+pub mod camera;
 pub mod cover;
 pub mod date;
 pub mod datetime;
@@ -171,6 +172,7 @@ macro_rules! components {
 components! {
     BinarySensor(binary_sensor::BinarySensor),
     Button(button::Button),
+    Camera(camera::Camera),
     Cover(cover::Cover),
     Date(date::Date),
     DateTime(datetime::DateTime),
