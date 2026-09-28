@@ -759,6 +759,70 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "lock",
+        struct_name: "Lock",
+        noun: "lock",
+        doc: &[
+            "An MQTT lock: locked, unlocked and optionally opened by publishing to",
+            "`command_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/lock.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(entity("lock.front_door", "mdi:lock", "MQTT Lock", true)),
+        fields: &[
+            field("code_format", Opt, "String", &[
+                "Regular expression that a code given to lock, unlock or open must",
+                "match.",
+            ]),
+            field("command_template", Opt, "String", &[
+                "Template to generate the payload sent to `command_topic`, with the",
+                "variables `value` (the command payload) and `code`.",
+            ]),
+            field("command_topic", Req, "String", &["Topic to publish commands to. Required."]),
+            OPTIMISTIC_STATE,
+            field("payload_lock", Opt, "String", &["Payload sent to lock the lock. Default: `LOCK`."]),
+            field("payload_open", Opt, "String", &[
+                "Payload sent to open the lock. The lock only supports opening if set.",
+            ]),
+            field("payload_reset", Opt, "String", &[
+                "Payload on `state_topic` that resets the state to unknown. Default: the",
+                "string `None`.",
+            ]),
+            field("payload_unlock", Opt, "String", &[
+                "Payload sent to unlock the lock. Default: `UNLOCK`.",
+            ]),
+            RETAIN,
+            field("state_jammed", Opt, "String", &[
+                "Payload on `state_topic` that means jammed. Default: `JAMMED`.",
+            ]),
+            field("state_locked", Opt, "String", &[
+                "Payload on `state_topic` that means locked. Default: `LOCKED`.",
+            ]),
+            field("state_locking", Opt, "String", &[
+                "Payload on `state_topic` that means locking. Default: `LOCKING`.",
+            ]),
+            field("state_open", Opt, "String", &[
+                "Payload on `state_topic` that means open. Not in the lock docs;",
+                "accepted by Home Assistant. Default: `OPEN`.",
+            ]),
+            field("state_opening", Opt, "String", &[
+                "Payload on `state_topic` that means opening. Not in the lock docs;",
+                "accepted by Home Assistant. Default: `OPENING`.",
+            ]),
+            field("state_topic", Opt, "String", &["Topic to receive state updates from."]),
+            field("state_unlocked", Opt, "String", &[
+                "Payload on `state_topic` that means unlocked. Default: `UNLOCKED`.",
+            ]),
+            field("state_unlocking", Opt, "String", &[
+                "Payload on `state_topic` that means unlocking. Default: `UNLOCKING`.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template to extract the state from the payload.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

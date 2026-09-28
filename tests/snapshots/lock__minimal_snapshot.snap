@@ -1,0 +1,7 @@
+---
+source: tests/lock.rs
+expression: "Lock { command_topic: \"home/frontdoor/set\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "home/frontdoor/set"
+}

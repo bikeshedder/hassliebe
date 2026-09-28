@@ -16,6 +16,7 @@ pub mod device_tracker;
 pub mod event;
 pub mod image;
 pub mod light;
+pub mod lock;
 pub mod notify;
 pub mod number;
 pub mod scene;
@@ -182,6 +183,7 @@ components! {
     Event(event::Event),
     Image(image::Image),
     Light(light::Light),
+    Lock(lock::Lock),
     Notify(notify::Notify),
     Number(number::Number),
     Scene(scene::Scene),

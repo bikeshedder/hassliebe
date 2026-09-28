@@ -1,0 +1,55 @@
+---
+source: tests/lock.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/frontdoor/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "code_format": "^\\d{4}$",
+  "command_template": "{ \"action\": \"{{ value }}\", \"code\":\"{{ code }}\" }",
+  "command_topic": "home/frontdoor/set",
+  "default_entity_id": "lock.home_frontdoor",
+  "device": {
+    "identifiers": [
+      "home_frontdoor_device"
+    ],
+    "name": "Front door lock"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/home_frontdoor.png",
+  "group": [
+    "home_frontdoor_2"
+  ],
+  "icon": "mdi:lock",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/frontdoor/attributes",
+  "message_expiry_interval": 60,
+  "name": "Front door",
+  "optimistic": false,
+  "origin": {
+    "name": "home_frontdoor2mqtt"
+  },
+  "payload_lock": "LOCK",
+  "payload_open": "OPEN",
+  "payload_reset": "None",
+  "payload_unlock": "UNLOCK",
+  "qos": 1,
+  "retain": true,
+  "state_jammed": "MOTOR_JAMMED",
+  "state_locked": "LOCKED",
+  "state_locking": "LOCKING",
+  "state_open": "OPEN",
+  "state_opening": "OPENING",
+  "state_topic": "home/frontdoor/state",
+  "state_unlocked": "UNLOCKED",
+  "state_unlocking": "UNLOCKING",
+  "unique_id": "home_frontdoor",
+  "value_template": "{{ value_json.state }}",
+  "visible_by_default": true
+}

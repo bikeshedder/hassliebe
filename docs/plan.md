@@ -263,7 +263,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add camera`**
 - [x] **`Add image`**
 - [x] **`Add device_tracker`**
-- [ ] **`Add lock`**
+- [x] **`Add lock`**
 - [ ] **`Add valve`**
 - [ ] **`Add siren`**
 - [ ] **`Add lawn_mower`**
