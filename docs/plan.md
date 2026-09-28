@@ -205,7 +205,7 @@ Same checklist as Phase D.
 
 - [x] **`Add button`**
 - [x] **`Add text`**
-- [ ] **`Add cover`**
+- [x] **`Add cover`** (nullable command payloads, decision 14)
 - [ ] **`Add light (default schema)`** (decision 7: deserializing `Light`
   rejects `schema` values other than `basic`)
 

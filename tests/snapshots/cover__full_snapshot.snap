@@ -1,0 +1,67 @@
+---
+source: tests/cover.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "living-room-cover/availability"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_topic": "living-room-cover/set",
+  "default_entity_id": "cover.living_room",
+  "device": {
+    "identifiers": [
+      "living_room_cover"
+    ],
+    "name": "Living room cover"
+  },
+  "device_class": "blind",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/blind.png",
+  "group": [
+    "kitchen_cover"
+  ],
+  "icon": "mdi:blinds",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "living-room-cover/attributes",
+  "message_expiry_interval": 60,
+  "name": null,
+  "optimistic": false,
+  "origin": {
+    "name": "cover2mqtt"
+  },
+  "payload_close": "CLOSE",
+  "payload_open": "OPEN",
+  "payload_stop": null,
+  "payload_stop_tilt": "stop",
+  "position_closed": 0,
+  "position_open": 100,
+  "position_template": "{{ value_json.position }}",
+  "position_topic": "living-room-cover/position",
+  "qos": 1,
+  "retain": true,
+  "set_position_template": "{\"position\": {{ position }}}",
+  "set_position_topic": "living-room-cover/position/set",
+  "state_closed": "closed",
+  "state_closing": "closing",
+  "state_open": "open",
+  "state_opening": "opening",
+  "state_stopped": "stopped",
+  "state_topic": "living-room-cover/state",
+  "tilt_closed_value": 0,
+  "tilt_command_template": "{{ tilt_position }}",
+  "tilt_command_topic": "living-room-cover/tilt/set",
+  "tilt_max": 180,
+  "tilt_min": 0,
+  "tilt_opened_value": 180,
+  "tilt_optimistic": false,
+  "tilt_status_template": "{{ value_json.tilt }}",
+  "tilt_status_topic": "living-room-cover/tilt",
+  "unique_id": "living_room_cover",
+  "value_template": "{{ value_json.state }}",
+  "visible_by_default": true
+}

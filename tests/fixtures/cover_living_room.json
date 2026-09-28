@@ -1,0 +1,23 @@
+{
+  "name": "MQTT Cover",
+  "command_topic": "living-room-cover/set",
+  "state_topic": "living-room-cover/state",
+  "availability": [
+    {
+      "topic": "living-room-cover/availability"
+    }
+  ],
+  "qos": 0,
+  "retain": true,
+  "payload_open": "OPEN",
+  "payload_close": "CLOSE",
+  "payload_stop": "STOP",
+  "state_open": "open",
+  "state_opening": "opening",
+  "state_closed": "closed",
+  "state_closing": "closing",
+  "payload_available": "online",
+  "payload_not_available": "offline",
+  "optimistic": false,
+  "value_template": "{{ value.x }}"
+}

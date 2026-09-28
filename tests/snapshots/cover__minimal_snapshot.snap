@@ -1,0 +1,7 @@
+---
+source: tests/cover.rs
+expression: "Cover\n{ command_topic: Some(\"living-room-cover/set\".into()), ..Default::default() }"
+---
+{
+  "command_topic": "living-room-cover/set"
+}
