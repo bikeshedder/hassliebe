@@ -1382,6 +1382,98 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "water_heater",
+        struct_name: "WaterHeater",
+        noun: "water heater",
+        doc: &["An MQTT water heater, such as a boiler or a heat pump water heater."],
+        url: "https://www.home-assistant.io/integrations/water_heater.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(Entity {
+            name_default: Some("`MQTT water heater` per the docs (`MQTT Water Heater` in Home Assistant's source)"),
+            ..entity("water_heater.boiler", "mdi:water-boiler", "MQTT water heater", true)
+        }),
+        fields: &[
+            field("current_temperature_template", Opt, "String", &[
+                "Template to extract the current temperature from",
+                "`current_temperature_topic`.",
+            ]),
+            field("current_temperature_topic", Opt, "String", &[
+                "Topic to receive the current temperature from. A `None` payload",
+                "resets it.",
+            ]),
+            field("initial", Opt, "f64", &[
+                "Initial target temperature. Default: 43.3 °C or 110 °F, depending on",
+                "the temperature unit.",
+            ]),
+            field("max_temp", Opt, "f64", &[
+                "Maximum target temperature. Default: 60 °C or 140 °F, depending on the",
+                "temperature unit.",
+            ]),
+            field("min_temp", Opt, "f64", &[
+                "Minimum target temperature. Default: 43.3 °C or 110 °F, depending on",
+                "the temperature unit.",
+            ]),
+            field("mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `mode_command_topic`.",
+            ]),
+            field("mode_command_topic", Opt, "String", &["Topic to publish operation mode commands to."]),
+            field("mode_state_template", Opt, "String", &[
+                "Template to extract the operation mode from `mode_state_topic`.",
+            ]),
+            field("mode_state_topic", Opt, "String", &[
+                "Topic to receive the operation mode from. A `None` payload resets it.",
+            ]),
+            field("modes", OptOneOrMany, "WaterHeaterMode", &[
+                "Supported operation modes, a subset of the default. Default: `off`,",
+                "`eco`, `electric`, `gas`, `heat_pump`, `high_demand`, `performance`.",
+                "Home Assistant also accepts a single string.",
+            ]),
+            field("optimistic", Opt, "bool", &[
+                "Assume every property changes as commanded, even with a state topic.",
+                "Default: `true` without a state topic, otherwise `false`.",
+            ]),
+            field("payload_off", Opt, "String", &[
+                "Payload sent to `power_command_topic` to turn off. Default: `OFF`.",
+            ]),
+            field("payload_on", Opt, "String", &[
+                "Payload sent to `power_command_topic` to turn on. Default: `ON`.",
+            ]),
+            field("power_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `power_command_topic`; `value`",
+                "is `payload_on` or `payload_off`.",
+            ]),
+            field("power_command_topic", Opt, "String", &[
+                "Topic to publish power commands (`payload_on`, `payload_off`) to.",
+            ]),
+            field("precision", Opt, "f64", &[
+                "Precision of temperatures: `0.1`, `0.5` or `1.0`. Default: `0.1` for",
+                "Celsius, `1.0` for Fahrenheit.",
+            ]),
+            RETAIN,
+            field("temperature_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `temperature_command_topic`.",
+            ]),
+            field("temperature_command_topic", Opt, "String", &[
+                "Topic to publish target temperature commands to.",
+            ]),
+            field("temperature_state_template", Opt, "String", &[
+                "Template to extract the target temperature from",
+                "`temperature_state_topic`.",
+            ]),
+            field("temperature_state_topic", Opt, "String", &[
+                "Topic to receive the target temperature from. A `None` payload resets",
+                "it.",
+            ]),
+            field("temperature_unit", Opt, "TemperatureUnit", &[
+                "Temperature unit of the device. Default: the system's temperature unit.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Default template to extract values from all `*_state_topic`s.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

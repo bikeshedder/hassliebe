@@ -1,0 +1,64 @@
+---
+source: tests/water_heater.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "basement/boiler/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "current_temperature_template": "{{ value_json.current }}",
+  "current_temperature_topic": "basement/boiler/current_temperature",
+  "default_entity_id": "water_heater.basement_boiler",
+  "device": {
+    "identifiers": [
+      "basement_boiler_device"
+    ],
+    "name": "Boiler"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/basement_boiler.png",
+  "group": [
+    "basement_boiler_2"
+  ],
+  "icon": "mdi:water-boiler",
+  "initial": 45.0,
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "basement/boiler/attributes",
+  "max_temp": 60.0,
+  "message_expiry_interval": 60,
+  "min_temp": 40.0,
+  "mode_command_template": "{{ value }}",
+  "mode_command_topic": "basement/boiler/mode/set",
+  "mode_state_template": "{{ value_json.mode }}",
+  "mode_state_topic": "basement/boiler/mode",
+  "modes": [
+    "off",
+    "eco",
+    "performance"
+  ],
+  "name": "Boiler",
+  "optimistic": false,
+  "origin": {
+    "name": "basement_boiler2mqtt"
+  },
+  "payload_off": "OFF",
+  "payload_on": "ON",
+  "power_command_template": "{{ value }}",
+  "power_command_topic": "basement/boiler/power/set",
+  "precision": 0.5,
+  "qos": 1,
+  "retain": false,
+  "temperature_command_template": "{{ value }}",
+  "temperature_command_topic": "basement/boiler/temperature/set",
+  "temperature_state_template": "{{ value_json.target }}",
+  "temperature_state_topic": "basement/boiler/temperature",
+  "temperature_unit": "C",
+  "unique_id": "basement_boiler",
+  "value_template": "{{ value_json.value }}",
+  "visible_by_default": true
+}

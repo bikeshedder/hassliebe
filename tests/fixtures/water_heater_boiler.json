@@ -1,0 +1,11 @@
+{
+  "name": "Boiler",
+  "modes": [
+    "off",
+    "eco",
+    "performance"
+  ],
+  "mode_command_topic": "basement/boiler/mode/set",
+  "mode_state_topic": "basement/boiler/mode/state",
+  "mode_state_template": "{{ value_json }}"
+}

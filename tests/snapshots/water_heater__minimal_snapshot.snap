@@ -1,0 +1,8 @@
+---
+source: tests/water_heater.rs
+expression: "WaterHeater\n{\n    mode_command_topic: Some(\"basement/boiler/mode/set\".into()), name:\n    Some(\"Boiler\".into()), ..Default::default()\n}"
+---
+{
+  "mode_command_topic": "basement/boiler/mode/set",
+  "name": "Boiler"
+}

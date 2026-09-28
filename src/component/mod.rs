@@ -33,6 +33,7 @@ pub mod time;
 pub mod update;
 pub mod vacuum;
 pub mod valve;
+pub mod water_heater;
 
 /// Implemented by every platform config struct.
 pub trait Platform {
@@ -208,4 +209,5 @@ components! {
     Update(update::Update),
     Vacuum(vacuum::Vacuum),
     Valve(valve::Valve),
+    WaterHeater(water_heater::WaterHeater),
 }
