@@ -279,7 +279,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add infrared`** (`InfraredEmitter`, `InfraredReceiver`)
 - [x] **`Add device_trigger`** (platform `device_automation`; not an entity)
 - [x] **`Add tag`** (not an entity)
-- [ ] **`Check that every supported platform has a Component variant`**
+- [x] **`Check that every supported platform has a Component variant`**
   Test with `SUPPORTED_COMPONENTS` pinned.
 
 ---

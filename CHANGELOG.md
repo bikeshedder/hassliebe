@@ -82,3 +82,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `InfraredEmitter` and `InfraredReceiver` with their schema tags.
 - Add `DeviceTrigger` (platform `device_automation`) and `DeviceAutomationType`; the `type` key is the field `r#type`.
 - Add `Tag` (tag scanner).
+- Add `Component::PLATFORMS`, the platforms the crate models.

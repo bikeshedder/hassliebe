@@ -116,3 +116,48 @@ mod json {
         assert!(parse(json!({"platform": "sensor", "name": "x"})).is_err());
     }
 }
+
+/// `SUPPORTED_COMPONENTS` in `homeassistant/components/mqtt/const.py`. Update
+/// it when Home Assistant adds a platform, and add the platform to the crate.
+const SUPPORTED_COMPONENTS: &[&str] = &[
+    "alarm_control_panel",
+    "binary_sensor",
+    "button",
+    "camera",
+    "climate",
+    "cover",
+    "date",
+    "datetime",
+    "device_automation",
+    "device_tracker",
+    "event",
+    "fan",
+    "humidifier",
+    "image",
+    "infrared",
+    "lawn_mower",
+    "light",
+    "lock",
+    "notify",
+    "number",
+    "scene",
+    "select",
+    "sensor",
+    "siren",
+    "switch",
+    "tag",
+    "text",
+    "time",
+    "update",
+    "vacuum",
+    "valve",
+    "water_heater",
+];
+
+#[test]
+fn every_supported_platform_is_modeled() {
+    let mut modeled = Component::PLATFORMS.to_vec();
+    modeled.sort_unstable();
+    modeled.dedup();
+    assert_eq!(modeled, SUPPORTED_COMPONENTS);
+}

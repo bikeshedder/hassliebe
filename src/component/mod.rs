@@ -97,6 +97,11 @@ macro_rules! components {
         }
 
         impl Component {
+            /// The platforms this crate models, once per struct (so `light` and
+            /// `infrared` appear several times, once per schema).
+            pub const PLATFORMS: &'static [&'static str] =
+                &[$(<$module::$ty as Platform>::PLATFORM,)*];
+
             /// Returns the platform name, e.g. `"sensor"`.
             pub fn platform(&self) -> &str {
                 match self {
