@@ -1,7 +1,7 @@
-//! Device-based discovery: one message announces a device with all of its
-//! components.
+//! Discovery topics, Home Assistant's status topic, and device-based discovery
+//! (one message that announces a device with all of its components).
 //!
-//! <https://www.home-assistant.io/integrations/mqtt/#device-discovery-payload>
+//! <https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery>
 
 use std::collections::BTreeMap;
 
@@ -15,8 +15,67 @@ use crate::{
         origin::Origin,
         qos::Qos,
     },
-    component::Component,
+    component::{Component, Platform},
 };
+
+/// The default discovery prefix.
+pub const DEFAULT_PREFIX: &str = "homeassistant";
+
+/// The topic Home Assistant publishes its birth and last will messages to, by
+/// default. Devices should subscribe to it and publish their discovery
+/// payloads again when [`STATUS_ONLINE`] arrives.
+pub const STATUS_TOPIC: &str = "homeassistant/status";
+
+/// Home Assistant's default birth payload on [`STATUS_TOPIC`].
+pub const STATUS_ONLINE: &str = "online";
+
+/// Home Assistant's default last will payload on [`STATUS_TOPIC`].
+pub const STATUS_OFFLINE: &str = "offline";
+
+/// Returns the discovery topic
+/// `<prefix>/<component>/[<node_id>/]<object_id>/config`, where `component` is
+/// a platform like `sensor` or `device` for device-based discovery.
+///
+/// `node_id` and `object_id` must only contain `[a-zA-Z0-9_-]` (see
+/// [`is_valid_id`]); Home Assistant ignores messages on other topics. This
+/// function does not check them.
+pub fn discovery_topic(
+    prefix: &str,
+    component: &str,
+    node_id: Option<&str>,
+    object_id: &str,
+) -> String {
+    match node_id {
+        Some(node_id) => format!("{prefix}/{component}/{node_id}/{object_id}/config"),
+        None => format!("{prefix}/{component}/{object_id}/config"),
+    }
+}
+
+/// Returns the single component discovery topic for `config`, e.g.
+/// `homeassistant/sensor/garden/temperature/config`. See [`discovery_topic`].
+pub fn component_topic<P: Platform>(
+    prefix: &str,
+    _config: &P,
+    node_id: Option<&str>,
+    object_id: &str,
+) -> String {
+    discovery_topic(prefix, P::PLATFORM, node_id, object_id)
+}
+
+/// Returns the device discovery topic, e.g.
+/// `homeassistant/device/kitchen/config`. See [`discovery_topic`].
+pub fn device_topic(prefix: &str, node_id: Option<&str>, object_id: &str) -> String {
+    discovery_topic(prefix, "device", node_id, object_id)
+}
+
+/// Returns whether `id` is a valid `node_id` or `object_id`: not empty and only
+/// `[a-zA-Z0-9_-]`.
+pub fn is_valid_id(id: &str) -> bool {
+    !id.is_empty()
+        && id
+            .bytes()
+            .all(|b| b.is_ascii_alphanumeric() || b == b'_' || b == b'-')
+}
 
 /// A device discovery payload, published to
 /// `<discovery_prefix>/device/[<node_id>/]<object_id>/config`.
@@ -141,5 +200,40 @@ impl<'de> Deserialize<'de> for DeviceDiscovery {
             origin,
             shared,
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::sensor::Sensor;
+    use pretty_assertions::assert_eq;
+
+    #[test]
+    fn topics() {
+        assert_eq!(
+            component_topic(DEFAULT_PREFIX, &Sensor::default(), None, "temp01"),
+            "homeassistant/sensor/temp01/config"
+        );
+        assert_eq!(
+            component_topic("ha", &Sensor::default(), Some("garden"), "temp01"),
+            "ha/sensor/garden/temp01/config"
+        );
+        assert_eq!(
+            device_topic(DEFAULT_PREFIX, None, "0AFFD2"),
+            "homeassistant/device/0AFFD2/config"
+        );
+        assert_eq!(
+            device_topic(DEFAULT_PREFIX, Some("bridge"), "0AFFD2"),
+            "homeassistant/device/bridge/0AFFD2/config"
+        );
+    }
+
+    #[test]
+    fn valid_ids() {
+        assert!(is_valid_id("garden_01-a"));
+        for id in ["", "a b", "a/b", "a.b", "ä", "a+"] {
+            assert!(!is_valid_id(id), "{id:?}");
+        }
     }
 }

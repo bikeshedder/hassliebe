@@ -221,7 +221,7 @@ Same checklist as Phase D.
   `components`; shared options in a flattened `SharedOptions`, decision 16: `availability`, `availability_mode`,
   `command_topic`, `encoding`, `message_expiry_interval`, `qos`, `state_topic`
   (decision 8). `Deserialize` only with `json`.)
-- [ ] **`Add topic helpers and HA status constants`**
+- [x] **`Add topic helpers and HA status constants`** (IDs documented, `is_valid_id` to check them)
   One helper for the documented format
   `<prefix>/<component>/[<node_id>/]<object_id>/config`, where `<component>` is
   a platform or `device` (decision 9), `homeassistant/status`,

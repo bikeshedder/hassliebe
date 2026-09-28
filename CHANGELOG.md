@@ -46,3 +46,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `Removed` and (feature `json`) `Other` for unmodeled platforms.
 - Add `DeviceDiscovery` and `SharedOptions` for device-based discovery;
   deserializing (feature `json`) applies shared options like Home Assistant.
+- Add discovery topic helpers (`discovery_topic`, `component_topic`,
+  `device_topic`, `is_valid_id`) and the status topic constants.
