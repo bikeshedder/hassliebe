@@ -1,0 +1,7 @@
+---
+source: tests/button.rs
+expression: "Button\n{ command_topic: \"home/bedroom/switch1/reboot\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "home/bedroom/switch1/reboot"
+}

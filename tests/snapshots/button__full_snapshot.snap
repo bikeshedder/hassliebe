@@ -1,0 +1,42 @@
+---
+source: tests/button.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/bedroom/switch1/available"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"action\": \"{{ value }}\"}",
+  "command_topic": "home/bedroom/switch1/commands",
+  "default_entity_id": "button.restart_bedroom_switch",
+  "device": {
+    "identifiers": [
+      "bedroom_switch1"
+    ],
+    "name": "Bedroom switch"
+  },
+  "device_class": "restart",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/switch.png",
+  "group": [
+    "bedroom_switch2_reboot_btn"
+  ],
+  "icon": "mdi:restart",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/bedroom/switch1/attributes",
+  "message_expiry_interval": 30,
+  "name": "Restart",
+  "origin": {
+    "name": "switch2mqtt"
+  },
+  "payload_press": "restart",
+  "qos": 1,
+  "retain": false,
+  "unique_id": "bedroom_switch_reboot_btn",
+  "visible_by_default": true
+}

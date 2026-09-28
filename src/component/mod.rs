@@ -3,6 +3,7 @@
 //! <https://www.home-assistant.io/integrations/#search/mqtt>
 
 pub mod binary_sensor;
+pub mod button;
 pub mod number;
 pub mod select;
 pub mod sensor;

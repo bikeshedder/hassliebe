@@ -203,7 +203,7 @@ snapshot, round-trip test, one real-world fixture, CHANGELOG line.
 
 Same checklist as Phase D.
 
-- [ ] **`Add button`**
+- [x] **`Add button`**
 - [ ] **`Add text`**
 - [ ] **`Add cover`**
 - [ ] **`Add light (default schema)`** (decision 7: deserializing `Light`

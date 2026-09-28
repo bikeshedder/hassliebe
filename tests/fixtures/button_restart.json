@@ -1,0 +1,15 @@
+{
+  "unique_id": "bedroom_switch_reboot_btn",
+  "name": "Restart Bedroom Switch",
+  "command_topic": "home/bedroom/switch1/commands",
+  "payload_press": "restart",
+  "availability": [
+    {
+      "topic": "home/bedroom/switch1/available"
+    }
+  ],
+  "qos": 0,
+  "retain": false,
+  "entity_category": "config",
+  "device_class": "restart"
+}

@@ -38,3 +38,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sync `Select` with Home Assistant: `options` required, typed
   `entity_category`.
 - Remove the shared `DeviceClass`; each platform has its own device class enum.
+- Add `Button` and `ButtonDeviceClass`.
