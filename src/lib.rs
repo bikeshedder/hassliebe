@@ -24,9 +24,9 @@ pub use common::{
 };
 pub use component::{
     Component, Platform, alarm_control_panel, binary_sensor, button, camera, climate, cover, date,
-    datetime, device_tracker, event, fan, humidifier, image, infrared, lawn_mower, light, lock,
-    notify, number, scene, select, sensor, siren, switch, text, time, update, vacuum, valve,
-    water_heater,
+    datetime, device_tracker, device_trigger, event, fan, humidifier, image, infrared, lawn_mower,
+    light, lock, notify, number, scene, select, sensor, siren, switch, text, time, update, vacuum,
+    valve, water_heater,
 };
 pub use discovery::{DeviceDiscovery, SharedOptions};
 pub use string_enum::UnknownValue;

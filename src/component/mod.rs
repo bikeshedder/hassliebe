@@ -15,6 +15,7 @@ pub mod cover;
 pub mod date;
 pub mod datetime;
 pub mod device_tracker;
+pub mod device_trigger;
 pub mod event;
 pub mod fan;
 pub mod humidifier;
@@ -193,6 +194,7 @@ components! {
     Date(date::Date),
     DateTime(datetime::DateTime),
     DeviceTracker(device_tracker::DeviceTracker),
+    DeviceTrigger(device_trigger::DeviceTrigger),
     Event(event::Event),
     Fan(fan::Fan),
     Humidifier(humidifier::Humidifier),

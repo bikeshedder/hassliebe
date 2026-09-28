@@ -1882,6 +1882,51 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "device_automation",
+        struct_name: "DeviceTrigger",
+        noun: "device trigger",
+        doc: &[
+            "An MQTT device trigger: fires a device automation trigger when a",
+            "message arrives on `topic`. Not an entity.",
+        ],
+        url: "https://www.home-assistant.io/integrations/device_trigger.mqtt/",
+        schema: None,
+        validate: false,
+        entity: None,
+        fields: &[
+            field("automation_type", Tag, "DeviceAutomationType", &[
+                "Type of the automation; always `trigger`. Required.",
+            ]),
+            field("device", Enforced, "Device", &[
+                "The device the trigger belongs to; needs `identifiers` or",
+                "`connections`. Required, but inherited from the device in device",
+                "discovery; the builder requires it.",
+            ]),
+            field("encoding", Opt, "String", &[
+                "Encoding of received payloads. Not in the device trigger docs;",
+                "accepted by Home Assistant, which ignores it and decodes `utf-8`.",
+            ]),
+            field("group", OneOrMany, "String", &[
+                "Not in the device trigger docs; accepted by Home Assistant (shared",
+                "base schema) but unused.",
+            ]),
+            field("payload", Opt, "String", &[
+                "Payload that fires the trigger. Without it, every payload does.",
+            ]),
+            field("qos", Opt, "Qos", &["Maximum QoS level for the subscription. Default: `0`."]),
+            field("subtype", Req, "String", &[
+                "Subtype of the trigger, e.g. `button_1`. Required.",
+            ]),
+            field("topic", Req, "String", &["Topic to receive trigger events from. Required."]),
+            field("type", Req, "String", &[
+                "Type of the trigger, e.g. `button_short_press`. Required.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template to extract the value that is compared to `payload`.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

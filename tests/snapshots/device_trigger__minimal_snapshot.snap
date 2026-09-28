@@ -1,0 +1,15 @@
+---
+source: tests/device_trigger.rs
+expression: "DeviceTrigger\n{\n    device:\n    Some(Device\n    {\n        identifiers: vec![\"zigbee2mqtt_0x90fd9ffffedf1266\".into()],\n        ..Default::default()\n    }), r#type: \"action\".into(), subtype: \"arrow_right_click\".into(), topic:\n    \"zigbee2mqtt/0x90fd9ffffedf1266/action\".into(), ..Default::default()\n}"
+---
+{
+  "automation_type": "trigger",
+  "device": {
+    "identifiers": [
+      "zigbee2mqtt_0x90fd9ffffedf1266"
+    ]
+  },
+  "subtype": "arrow_right_click",
+  "topic": "zigbee2mqtt/0x90fd9ffffedf1266/action",
+  "type": "action"
+}
