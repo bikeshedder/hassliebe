@@ -1189,6 +1189,106 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "fan",
+        struct_name: "Fan",
+        noun: "fan",
+        doc: &[
+            "An MQTT fan: switched on and off by publishing to `command_topic`, with",
+            "optional speed, preset mode, oscillation and direction.",
+        ],
+        url: "https://www.home-assistant.io/integrations/fan.mqtt/",
+        schema: None,
+        validate: true,
+        entity: Some(entity("fan.bedroom", "mdi:ceiling-fan", "MQTT Fan", true)),
+        fields: &[
+            COMMAND_TEMPLATE,
+            field("command_topic", Req, "String", &["Topic to publish on/off commands to. Required."]),
+            field("direction_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `direction_command_topic`.",
+            ]),
+            field("direction_command_topic", Opt, "String", &["Topic to publish direction commands to."]),
+            field("direction_state_topic", Opt, "String", &["Topic to receive the direction from."]),
+            field("direction_value_template", Opt, "String", &[
+                "Template to extract the direction from messages on",
+                "`direction_state_topic`.",
+            ]),
+            OPTIMISTIC_STATE,
+            field("oscillation_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `oscillation_command_topic`.",
+            ]),
+            field("oscillation_command_topic", Opt, "String", &["Topic to publish oscillation commands to."]),
+            field("oscillation_state_topic", Opt, "String", &["Topic to receive the oscillation state from."]),
+            field("oscillation_value_template", Opt, "String", &[
+                "Template to extract the oscillation state from messages on",
+                "`oscillation_state_topic`.",
+            ]),
+            field("payload_off", Opt, "String", &["Payload that means off. Default: `OFF`."]),
+            field("payload_on", Opt, "String", &["Payload that means on. Default: `ON`."]),
+            field("payload_oscillation_off", Opt, "String", &[
+                "Payload that means oscillation off. Default: `oscillate_off`.",
+            ]),
+            field("payload_oscillation_on", Opt, "String", &[
+                "Payload that means oscillation on. Default: `oscillate_on`.",
+            ]),
+            field("payload_reset_percentage", Opt, "String", &[
+                "Payload on `percentage_state_topic` that resets the percentage to",
+                "unknown. Default: the string `None`.",
+            ]),
+            field("payload_reset_preset_mode", Opt, "String", &[
+                "Payload on `preset_mode_state_topic` that resets the preset mode to",
+                "unknown. Default: the string `None`.",
+            ]),
+            field("percentage_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `percentage_command_topic`.",
+            ]),
+            field("percentage_command_topic", Opt, "String", &[
+                "Topic to publish speed commands to, in the range `speed_range_min` to",
+                "`speed_range_max`.",
+            ]),
+            field("percentage_state_topic", Opt, "String", &[
+                "Topic to receive the speed from, in the range `speed_range_min` to",
+                "`speed_range_max`.",
+            ]),
+            field("percentage_value_template", Opt, "String", &[
+                "Template to extract the speed from messages on `percentage_state_topic`.",
+            ]),
+            field("preset_mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `preset_mode_command_topic`.",
+            ]),
+            field("preset_mode_command_topic", Opt, "String", &[
+                "Topic to publish preset mode commands to. Requires `preset_modes`; the",
+                "builder checks this.",
+            ]),
+            field("preset_mode_state_topic", Opt, "String", &["Topic to receive the preset mode from."]),
+            field("preset_mode_value_template", Opt, "String", &[
+                "Template to extract the preset mode from messages on",
+                "`preset_mode_state_topic`.",
+            ]),
+            field("preset_modes", OneOrMany, "String", &[
+                "Supported preset modes, e.g. `auto` or `eco`. Requires",
+                "`preset_mode_command_topic`. Home Assistant also accepts a single string.",
+            ]),
+            field("retain", Opt, "bool", &[
+                "Publish commands with the retain flag. Default: `true` per the docs",
+                "(`false` in Home Assistant's source).",
+            ]),
+            field("speed_range_max", Opt, "u32", &[
+                "Speed value that means 100 %; greater than `speed_range_min`.",
+                "Default: `100`.",
+            ]),
+            field("speed_range_min", Opt, "u32", &[
+                "Lowest speed value above off; at least `1`. Default: `1`.",
+            ]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the on/off state from; the payload `None` resets it",
+                "to unknown.",
+            ]),
+            field("state_value_template", Opt, "String", &[
+                "Template to extract the on/off state from messages on `state_topic`.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

@@ -1,0 +1,7 @@
+---
+source: tests/fan.rs
+expression: "Fan { command_topic: \"bedroom_fan/on/set\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "bedroom_fan/on/set"
+}

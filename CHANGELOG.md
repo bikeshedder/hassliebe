@@ -72,3 +72,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Update` and `UpdateDeviceClass`.
 - Add `AlarmControlPanel` and `AlarmControlPanelFeature`.
 - Add `Vacuum` and `VacuumFeature`; the builder requires `unique_id` with `clean_segments_command_topic`.
+- Add `Fan`; the builder requires `preset_mode_command_topic` and `preset_modes` together.

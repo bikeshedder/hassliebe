@@ -15,6 +15,7 @@ pub mod date;
 pub mod datetime;
 pub mod device_tracker;
 pub mod event;
+pub mod fan;
 pub mod image;
 pub mod lawn_mower;
 pub mod light;
@@ -188,6 +189,7 @@ components! {
     DateTime(datetime::DateTime),
     DeviceTracker(device_tracker::DeviceTracker),
     Event(event::Event),
+    Fan(fan::Fan),
     Image(image::Image),
     LawnMower(lawn_mower::LawnMower),
     Light(light::Light),

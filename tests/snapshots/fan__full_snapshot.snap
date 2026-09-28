@@ -1,0 +1,74 @@
+---
+source: tests/fan.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "bedroom_fan/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{ state: '{{ value }}'}",
+  "command_topic": "bedroom_fan/on/set",
+  "default_entity_id": "fan.bedroom_fan",
+  "device": {
+    "identifiers": [
+      "bedroom_fan_device"
+    ],
+    "name": "Ceiling fan"
+  },
+  "direction_command_template": "{{ iif(value == 'forward', 'fwd', 'rev') }}",
+  "direction_command_topic": "bedroom_fan/direction/set",
+  "direction_state_topic": "bedroom_fan/direction/state",
+  "direction_value_template": "{{ iif(value == 'fwd', 'forward', 'reverse') }}",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/bedroom_fan.png",
+  "group": [
+    "bedroom_fan_2"
+  ],
+  "icon": "mdi:ceiling-fan",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "bedroom_fan/attributes",
+  "message_expiry_interval": 60,
+  "name": "Bedroom Fan",
+  "optimistic": false,
+  "origin": {
+    "name": "bedroom_fan2mqtt"
+  },
+  "oscillation_command_template": "{ oscillation: '{{ value }}'}",
+  "oscillation_command_topic": "bedroom_fan/oscillation/set",
+  "oscillation_state_topic": "bedroom_fan/oscillation/state",
+  "oscillation_value_template": "{{ value_json.oscillation }}",
+  "payload_off": "false",
+  "payload_on": "true",
+  "payload_oscillation_off": "false",
+  "payload_oscillation_on": "true",
+  "payload_reset_percentage": "None",
+  "payload_reset_preset_mode": "None",
+  "percentage_command_template": "{ percentage: '{{ value }}'}",
+  "percentage_command_topic": "bedroom_fan/speed/percentage",
+  "percentage_state_topic": "bedroom_fan/speed/percentage_state",
+  "percentage_value_template": "{{ value_json.percentage }}",
+  "preset_mode_command_template": "{ preset_mode: '{{ value }}'}",
+  "preset_mode_command_topic": "bedroom_fan/preset/preset_mode",
+  "preset_mode_state_topic": "bedroom_fan/preset/preset_mode_state",
+  "preset_mode_value_template": "{{ value_json.preset_mode }}",
+  "preset_modes": [
+    "auto",
+    "smart",
+    "whoosh",
+    "eco",
+    "breeze"
+  ],
+  "qos": 1,
+  "retain": true,
+  "speed_range_max": 10,
+  "speed_range_min": 1,
+  "state_topic": "bedroom_fan/on/state",
+  "state_value_template": "{{ value_json.state }}",
+  "unique_id": "bedroom_fan",
+  "visible_by_default": true
+}
