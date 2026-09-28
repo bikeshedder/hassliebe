@@ -56,3 +56,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Date`.
 - Fields Home Assistant accepts as a single value or a list read both forms for
   any element type (`common::one_or_many`).
+- Add `Time`.

@@ -486,6 +486,31 @@ pub const PLATFORMS: &[Platform] = &[
             field("value_template", Opt, "String", &["Template to extract the date from the payload."]),
         ],
     },
+    Platform {
+        name: "time",
+        struct_name: "Time",
+        noun: "time",
+        doc: &["An MQTT time: a time of day that is set by publishing to `command_topic`."],
+        url: "https://www.home-assistant.io/integrations/time.mqtt/",
+        schema: None,
+        entity: Some(entity("time.alarm_clock", "mdi:clock-outline", "MQTT Time", true)),
+        fields: &[
+            COMMAND_TEMPLATE,
+            field("command_topic", Req, "String", &[
+                "Topic to publish the time to, in ISO format. Required.",
+            ]),
+            field("optimistic", Opt, "bool", &[
+                "Assume the time changes as commanded. Not in the time docs; accepted",
+                "by Home Assistant. Default: `true` without `state_topic`, otherwise",
+                "`false`.",
+            ]),
+            RETAIN,
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the time from, as a parsable time string.",
+            ]),
+            field("value_template", Opt, "String", &["Template to extract the time from the payload."]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

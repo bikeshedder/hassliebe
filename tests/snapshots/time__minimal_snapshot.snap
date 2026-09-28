@@ -1,0 +1,7 @@
+---
+source: tests/time.rs
+expression: "Time { command_topic: \"command-topic\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "command-topic"
+}

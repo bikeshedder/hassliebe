@@ -1,0 +1,43 @@
+---
+source: tests/time.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "alarm/clock/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"time\": \"{{ value }}\"}",
+  "command_topic": "alarm/clock/time/set",
+  "default_entity_id": "time.alarm_clock",
+  "device": {
+    "identifiers": [
+      "alarm_clock_device"
+    ],
+    "name": "Alarm clock"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/alarm_clock.png",
+  "group": [
+    "alarm_clock_2"
+  ],
+  "icon": "mdi:clock-outline",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "alarm/clock/attributes",
+  "message_expiry_interval": 60,
+  "name": "Wake-up time",
+  "optimistic": false,
+  "origin": {
+    "name": "alarm_clock2mqtt"
+  },
+  "qos": 1,
+  "retain": true,
+  "state_topic": "alarm/clock/time",
+  "unique_id": "alarm_clock",
+  "value_template": "{{ value_json.time }}",
+  "visible_by_default": true
+}

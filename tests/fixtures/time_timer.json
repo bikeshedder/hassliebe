@@ -1,0 +1,6 @@
+{
+  "name": "Scheduled task",
+  "icon": "mdi:ab-testing",
+  "command_topic": "timer/start",
+  "state_topic": "timer/start_state"
+}
