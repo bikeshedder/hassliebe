@@ -1,5 +1,7 @@
 use serde::Serialize;
 
+use crate::string_enum::string_enum;
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
 #[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
@@ -14,11 +16,17 @@ pub struct Availability {
     pub value_template: Option<String>,
 }
 
-/// <https://www.home-assistant.io/integrations/sensor.mqtt/#availability_mode>
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
-#[serde(rename_all = "snake_case")]
-pub enum AvailabilityMode {
-    All,
-    Any,
-    Latest,
+string_enum! {
+    /// How the `availability` topics are combined into one availability state.
+    /// Home Assistant's default is `latest`.
+    ///
+    /// <https://www.home-assistant.io/integrations/sensor.mqtt/#availability_mode>
+    pub enum AvailabilityMode {
+        /// Available only if all configured topics report available.
+        All = "all",
+        /// Available if at least one configured topic reports available.
+        Any = "any",
+        /// The last availability message received decides.
+        Latest = "latest",
+    }
 }

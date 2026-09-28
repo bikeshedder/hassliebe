@@ -11,5 +11,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move modules to `common` and `component`; re-export common types and platform
   modules at the crate root.
 - `Qos` serializes as the integers `0`, `1`, `2` and deserializes only those.
-- String enums (`EntityCategory`, …) are `#[non_exhaustive]`, deserialize, and keep
+- String enums (`AvailabilityMode`, `EntityCategory`, …) are `#[non_exhaustive]`, deserialize, and keep
   unknown values in an `Other(String)` variant.
