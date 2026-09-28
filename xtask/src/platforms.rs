@@ -1474,6 +1474,220 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "climate",
+        struct_name: "Climate",
+        noun: "HVAC device",
+        doc: &[
+            "An MQTT climate (HVAC) device, such as a thermostat or an air",
+            "conditioner.",
+        ],
+        url: "https://www.home-assistant.io/integrations/climate.mqtt/",
+        schema: None,
+        validate: true,
+        entity: Some(entity("climate.study", "mdi:thermostat", "MQTT HVAC", true)),
+        fields: &[
+            field("action_template", Opt, "String", &[
+                "Template to extract the current action from `action_topic`.",
+            ]),
+            field("action_topic", Opt, "String", &[
+                "Topic to receive the current action (`HvacAction` values such as",
+                "`heating`) from. A `None` payload resets it.",
+            ]),
+            field("current_humidity_template", Opt, "String", &[
+                "Template to extract the current humidity from",
+                "`current_humidity_topic`.",
+            ]),
+            field("current_humidity_topic", Opt, "String", &[
+                "Topic to receive the current humidity from. A `None` payload resets it.",
+            ]),
+            field("current_temperature_template", Opt, "String", &[
+                "Template to extract the current temperature from",
+                "`current_temperature_topic`.",
+            ]),
+            field("current_temperature_topic", Opt, "String", &[
+                "Topic to receive the current temperature from. A `None` payload",
+                "resets it.",
+            ]),
+            field("fan_mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `fan_mode_command_topic`.",
+            ]),
+            field("fan_mode_command_topic", Opt, "String", &["Topic to publish fan mode commands to."]),
+            field("fan_mode_state_template", Opt, "String", &[
+                "Template to extract the fan mode from `fan_mode_state_topic`.",
+            ]),
+            field("fan_mode_state_topic", Opt, "String", &[
+                "Topic to receive the fan mode from. A `None` payload resets it.",
+            ]),
+            field("fan_modes", OptOneOrMany, "String", &[
+                "Supported fan modes. Default: `auto`, `low`, `medium`, `high`.",
+            "Home Assistant also accepts a single string.",
+            ]),
+            field("initial", Opt, "f64", &[
+                "Initial target temperature. Default: 21 °C or 69.8 °F, depending on",
+                "the temperature unit.",
+            ]),
+            field("max_humidity", Opt, "f64", &["Maximum target humidity in percent. Default: `99`."]),
+            field("max_temp", Opt, "f64", &[
+                "Maximum target temperature. Default: 35 °C or 95 °F, depending on the",
+                "temperature unit.",
+            ]),
+            field("min_humidity", Opt, "f64", &["Minimum target humidity in percent. Default: `30`."]),
+            field("min_temp", Opt, "f64", &[
+                "Minimum target temperature. Default: 7 °C or 44.6 °F, depending on the",
+                "temperature unit.",
+            ]),
+            field("mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `mode_command_topic`.",
+            ]),
+            field("mode_command_topic", Opt, "String", &["Topic to publish HVAC mode commands to."]),
+            field("mode_state_template", Opt, "String", &[
+                "Template to extract the HVAC mode from `mode_state_topic`.",
+            ]),
+            field("mode_state_topic", Opt, "String", &[
+                "Topic to receive the HVAC mode from. A `None` payload resets it.",
+            ]),
+            field("modes", OptOneOrMany, "HvacMode", &[
+                "Supported HVAC modes, a subset of the default. Default: `auto`, `off`,",
+                "`cool`, `heat`, `dry`, `fan_only`.",
+            "Home Assistant also accepts a single string.",
+            ]),
+            field("optimistic", Opt, "bool", &[
+                "Assume every property changes as commanded, even with a state topic.",
+                "Default: `true` without a state topic, otherwise `false`.",
+            ]),
+            field("payload_off", Opt, "String", &[
+                "Payload sent to `power_command_topic` to turn off. Default: `OFF`.",
+            ]),
+            field("payload_on", Opt, "String", &[
+                "Payload sent to `power_command_topic` to turn on. Default: `ON`.",
+            ]),
+            field("power_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `power_command_topic`; `value`",
+                "is `payload_on` or `payload_off`.",
+            ]),
+            field("power_command_topic", Opt, "String", &[
+                "Topic to publish power commands (`payload_on`, `payload_off`) to.",
+            ]),
+            field("precision", Opt, "f64", &[
+                "Precision of temperatures: `0.1`, `0.5` or `1.0`. Default: `0.1` for",
+                "Celsius, `1.0` for Fahrenheit.",
+            ]),
+            field("preset_mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `preset_mode_command_topic`.",
+            ]),
+            field("preset_mode_command_topic", Opt, "String", &[
+                "Topic to publish preset mode commands to.",
+            ]),
+            field("preset_mode_state_topic", Opt, "String", &[
+                "Topic to receive the preset mode from. `none` or `None` resets it.",
+            ]),
+            field("preset_mode_value_template", Opt, "String", &[
+                "Template to extract the preset mode from `preset_mode_state_topic`.",
+            ]),
+            field("preset_modes", OneOrMany, "String", &[
+                "Supported preset modes, e.g. `eco`, `away` or `boost`; must not",
+                "contain `none`. Home Assistant also accepts a single string.",
+            ]),
+            RETAIN,
+            field("swing_horizontal_mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to",
+                "`swing_horizontal_mode_command_topic`.",
+            ]),
+            field("swing_horizontal_mode_command_topic", Opt, "String", &[
+                "Topic to publish horizontal swing mode commands to.",
+            ]),
+            field("swing_horizontal_mode_state_template", Opt, "String", &[
+                "Template to extract the horizontal swing mode from",
+                "`swing_horizontal_mode_state_topic`.",
+            ]),
+            field("swing_horizontal_mode_state_topic", Opt, "String", &[
+                "Topic to receive the horizontal swing mode from.",
+            ]),
+            field("swing_horizontal_modes", OptOneOrMany, "String", &[
+                "Supported horizontal swing modes. Default: `on`, `off`.",
+            "Home Assistant also accepts a single string.",
+            ]),
+            field("swing_mode_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `swing_mode_command_topic`.",
+            ]),
+            field("swing_mode_command_topic", Opt, "String", &["Topic to publish swing mode commands to."]),
+            field("swing_mode_state_template", Opt, "String", &[
+                "Template to extract the swing mode from `swing_mode_state_topic`.",
+            ]),
+            field("swing_mode_state_topic", Opt, "String", &["Topic to receive the swing mode from."]),
+            field("swing_modes", OptOneOrMany, "String", &[
+                "Supported swing modes. Default: `on`, `off`. Home Assistant also",
+                "accepts a single string.",
+            ]),
+            field("target_humidity_command_template", Opt, "String", &[
+                "Template to generate the payload sent to",
+                "`target_humidity_command_topic`.",
+            ]),
+            field("target_humidity_command_topic", Opt, "String", &[
+                "Topic to publish target humidity commands to.",
+            ]),
+            field("target_humidity_state_template", Opt, "String", &[
+                "Template to extract the target humidity from",
+                "`target_humidity_state_topic`.",
+            ]),
+            field("target_humidity_state_topic", Opt, "String", &[
+                "Topic to receive the target humidity from. A `None` payload resets it.",
+                "Requires `target_humidity_command_topic`.",
+            ]),
+            field("temp_step", Opt, "f64", &["Step size of the target temperature. Default: `1`."]),
+            field("temperature_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `temperature_command_topic`.",
+            ]),
+            field("temperature_command_topic", Opt, "String", &[
+                "Topic to publish target temperature commands to.",
+            ]),
+            field("temperature_high_command_template", Opt, "String", &[
+                "Template to generate the payload sent to",
+                "`temperature_high_command_topic`.",
+            ]),
+            field("temperature_high_command_topic", Opt, "String", &[
+                "Topic to publish upper target temperature commands to.",
+            ]),
+            field("temperature_high_state_template", Opt, "String", &[
+                "Template to extract the upper target temperature from",
+                "`temperature_high_state_topic`.",
+            ]),
+            field("temperature_high_state_topic", Opt, "String", &[
+                "Topic to receive the upper target temperature from. A `None` payload",
+                "resets it.",
+            ]),
+            field("temperature_low_command_template", Opt, "String", &[
+                "Template to generate the payload sent to",
+                "`temperature_low_command_topic`.",
+            ]),
+            field("temperature_low_command_topic", Opt, "String", &[
+                "Topic to publish lower target temperature commands to.",
+            ]),
+            field("temperature_low_state_template", Opt, "String", &[
+                "Template to extract the lower target temperature from",
+                "`temperature_low_state_topic`.",
+            ]),
+            field("temperature_low_state_topic", Opt, "String", &[
+                "Topic to receive the lower target temperature from. A `None` payload",
+                "resets it.",
+            ]),
+            field("temperature_state_template", Opt, "String", &[
+                "Template to extract the target temperature from",
+                "`temperature_state_topic`.",
+            ]),
+            field("temperature_state_topic", Opt, "String", &[
+                "Topic to receive the target temperature from. A `None` payload resets",
+                "it.",
+            ]),
+            field("temperature_unit", Opt, "TemperatureUnit", &[
+                "Temperature unit of the device. Default: the system's temperature unit.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Default template to extract values from all `*_state_topic`s.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

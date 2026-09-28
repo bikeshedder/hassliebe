@@ -273,7 +273,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add fan`**
 - [x] **`Add humidifier`**
 - [x] **`Add water_heater`**
-- [ ] **`Add climate`**
+- [x] **`Add climate`**
 - [ ] **`Add JSON schema light`**
 - [ ] **`Add template schema light`**
 - [ ] **`Add infrared`** (`InfraredEmitter`, `InfraredReceiver`)

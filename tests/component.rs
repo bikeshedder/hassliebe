@@ -70,7 +70,7 @@ mod json {
     #[test]
     fn unknown_platform_is_other() {
         let value = json!({
-            "platform": "climate",
+            "platform": "future_platform",
             "mode_command_topic": "hvac/mode/set",
             "modes": ["off", "heat"]
         });
@@ -78,7 +78,7 @@ mod json {
         let Component::Other { platform, config } = &component else {
             panic!("expected Other, got {component:?}");
         };
-        assert_eq!(platform, "climate");
+        assert_eq!(platform, "future_platform");
         assert!(!config.contains_key("platform"));
         assert_eq!(config["modes"], json!(["off", "heat"]));
         assert_eq!(serde_json::to_value(&component).unwrap(), value);

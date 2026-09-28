@@ -1,0 +1,11 @@
+{
+  "name": "Study",
+  "modes": [
+    "off",
+    "heat",
+    "auto"
+  ],
+  "mode_command_topic": "study/ac/mode/set",
+  "mode_state_topic": "study/ac/mode/state",
+  "mode_state_template": "{{ value_json }}"
+}

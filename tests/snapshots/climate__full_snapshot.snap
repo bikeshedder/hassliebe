@@ -1,0 +1,117 @@
+---
+source: tests/climate.rs
+expression: full()
+---
+{
+  "action_template": "{{ value_json.action }}",
+  "action_topic": "study/ac/action",
+  "availability": [
+    {
+      "topic": "study/ac/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "current_humidity_template": "{{ value_json.current_humidity }}",
+  "current_humidity_topic": "study/ac/current/humidity",
+  "current_temperature_template": "{{ value_json.current_temperature }}",
+  "current_temperature_topic": "study/ac/current/temperature",
+  "default_entity_id": "climate.study_ac",
+  "device": {
+    "identifiers": [
+      "study_ac_device"
+    ],
+    "name": "Study AC"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/study_ac.png",
+  "fan_mode_command_template": "{{ value }}",
+  "fan_mode_command_topic": "study/ac/fan/mode/command",
+  "fan_mode_state_template": "{{ value_json.fan_mode_state }}",
+  "fan_mode_state_topic": "study/ac/fan/mode/state",
+  "fan_modes": [
+    "auto",
+    "low",
+    "high"
+  ],
+  "group": [
+    "study_ac_2"
+  ],
+  "icon": "mdi:thermostat",
+  "initial": 21.0,
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "study/ac/attributes",
+  "max_humidity": 70.0,
+  "max_temp": 30.0,
+  "message_expiry_interval": 60,
+  "min_humidity": 30.0,
+  "min_temp": 7.0,
+  "mode_command_template": "{{ value }}",
+  "mode_command_topic": "study/ac/mode/command",
+  "mode_state_template": "{{ value_json.mode_state }}",
+  "mode_state_topic": "study/ac/mode/state",
+  "modes": [
+    "off",
+    "heat",
+    "cool",
+    "auto"
+  ],
+  "name": "Study",
+  "optimistic": false,
+  "origin": {
+    "name": "study_ac2mqtt"
+  },
+  "payload_off": "OFF",
+  "payload_on": "ON",
+  "power_command_template": "{{ value }}",
+  "power_command_topic": "study/ac/power/command",
+  "precision": 0.5,
+  "preset_mode_command_template": "{{ value }}",
+  "preset_mode_command_topic": "study/ac/preset/mode/command",
+  "preset_mode_state_topic": "study/ac/preset/mode/state",
+  "preset_mode_value_template": "{{ value_json.preset_mode_value }}",
+  "preset_modes": [
+    "eco",
+    "away"
+  ],
+  "qos": 1,
+  "retain": false,
+  "swing_horizontal_mode_command_template": "{{ value }}",
+  "swing_horizontal_mode_command_topic": "study/ac/swing/horizontal/mode/command",
+  "swing_horizontal_mode_state_template": "{{ value_json.swing_horizontal_mode_state }}",
+  "swing_horizontal_mode_state_topic": "study/ac/swing/horizontal/mode/state",
+  "swing_horizontal_modes": [
+    "on",
+    "off"
+  ],
+  "swing_mode_command_template": "{{ value }}",
+  "swing_mode_command_topic": "study/ac/swing/mode/command",
+  "swing_mode_state_template": "{{ value_json.swing_mode_state }}",
+  "swing_mode_state_topic": "study/ac/swing/mode/state",
+  "swing_modes": [
+    "on",
+    "off"
+  ],
+  "target_humidity_command_template": "{{ value }}",
+  "target_humidity_command_topic": "study/ac/target/humidity/command",
+  "target_humidity_state_template": "{{ value_json.target_humidity_state }}",
+  "target_humidity_state_topic": "study/ac/target/humidity/state",
+  "temp_step": 0.5,
+  "temperature_command_template": "{{ value }}",
+  "temperature_command_topic": "study/ac/temperature/command",
+  "temperature_high_command_template": "{{ value }}",
+  "temperature_high_command_topic": "study/ac/temperature/high/command",
+  "temperature_high_state_template": "{{ value_json.temperature_high_state }}",
+  "temperature_high_state_topic": "study/ac/temperature/high/state",
+  "temperature_low_command_template": "{{ value }}",
+  "temperature_low_command_topic": "study/ac/temperature/low/command",
+  "temperature_low_state_template": "{{ value_json.temperature_low_state }}",
+  "temperature_low_state_topic": "study/ac/temperature/low/state",
+  "temperature_state_template": "{{ value_json.temperature_state }}",
+  "temperature_state_topic": "study/ac/temperature/state",
+  "temperature_unit": "C",
+  "unique_id": "study_ac",
+  "value_template": "{{ value_json.value }}",
+  "visible_by_default": true
+}

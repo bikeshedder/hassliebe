@@ -76,3 +76,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Humidifier` and `HumidifierDeviceClass`; the builder requires `mode_command_topic` and `modes` together.
 - Add `TemperatureUnit` (`C`/`F`) for climate and water heater devices.
 - Add `WaterHeater` and `WaterHeaterMode`.
+- Add `Climate` and `HvacMode`; the builder checks the preset mode and target humidity topic pairs.

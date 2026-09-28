@@ -10,6 +10,7 @@ pub mod alarm_control_panel;
 pub mod binary_sensor;
 pub mod button;
 pub mod camera;
+pub mod climate;
 pub mod cover;
 pub mod date;
 pub mod datetime;
@@ -186,6 +187,7 @@ components! {
     BinarySensor(binary_sensor::BinarySensor),
     Button(button::Button),
     Camera(camera::Camera),
+    Climate(climate::Climate),
     Cover(cover::Cover),
     Date(date::Date),
     DateTime(datetime::DateTime),

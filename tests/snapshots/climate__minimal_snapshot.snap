@@ -1,0 +1,8 @@
+---
+source: tests/climate.rs
+expression: "Climate\n{\n    mode_command_topic: Some(\"study/ac/mode/set\".into()), name:\n    Some(\"Study\".into()), ..Default::default()\n}"
+---
+{
+  "mode_command_topic": "study/ac/mode/set",
+  "name": "Study"
+}
