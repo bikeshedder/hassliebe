@@ -239,9 +239,47 @@ Same checklist as Phase D.
 - [x] **`Add crate docs and test README example`**
   `#![doc = include_str!("../README.md")]` or an equivalent tested example; enable
   `#![warn(missing_docs)]`.
-- [ ] **`Audit all types against HA`**
+- [ ] **`Audit all types against HA`** (after Phase H)
   Re-check every enum and field list against `dev` on the day before the 0.1
   release; update the baseline date at the top of this file.
+
+### Phase H — all MQTT discovery platforms
+
+Scope: every entry of `SUPPORTED_COMPONENTS` in `mqtt/const.py` (32; 9 done in
+D/E). Same checklist as Phase D per platform, plus a `Component` variant.
+
+- [ ] **`Add xtask code generators`** (decision 18)
+  Std-only `xtask` workspace member: `units`, `device-class`, `component`,
+  `abbreviations`; regenerating the existing modules is a no-op.
+- [ ] **`Add schema tags to Platform and Component`** (decision 17)
+  `Platform::SCHEMA`, dispatch on `(platform, schema)`.
+- [ ] **`Add date`**
+- [ ] **`Add time`**
+- [ ] **`Add datetime`**
+- [ ] **`Add scene`**
+- [ ] **`Add notify`**
+- [ ] **`Add event`**
+- [ ] **`Add camera`**
+- [ ] **`Add image`**
+- [ ] **`Add device_tracker`**
+- [ ] **`Add lock`**
+- [ ] **`Add valve`**
+- [ ] **`Add siren`**
+- [ ] **`Add lawn_mower`**
+- [ ] **`Add update`**
+- [ ] **`Add alarm_control_panel`**
+- [ ] **`Add vacuum`**
+- [ ] **`Add fan`**
+- [ ] **`Add humidifier`**
+- [ ] **`Add water_heater`**
+- [ ] **`Add climate`**
+- [ ] **`Add JSON schema light`**
+- [ ] **`Add template schema light`**
+- [ ] **`Add infrared`** (`InfraredEmitter`, `InfraredReceiver`)
+- [ ] **`Add device_trigger`** (platform `device_automation`; not an entity)
+- [ ] **`Add tag`** (not an entity)
+- [ ] **`Check that every supported platform has a Component variant`**
+  Test with `SUPPORTED_COMPONENTS` pinned.
 
 ---
 
@@ -276,8 +314,9 @@ are the source of truth; the core source only fills gaps the docs leave open.
    `Vec`.
 6. **Removal entries:** `Component::Removed { platform }` (always available; also
    useful when writing).
-7. **Light schemas:** only the basic schema is modeled. Other schemas go to
-   `Component::Other` inside `cmps`; a standalone `Light` rejects them.
+7. **Light schemas** (revised by decision 17): each schema has its own struct.
+   Unknown schemas go to `Component::Other` inside `cmps`; a standalone `Light`
+   rejects schemas other than `basic`.
 8. **`DeviceDiscovery` shared options:** the documented list plus
    `message_expiry_interval` (source).
 9. **Device topic:** the docs define `<component>` as a platform "or `device` in
@@ -303,3 +342,11 @@ are the source of truth; the core source only fills gaps the docs leave open.
     must still be complete when writing (a sensor needs its own
     `state_topic`), because the platform types follow the per-platform docs.
     Values that rely on inheritance therefore normalise on a round trip.
+17. **Schema-based platforms** (light, infrared): one struct per schema
+    (`Light`, `JsonLight`, `TemplateLight`, `InfraredEmitter`,
+    `InfraredReceiver`). Non-default schemas have a required single-value
+    `schema` field (closed `string_enum!`) so they always serialize it.
+    `Component` dispatches on platform and schema.
+18. **Code generators** live in a std-only Rust `xtask` workspace member and
+    read a local checkout of HA core. Generated code is committed and may be
+    edited by hand afterwards.
