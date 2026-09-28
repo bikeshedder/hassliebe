@@ -164,7 +164,7 @@ All string-valued enums use `string_enum!`, including closed sets (decision 11).
   deprecated `p/m³`) (decision 2). Fixes `ft³/m` → `ft³/min` and the micro
   sign. Legacy spellings from `AMBIGUOUS_UNITS` become input aliases
   (decision 1).
-- [ ] **`Make Availability deserializable and document it`**
+- [x] **`Make Availability deserializable and document it`**
   `Deserialize`, `PartialEq`, `#[serde(default)]`, docs with HA defaults
   (`online`/`offline`), fields verified against `schemas.py`.
 - [ ] **`Make Device deserializable and document it`**

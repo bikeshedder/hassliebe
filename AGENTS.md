@@ -88,8 +88,10 @@ accepting it with `cargo insta accept`. Never accept snapshots blindly.
   `Vec<String>`, skipped when empty, and also deserialize from a single string.
 - Derive at least `Clone, Debug, Default, PartialEq, Serialize, Deserialize` on
   structs; add `#[cfg_attr(feature = "builder", derive(derive_builder::Builder))]`
-  with `#[builder(default, setter(into, strip_option))]`. Required fields get no
-  builder default, so `build()` fails when they are missing.
+  with `#[builder(setter(into, strip_option))]` on the struct and
+  `#[cfg_attr(feature = "builder", builder(default))]` on every optional field.
+  Required fields get no builder default, so `build()` fails when they are
+  missing (derive_builder cannot opt a field out of a struct-level default).
 - String-valued enums (device classes, units, state classes, …) are generated with
   the crate's `string_enum!` macro so they get an `Other(String)` variant and stable
   serde behaviour. This includes closed sets like `EntityCategory`. Legacy

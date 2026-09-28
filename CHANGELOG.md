@@ -17,3 +17,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace `UnitOfMeasurement` with `Unit` and the `UnitOf*` classes from Home
   Assistant. Adds all current units, fixes `ft³/min` and serializes the micro sign
   as U+03BC.
+- All structs derive `Deserialize` and `PartialEq` (starting with `Availability`);
+  builders fail on missing required fields.
