@@ -143,7 +143,7 @@ Noted docs/source discrepancies (resolved in favour of the docs, decision 4):
 - [x] **`Add snapshot and fixture scaffolding`**
   `tests/` layout, `tests/fixtures/`, a small round-trip helper, one insta
   snapshot as example. No component tests yet.
-- [ ] **`Serialize Qos as integers`**
+- [x] **`Serialize Qos as integers`**
   Hand-written serde (integer enum, not a string enum): serialize `0/1/2`,
   deserialize only `0/1/2`. Tests for both directions and for rejecting `3`.
 
