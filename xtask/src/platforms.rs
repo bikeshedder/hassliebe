@@ -318,7 +318,10 @@ pub const PLATFORMS: &[Platform] = &[
             COMMAND_TEMPLATE,
             field("command_topic", Req, "String", &["Topic to publish the selected option to. Required."]),
             OPTIMISTIC_OPTION,
-            field("options", Req, "Vec<String>", &["The options that can be selected. Required."]),
+            field("options", ReqOneOrMany, "String", &[
+                "The options that can be selected. Required. Home Assistant also accepts",
+                "a single string.",
+            ]),
             RETAIN,
             field("state_topic", Opt, "String", &["Topic to receive the selected option from."]),
             field("value_template", Opt, "String", &[

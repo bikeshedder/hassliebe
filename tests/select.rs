@@ -97,3 +97,10 @@ fn builder_requires_command_topic_and_options() {
             .is_ok()
     );
 }
+
+#[test]
+fn options_accept_single_string() {
+    let select: Select =
+        serde_json::from_str(r#"{"command_topic": "t", "options": "only"}"#).unwrap();
+    assert_eq!(select.options, ["only"]);
+}

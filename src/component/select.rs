@@ -102,7 +102,9 @@ pub struct Select {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub optimistic: Option<bool>,
-    /// The options that can be selected. Required.
+    /// The options that can be selected. Required. Home Assistant also accepts
+    /// a single string.
+    #[serde(deserialize_with = "crate::common::one_or_many::deserialize")]
     pub options: Vec<String>,
     /// The application that sent the discovery message.
     /// Not in the select docs; accepted by Home Assistant.
