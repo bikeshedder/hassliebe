@@ -197,6 +197,7 @@ components! {
     Humidifier(humidifier::Humidifier),
     Image(image::Image),
     LawnMower(lawn_mower::LawnMower),
+    JsonLight(light::JsonLight),
     Light(light::Light),
     Lock(lock::Lock),
     Notify(notify::Notify),

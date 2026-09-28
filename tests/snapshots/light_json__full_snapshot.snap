@@ -1,0 +1,61 @@
+---
+source: tests/light_json.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/rgb1/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "brightness": true,
+  "brightness_scale": 255,
+  "color_temp_kelvin": true,
+  "command_topic": "home/rgb1/set",
+  "default_entity_id": "light.home_rgb1",
+  "device": {
+    "identifiers": [
+      "home_rgb1_device"
+    ],
+    "name": "LED strip"
+  },
+  "effect": true,
+  "effect_list": [
+    "rainbow",
+    "colorloop"
+  ],
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/home_rgb1.png",
+  "flash": true,
+  "flash_time_long": 10,
+  "flash_time_short": 2,
+  "group": [
+    "home_rgb1_2"
+  ],
+  "icon": "mdi:led-strip-variant",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/rgb1/attributes",
+  "max_kelvin": 6500,
+  "message_expiry_interval": 60,
+  "min_kelvin": 2700,
+  "name": "Strip",
+  "optimistic": false,
+  "origin": {
+    "name": "home_rgb12mqtt"
+  },
+  "qos": 1,
+  "retain": false,
+  "schema": "json",
+  "state_topic": "home/rgb1",
+  "supported_color_modes": [
+    "color_temp",
+    "rgb"
+  ],
+  "transition": true,
+  "unique_id": "home_rgb1",
+  "visible_by_default": true,
+  "white_scale": 255
+}

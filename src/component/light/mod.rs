@@ -1,5 +1,9 @@
 //! MQTT light, default schema: <https://www.home-assistant.io/integrations/light.mqtt/>
 
+mod json;
+
+pub use json::{JsonLight, JsonLightSchema};
+
 use crate::string_enum::string_enum;
 
 // @generated begin component light
@@ -365,5 +369,33 @@ string_enum! {
         Last = "last",
         /// Send only the brightness command instead of `payload_on`.
         Brightness = "brightness",
+    }
+}
+
+string_enum! {
+    /// A color mode of a light, for `supported_color_modes`.
+    ///
+    /// <https://www.home-assistant.io/integrations/light.mqtt/#supported_color_modes>
+    ///
+    /// Source: `VALID_COLOR_MODES` in `homeassistant/components/light/const.py`
+    pub enum ColorMode {
+        /// On and off only; must be the only supported mode.
+        Onoff = "onoff",
+        /// Dimmable without color; must be the only supported mode.
+        Brightness = "brightness",
+        /// Color temperature.
+        ColorTemp = "color_temp",
+        /// Hue and saturation.
+        Hs = "hs",
+        /// CIE xy color.
+        Xy = "xy",
+        /// RGB color.
+        Rgb = "rgb",
+        /// RGB color with a white channel.
+        Rgbw = "rgbw",
+        /// RGB color with cold and warm white channels.
+        Rgbww = "rgbww",
+        /// White mode; not allowed as the only supported mode.
+        White = "white",
     }
 }

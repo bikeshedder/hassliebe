@@ -77,3 +77,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `TemperatureUnit` (`C`/`F`) for climate and water heater devices.
 - Add `WaterHeater` and `WaterHeaterMode`.
 - Add `Climate` and `HvacMode`; the builder checks the preset mode and target humidity topic pairs.
+- Add `JsonLight`, `JsonLightSchema` and `ColorMode`; `light` is now a directory module.

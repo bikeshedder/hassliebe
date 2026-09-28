@@ -85,8 +85,8 @@ mod json {
     }
 
     #[test]
-    fn non_basic_light_is_other() {
-        for schema in ["json", "template"] {
+    fn unknown_light_schema_is_other() {
+        for schema in ["template", "future_schema"] {
             let component = parse(json!({
                 "platform": "light",
                 "schema": schema,

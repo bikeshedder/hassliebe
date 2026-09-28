@@ -11,6 +11,9 @@ use std::{error::Error, fmt::Write as _};
 pub enum Kind {
     /// Required: `T`.
     Req,
+    /// A required single-value `schema` tag: `T`, which the builder fills in
+    /// with `T::default()`.
+    Tag,
     /// Optional: `Option<T>`.
     Opt,
     /// Optional in the docs but required by Home Assistant: `Option<T>`, but
@@ -1688,6 +1691,60 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "light",
+        struct_name: "JsonLight",
+        noun: "JSON light",
+        doc: &[
+            "An MQTT light with the `json` schema: commands and states are JSON",
+            "objects.",
+        ],
+        url: "https://www.home-assistant.io/integrations/light.mqtt/#json-schema",
+        schema: Some("json"),
+        validate: false,
+        entity: Some(entity("light.living_room_strip", "mdi:led-strip-variant", "MQTT JSON Light", true)),
+        fields: &[
+            field("brightness", Opt, "bool", &[
+                "Support brightness when the `rgb`, `rgbw` or `rgbww` color mode is",
+                "supported. Default: `false`.",
+            ]),
+            field("brightness_scale", Opt, "u32", &[
+                "Brightness value that means 100 %; at least `1`. Default: `255`.",
+            ]),
+            field("color_temp_kelvin", Opt, "bool", &[
+                "Send and receive color temperatures in Kelvin instead of mireds.",
+                "Default: `false`.",
+            ]),
+            field("command_topic", Req, "String", &["Topic to publish JSON commands to. Required."]),
+            field("effect", Opt, "bool", &["Whether the light supports effects. Default: `false`."]),
+            field("effect_list", OneOrMany, "String", &[
+                "Supported effects. Home Assistant also accepts a single string.",
+            ]),
+            field("flash", Opt, "bool", &["Whether the light supports flashing. Default: `true`."]),
+            field("flash_time_long", Opt, "u32", &["Duration of a long flash in seconds. Default: `10`."]),
+            field("flash_time_short", Opt, "u32", &["Duration of a short flash in seconds. Default: `2`."]),
+            field("max_kelvin", Opt, "u32", &["Maximum color temperature in Kelvin. Default: `6535`."]),
+            field("max_mireds", Opt, "u32", &["Maximum color temperature in mireds."]),
+            field("min_kelvin", Opt, "u32", &["Minimum color temperature in Kelvin. Default: `2000`."]),
+            field("min_mireds", Opt, "u32", &["Minimum color temperature in mireds."]),
+            OPTIMISTIC_STATE,
+            RETAIN,
+            field("schema", Tag, "JsonLightSchema", &[
+                "Schema of the light config; always `json`. Required.",
+            ]),
+            field("state_topic", Opt, "String", &["Topic to receive JSON state updates from."]),
+            field("supported_color_modes", OptOneOrMany, "ColorMode", &[
+                "Color modes the light supports. `onoff` or `brightness` must be the",
+                "only value if used. Home Assistant also accepts a single string.",
+            ]),
+            field("transition", Opt, "bool", &[
+                "Whether the light supports transitions. Default: `true`.",
+            ]),
+            field("white_scale", Opt, "u32", &[
+                "White value that means 100 %; at least `1`. Default: `255`.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {
@@ -2072,6 +2129,11 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
         const ONE_OR_MANY: &str = "crate::common::one_or_many::deserialize";
         let (serde, rust_ty, builder_default) = match field.kind {
             Req => {
+                writeln!(out, "    pub {}: {ty},", ident(field.name))?;
+                continue;
+            }
+            Tag => {
+                writeln!(out, "    #[cfg_attr(feature = \"builder\", builder(default))]")?;
                 writeln!(out, "    pub {}: {ty},", ident(field.name))?;
                 continue;
             }

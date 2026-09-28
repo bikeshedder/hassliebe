@@ -1,0 +1,8 @@
+---
+source: tests/light_json.rs
+expression: "JsonLight { command_topic: \"home/rgb1/set\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "home/rgb1/set",
+  "schema": "json"
+}

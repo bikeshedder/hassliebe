@@ -47,7 +47,7 @@ fn switch_with_base_topic() {
 
 /// "Example with using abbreviated Device and Origin info in discovery
 /// messages" from <https://www.home-assistant.io/integrations/mqtt/>. It is a
-/// JSON schema light, which this crate keeps as `Component::Other`.
+/// JSON schema light.
 #[test]
 fn light_with_abbreviated_device_and_origin() {
     let mut payload = expanded_component("light_kitchen_abbreviated.json");
@@ -78,7 +78,14 @@ fn light_with_abbreviated_device_and_origin() {
     );
     payload["platform"] = json!("light");
     let component: Component = serde_json::from_value(payload).unwrap();
-    assert!(matches!(component, Component::Other { .. }));
+    let Component::JsonLight(light) = component else {
+        panic!("expected a JSON light, got {component:?}");
+    };
+    assert_eq!(light.command_topic, "homeassistant/light/kitchen/set");
+    assert_eq!(
+        light.device.and_then(|device| device.model_id).as_deref(),
+        Some("ABC123")
+    );
 }
 
 #[test]
