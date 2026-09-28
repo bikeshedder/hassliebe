@@ -1,6 +1,6 @@
-use std::{num::NonZeroU32, sync::Arc};
+use std::num::NonZeroU32;
 
-use crate::{discovery::Discovery, state::State};
+use crate::discovery::Discovery;
 
 use super::{
     availability::{Availability, AvailabilityMode},
@@ -29,7 +29,7 @@ pub struct Sensor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub default_entity_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub device: Option<Arc<Device>>,
+    pub device: Option<Device>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub device_class: Option<DeviceClass>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -88,11 +88,5 @@ impl Discovery for Sensor {
     const COMPONENT: &'static str = "sensor";
     fn unique_id(&self) -> &str {
         &self.unique_id
-    }
-}
-
-impl State for Sensor {
-    fn topic(&self) -> &str {
-        &self.state_topic
     }
 }

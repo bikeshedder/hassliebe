@@ -1,9 +1,7 @@
-use std::sync::Arc;
-
 use derive_builder::Builder;
 use serde::Serialize;
 
-use crate::{discovery::Discovery, state::State};
+use crate::discovery::Discovery;
 
 use super::{
     availability::{Availability, AvailabilityMode},
@@ -29,7 +27,7 @@ pub struct Select {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub default_entity_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub device: Option<Arc<Device>>,
+    pub device: Option<Device>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub enabled_by_default: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -69,24 +67,9 @@ impl Select {
     }
 }
 
-// FIXME it would be nice if this was a proper enum instead
-#[derive(Default, Serialize)]
-pub struct OptionsItem {
-    pub name: String,
-    pub id: String,
-    pub value: String,
-}
-
 impl Discovery for Select {
     const COMPONENT: &'static str = "select";
     fn unique_id(&self) -> &str {
         &self.unique_id
-    }
-}
-
-// FIXME replace this by proper enum
-impl State for Select {
-    fn topic(&self) -> &str {
-        self.state_topic.as_ref().unwrap() // FIXME
     }
 }

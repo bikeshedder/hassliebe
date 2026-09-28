@@ -1,5 +1,3 @@
-use std::sync::Arc;
-
 use derive_builder::Builder;
 use serde::Serialize;
 
@@ -10,7 +8,6 @@ use crate::{
         entity_category::EntityCategory,
         qos::Qos,
     },
-    state::State,
 };
 
 use super::{device::Device, device_class::DeviceClass, unit::UnitOfMeasurement};
@@ -40,7 +37,7 @@ pub struct Number {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub default_entity_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub device: Option<Arc<Device>>,
+    pub device: Option<Device>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub device_class: Option<DeviceClass>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -94,11 +91,5 @@ impl Discovery for Number {
     const COMPONENT: &'static str = "number";
     fn unique_id(&self) -> &str {
         &self.unique_id
-    }
-}
-
-impl State for Number {
-    fn topic(&self) -> &str {
-        self.state_topic.as_ref().unwrap() // FIXME
     }
 }
