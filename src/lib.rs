@@ -23,8 +23,8 @@ pub use common::{
 };
 pub use component::{
     Component, Platform, binary_sensor, button, camera, cover, date, datetime, device_tracker,
-    event, image, light, lock, notify, number, scene, select, sensor, siren, switch, text, time,
-    valve,
+    event, image, lawn_mower, light, lock, notify, number, scene, select, sensor, siren, switch,
+    text, time, valve,
 };
 pub use discovery::{DeviceDiscovery, SharedOptions};
 pub use string_enum::UnknownValue;

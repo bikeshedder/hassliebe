@@ -957,6 +957,63 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "lawn_mower",
+        struct_name: "LawnMower",
+        noun: "lawn mower",
+        doc: &[
+            "An MQTT lawn mower: started, paused, docked and stopped by publishing",
+            "to per-command topics; its activity is received on `activity_state_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/lawn_mower.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(entity("lawn_mower.backyard", "mdi:robot-mower", "MQTT Lawn Mower", true)),
+        fields: &[
+            field("activity_state_topic", Opt, "String", &[
+                "Topic to receive the activity from: `mowing`, `paused`, `docked` or",
+                "`error`. The payload `none` resets it to unknown.",
+            ]),
+            field("activity_value_template", Opt, "String", &[
+                "Template to extract the activity from the payload.",
+            ]),
+            field("dock_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `dock_command_topic`; `value`",
+                "is `dock`.",
+            ]),
+            field("dock_command_topic", Opt, "String", &[
+                "Topic to publish `dock` to when the mower is sent to its dock.",
+            ]),
+            optimistic(&[
+                "Assume the activity changes as commanded. Default: `true` without",
+                "`activity_state_topic`, otherwise `false`.",
+            ]),
+            field("pause_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `pause_command_topic`; `value`",
+                "is `pause`.",
+            ]),
+            field("pause_command_topic", Opt, "String", &[
+                "Topic to publish `pause` to when the mower is paused.",
+            ]),
+            RETAIN,
+            field("start_mowing_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `start_mowing_command_topic`;",
+                "`value` is `start_mowing`. Listed as `start_mowing_template` in the",
+                "docs' table.",
+            ]),
+            field("start_mowing_command_topic", Opt, "String", &[
+                "Topic to publish `start_mowing` to when the mower starts mowing.",
+            ]),
+            field("stop_command_template", Opt, "String", &[
+                "Template to generate the payload sent to `stop_command_topic`; `value`",
+                "is `stop`. Not in the lawn mower docs; accepted by Home Assistant.",
+            ]),
+            field("stop_command_topic", Opt, "String", &[
+                "Topic to publish `stop` to when the mower is stopped. Not in the lawn",
+                "mower docs; accepted by Home Assistant.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

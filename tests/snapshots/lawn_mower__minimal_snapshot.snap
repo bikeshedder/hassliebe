@@ -1,0 +1,8 @@
+---
+source: tests/lawn_mower.rs
+expression: "LawnMower\n{\n    name: Some(\"Test Lawn Mower\".into()), start_mowing_command_topic:\n    Some(\"topic\".into()), ..Default::default()\n}"
+---
+{
+  "name": "Test Lawn Mower",
+  "start_mowing_command_topic": "topic"
+}

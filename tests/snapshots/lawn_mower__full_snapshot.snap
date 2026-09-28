@@ -1,0 +1,49 @@
+---
+source: tests/lawn_mower.rs
+expression: full()
+---
+{
+  "activity_state_topic": "lawn_mower_plus/state",
+  "activity_value_template": "{{ value_json.activity }}",
+  "availability": [
+    {
+      "topic": "lawn_mower_plus/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "default_entity_id": "lawn_mower.lawn_mower_plus",
+  "device": {
+    "identifiers": [
+      "lawn_mower_plus_device"
+    ],
+    "name": "Robot mower"
+  },
+  "dock_command_template": "{\"activity\": \"{{ value }}\"}",
+  "dock_command_topic": "lawn_mower_plus/set",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/lawn_mower_plus.png",
+  "group": [
+    "lawn_mower_plus_2"
+  ],
+  "icon": "mdi:robot-mower",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "lawn_mower_plus/attributes",
+  "message_expiry_interval": 60,
+  "name": "Lawn Mower Plus",
+  "optimistic": false,
+  "origin": {
+    "name": "lawn_mower_plus2mqtt"
+  },
+  "pause_command_template": "{\"activity\": \"{{ value }}\"}",
+  "pause_command_topic": "lawn_mower_plus/set",
+  "qos": 1,
+  "retain": false,
+  "start_mowing_command_template": "{\"activity\": \"{{ value }}\"}",
+  "start_mowing_command_topic": "lawn_mower_plus/set",
+  "stop_command_template": "{\"activity\": \"{{ value }}\"}",
+  "stop_command_topic": "lawn_mower_plus/set",
+  "unique_id": "lawn_mower_plus",
+  "visible_by_default": true
+}
