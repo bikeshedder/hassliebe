@@ -23,3 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   also reads a single string. The `Device` builder requires `name` and an
   identifier or connection.
 - Add `Origin`.
+- Add `MessageExpiryInterval` (seconds or a `TimePeriod`).
