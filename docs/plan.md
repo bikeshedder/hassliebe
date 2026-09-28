@@ -154,7 +154,7 @@ URL in the doc comment and the file in the commit message.
 
 All string-valued enums use `string_enum!`, including closed sets (decision 11).
 
-- [ ] **`Convert EntityCategory to string_enum!`** (`homeassistant/const.py`)
+- [x] **`Convert EntityCategory to string_enum!`** (`homeassistant/const.py`)
 - [ ] **`Convert AvailabilityMode to string_enum!`** (MQTT docs, `schemas.py`)
 - [ ] **`Sync StateClass with HA`** (`sensor/const.py`; adds `measurement_angle`)
 - [ ] **`Sync Unit with HA`**

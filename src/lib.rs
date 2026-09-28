@@ -5,9 +5,6 @@
 //!
 //! <https://www.home-assistant.io/integrations/mqtt/>
 
-// Remove once the first enum is generated with the macro.
-#[cfg_attr(not(test), expect(unused_macros, dead_code))]
-#[expect(unused_imports)]
 mod string_enum;
 
 pub mod common;
