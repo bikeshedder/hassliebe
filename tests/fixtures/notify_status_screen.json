@@ -1,0 +1,12 @@
+{
+  "unique_id": "living_room_stat_scr01",
+  "name": "Living room status screen",
+  "command_topic": "home/living_room/status_screen/notifications",
+  "availability": [
+    {
+      "topic": "home/living_room/status_screen/available"
+    }
+  ],
+  "qos": 0,
+  "retain": false
+}

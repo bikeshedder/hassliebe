@@ -1,0 +1,7 @@
+---
+source: tests/notify.rs
+expression: "Notify\n{\n    command_topic:\n    Some(\"home/living_room/status_screen/notifications\".into()),\n    ..Default::default()\n}"
+---
+{
+  "command_topic": "home/living_room/status_screen/notifications"
+}

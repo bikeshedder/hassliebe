@@ -258,7 +258,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add time`**
 - [x] **`Add datetime`**
 - [x] **`Add scene`**
-- [ ] **`Add notify`**
+- [x] **`Add notify`**
 - [ ] **`Add event`**
 - [ ] **`Add camera`**
 - [ ] **`Add image`**

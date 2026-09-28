@@ -572,6 +572,31 @@ pub const PLATFORMS: &[Platform] = &[
             RETAIN,
         ],
     },
+    Platform {
+        name: "notify",
+        struct_name: "Notify",
+        noun: "notify entity",
+        doc: &[
+            "An MQTT notify entity: sending a message publishes it to",
+            "`command_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/notify.mqtt/",
+        schema: None,
+        entity: Some(Entity {
+            encoding_doc: &["Encoding of published payloads. Default: `utf-8`."],
+            qos_doc: &["QoS level for publishing. Default: `0`."],
+            undocumented: &["group", "origin"],
+            ..entity("notify.living_room_status_screen", "mdi:message-text", "MQTT notify", true)
+        }),
+        fields: &[
+            COMMAND_TEMPLATE,
+            field("command_topic", Enforced, "String", &[
+                "Topic to publish messages to. Optional per the docs, but required by",
+                "Home Assistant; the builder requires it.",
+            ]),
+            RETAIN,
+        ],
+    },
 ];
 
 macro_rules! color_fields {

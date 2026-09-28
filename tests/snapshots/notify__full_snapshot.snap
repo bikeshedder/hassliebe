@@ -1,0 +1,40 @@
+---
+source: tests/notify.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/living_room/status_screen/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"text\": \"{{ value }}\"}",
+  "command_topic": "home/living_room/status_screen/notifications",
+  "default_entity_id": "notify.home_living_room_status_screen",
+  "device": {
+    "identifiers": [
+      "home_living_room_status_screen_device"
+    ],
+    "name": "Living room"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/home_living_room_status_screen.png",
+  "group": [
+    "home_living_room_status_screen_2"
+  ],
+  "icon": "mdi:message-text",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/living_room/status_screen/attributes",
+  "message_expiry_interval": 60,
+  "name": "Status screen",
+  "origin": {
+    "name": "home_living_room_status_screen2mqtt"
+  },
+  "qos": 1,
+  "retain": false,
+  "unique_id": "home_living_room_status_screen",
+  "visible_by_default": true
+}

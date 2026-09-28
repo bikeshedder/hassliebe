@@ -12,6 +12,7 @@ pub mod cover;
 pub mod date;
 pub mod datetime;
 pub mod light;
+pub mod notify;
 pub mod number;
 pub mod scene;
 pub mod select;
@@ -173,6 +174,7 @@ components! {
     Date(date::Date),
     DateTime(datetime::DateTime),
     Light(light::Light),
+    Notify(notify::Notify),
     Number(number::Number),
     Scene(scene::Scene),
     Select(select::Select),
