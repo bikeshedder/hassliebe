@@ -567,7 +567,7 @@ const IMPORTS: &[(&str, &str)] = &[
     ("Unit", "unit::Unit"),
 ];
 
-const PRIMITIVES: &[&str] = &["String", "bool", "u32", "i32", "f64", "Vec<String>"];
+const BUILTINS: &[&str] = &["String", "Vec", "bool", "u32", "i32", "f64"];
 
 /// A field with an owned doc, for the common fields built at runtime.
 struct Owned {
@@ -739,10 +739,6 @@ fn common(platform: &Platform, entity: &Entity) -> Vec<Owned> {
     ]
 }
 
-fn outer(ty: &str) -> &str {
-    ty.split('<').next().unwrap_or(ty)
-}
-
 /// Renders the imports, the struct, its builder impl and its `Platform` impl.
 pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
     let platform = PLATFORMS
@@ -760,34 +756,26 @@ pub fn render(name: &str) -> Result<String, Box<dyn Error>> {
     }
     fields.sort_by_key(|field| field.name);
 
-    let mut types: Vec<&str> = fields
+    // Every type name used by a field, e.g. `Vec<Unit>` → `Vec`, `Unit`.
+    let mut names: Vec<&str> = fields
         .iter()
-        .map(|field| {
-            if matches!(field.kind, Nullable) {
-                "Nullable"
-            } else {
-                field.ty
-            }
-        })
+        .flat_map(|field| field.ty.split(|c: char| !c.is_alphanumeric() && c != '_'))
+        .filter(|name| !name.is_empty())
         .collect();
     if fields.iter().any(|field| matches!(field.kind, Nullable)) {
-        types.extend(
-            fields
-                .iter()
-                .filter(|f| matches!(f.kind, Nullable))
-                .map(|f| f.ty),
-        );
+        names.push("Nullable");
     }
     let mut imports: Vec<&str> = IMPORTS
         .iter()
-        .filter(|(ty, _)| types.iter().any(|used| outer(used) == *ty))
+        .filter(|(ty, _)| names.contains(ty))
         .map(|(_, path)| *path)
         .collect();
     imports.sort_unstable();
-    let local_enums = types.iter().any(|ty| {
-        !PRIMITIVES.contains(ty)
-            && !IMPORTS.iter().any(|(import, _)| outer(ty) == *import)
-            && *ty != "AvailabilityMode"
+    imports.dedup();
+    let local_enums = names.iter().any(|name| {
+        !BUILTINS.contains(name)
+            && !IMPORTS.iter().any(|(import, _)| name == import)
+            && *name != "AvailabilityMode"
     });
 
     let mut out = String::new();
