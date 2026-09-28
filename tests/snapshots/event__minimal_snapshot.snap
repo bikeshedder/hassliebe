@@ -1,0 +1,10 @@
+---
+source: tests/event.rs
+expression: "Event\n{\n    event_types: vec![\"press\".into()], state_topic:\n    \"home/doorbell/state\".into(), ..Default::default()\n}"
+---
+{
+  "event_types": [
+    "press"
+  ],
+  "state_topic": "home/doorbell/state"
+}

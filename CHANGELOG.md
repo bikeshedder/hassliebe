@@ -60,3 +60,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `DateTime`.
 - Add `Scene`.
 - Add `Notify`.
+- Add `Event` and `EventDeviceClass`.

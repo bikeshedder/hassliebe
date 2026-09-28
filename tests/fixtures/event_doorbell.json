@@ -1,0 +1,14 @@
+{
+  "state_topic": "home/doorbell/state",
+  "event_types": [
+    "press",
+    "hold"
+  ],
+  "availability": [
+    {
+      "topic": "home/doorbell/available"
+    }
+  ],
+  "qos": 0,
+  "device_class": "doorbell"
+}

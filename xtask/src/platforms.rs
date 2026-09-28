@@ -597,6 +597,35 @@ pub const PLATFORMS: &[Platform] = &[
             RETAIN,
         ],
     },
+    Platform {
+        name: "event",
+        struct_name: "Event",
+        noun: "event",
+        doc: &[
+            "An MQTT event: a stateless entity that fires events received as JSON on",
+            "`state_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/event.mqtt/",
+        schema: None,
+        entity: Some(Entity {
+            undocumented: &["group", "message_expiry_interval", "origin"],
+            ..entity("event.doorbell", "mdi:doorbell", "MQTT Event", false)
+        }),
+        fields: &[
+            field("device_class", Opt, "EventDeviceClass", &["Type of the event, which sets its icon."]),
+            field("event_types", ReqOneOrMany, "String", &[
+                "The `event_type` values the entity accepts. Required. Home Assistant",
+                "also accepts a single string.",
+            ]),
+            field("state_topic", Req, "String", &[
+                "Topic to receive JSON event payloads with an `event_type` from;",
+                "retained messages are ignored. Required.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template that renders the payload into a JSON event payload.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

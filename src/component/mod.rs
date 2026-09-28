@@ -11,6 +11,7 @@ pub mod button;
 pub mod cover;
 pub mod date;
 pub mod datetime;
+pub mod event;
 pub mod light;
 pub mod notify;
 pub mod number;
@@ -173,6 +174,7 @@ components! {
     Cover(cover::Cover),
     Date(date::Date),
     DateTime(datetime::DateTime),
+    Event(event::Event),
     Light(light::Light),
     Notify(notify::Notify),
     Number(number::Number),

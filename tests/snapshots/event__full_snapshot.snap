@@ -1,0 +1,44 @@
+---
+source: tests/event.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/doorbell/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "default_entity_id": "event.home_doorbell",
+  "device": {
+    "identifiers": [
+      "home_doorbell_device"
+    ],
+    "name": "Front door"
+  },
+  "device_class": "doorbell",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/home_doorbell.png",
+  "event_types": [
+    "press",
+    "hold"
+  ],
+  "group": [
+    "home_doorbell_2"
+  ],
+  "icon": "mdi:doorbell",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/doorbell/attributes",
+  "message_expiry_interval": 60,
+  "name": "Doorbell",
+  "origin": {
+    "name": "home_doorbell2mqtt"
+  },
+  "qos": 1,
+  "state_topic": "home/doorbell/state",
+  "unique_id": "home_doorbell",
+  "value_template": "{{ value_json | tojson }}",
+  "visible_by_default": true
+}
