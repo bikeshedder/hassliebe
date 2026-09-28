@@ -22,6 +22,7 @@ pub mod number;
 pub mod scene;
 pub mod select;
 pub mod sensor;
+pub mod siren;
 pub mod switch;
 pub mod text;
 pub mod time;
@@ -190,6 +191,7 @@ components! {
     Scene(scene::Scene),
     Select(select::Select),
     Sensor(sensor::Sensor),
+    Siren(siren::Siren),
     Switch(switch::Switch),
     Text(text::Text),
     Time(time::Time),

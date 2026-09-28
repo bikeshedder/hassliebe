@@ -893,6 +893,70 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "siren",
+        struct_name: "Siren",
+        noun: "siren",
+        doc: &[
+            "An MQTT siren: turned on and off, optionally with a tone, duration and",
+            "volume, by publishing to `command_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/siren.mqtt/",
+        schema: None,
+        validate: false,
+        entity: Some(entity("siren.intrusion_siren", "mdi:alarm-light", "MQTT Siren", true)),
+        fields: &[
+            field("available_tones", OneOrMany, "SirenTone", &[
+                "Tones the siren supports; setting it enables the `tone` parameter.",
+                "Home Assistant also accepts a single tone.",
+            ]),
+            field("command_off_template", Opt, "String", &[
+                "Template to generate the payload sent to `command_topic` when turning",
+                "the siren off. Default: `command_template`.",
+            ]),
+            field("command_template", Opt, "String", &[
+                "Template to generate the payload sent to `command_topic`. Without it,",
+                "a JSON payload with `state` and the turn-on parameters is sent.",
+            ]),
+            field("command_topic", Enforced, "String", &[
+                "Topic to publish commands to. Optional per the docs, but required by",
+                "Home Assistant; the builder requires it.",
+            ]),
+            OPTIMISTIC_STATE,
+            field("payload_off", Opt, "String", &[
+                "Payload sent to turn the siren off and matched as off on `state_topic`.",
+                "Default: `OFF`.",
+            ]),
+            field("payload_on", Opt, "String", &[
+                "Payload sent to turn the siren on and matched as on on `state_topic`.",
+                "Default: `ON`.",
+            ]),
+            RETAIN,
+            field("state_off", Opt, "String", &[
+                "Payload on `state_topic` that means off. Default: `payload_off` if set,",
+                "otherwise `OFF`.",
+            ]),
+            field("state_on", Opt, "String", &[
+                "Payload on `state_topic` that means on. Default: `payload_on` if set,",
+                "otherwise `ON`.",
+            ]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the state from, as a plain payload or as JSON with",
+                "`state`, `tone`, `duration` and `volume_level`.",
+            ]),
+            field("state_value_template", Opt, "String", &[
+                "Template to extract the state from the payload, which is compared to",
+                "`state_on` and `state_off`.",
+            ]),
+            field("support_duration", Opt, "bool", &[
+                "The siren supports the `duration` turn-on parameter. Default: `true`.",
+            ]),
+            field("support_volume_set", Opt, "bool", &[
+                "The siren supports the `volume_level` turn-on parameter. Default:",
+                "`true`.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

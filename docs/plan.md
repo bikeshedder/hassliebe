@@ -265,7 +265,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 - [x] **`Add device_tracker`**
 - [x] **`Add lock`**
 - [x] **`Add valve`**
-- [ ] **`Add siren`**
+- [x] **`Add siren`**
 - [ ] **`Add lawn_mower`**
 - [ ] **`Add update`**
 - [ ] **`Add alarm_control_panel`**

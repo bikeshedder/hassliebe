@@ -1,0 +1,22 @@
+{
+  "unique_id": "custom_siren",
+  "name": "Intrusion siren",
+  "state_topic": "home/alarm/siren1",
+  "command_topic": "home/alarm/siren1/set",
+  "available_tones": [
+    "ping",
+    "siren"
+  ],
+  "availability": [
+    {
+      "topic": "home/alarm/siren1/available"
+    }
+  ],
+  "payload_on": "ON",
+  "payload_off": "OFF",
+  "state_on": "ON",
+  "state_off": "OFF",
+  "optimistic": false,
+  "qos": 0,
+  "retain": true
+}

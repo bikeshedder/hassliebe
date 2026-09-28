@@ -1,0 +1,7 @@
+---
+source: tests/siren.rs
+expression: "Siren\n{ command_topic: Some(\"home/bedroom/siren/set\".into()), ..Default::default() }"
+---
+{
+  "command_topic": "home/bedroom/siren/set"
+}

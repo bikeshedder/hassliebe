@@ -1,0 +1,55 @@
+---
+source: tests/siren.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/alarm/siren1/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "available_tones": [
+    "ping",
+    "siren",
+    3
+  ],
+  "command_off_template": "{\"state\": \"OFF\"}",
+  "command_template": "{\"state\": \"{{ value }}\", \"tone\": \"{{ tone }}\"}",
+  "command_topic": "home/alarm/siren1/set",
+  "default_entity_id": "siren.home_alarm_siren1",
+  "device": {
+    "identifiers": [
+      "home_alarm_siren1_device"
+    ],
+    "name": "Alarm"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/home_alarm_siren1.png",
+  "group": [
+    "home_alarm_siren1_2"
+  ],
+  "icon": "mdi:alarm-light",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/alarm/siren1/attributes",
+  "message_expiry_interval": 60,
+  "name": "Intrusion siren",
+  "optimistic": false,
+  "origin": {
+    "name": "home_alarm_siren12mqtt"
+  },
+  "payload_off": "OFF",
+  "payload_on": "ON",
+  "qos": 1,
+  "retain": true,
+  "state_off": "OFF",
+  "state_on": "ON",
+  "state_topic": "home/alarm/siren1",
+  "state_value_template": "{{ value_json.state }}",
+  "support_duration": true,
+  "support_volume_set": false,
+  "unique_id": "home_alarm_siren1",
+  "visible_by_default": true
+}
