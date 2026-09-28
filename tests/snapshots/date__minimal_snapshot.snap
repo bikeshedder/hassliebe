@@ -1,0 +1,7 @@
+---
+source: tests/date.rs
+expression: "Date { command_topic: \"command-topic\".into(), ..Default::default() }"
+---
+{
+  "command_topic": "command-topic"
+}

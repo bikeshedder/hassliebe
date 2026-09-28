@@ -53,3 +53,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The README is the crate documentation; its example is a doctest.
 - `Platform::SCHEMA` for platforms with several config schemas; `Component`
   picks the struct by platform and schema.
+- Add `Date`.

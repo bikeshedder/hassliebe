@@ -1,0 +1,43 @@
+---
+source: tests/date.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "scheduler/task/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"date\": \"{{ value }}\"}",
+  "command_topic": "scheduler/task/date/set",
+  "default_entity_id": "date.scheduler_task",
+  "device": {
+    "identifiers": [
+      "scheduler_task_device"
+    ],
+    "name": "Scheduler"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/scheduler_task.png",
+  "group": [
+    "scheduler_task_2"
+  ],
+  "icon": "mdi:calendar",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "scheduler/task/attributes",
+  "message_expiry_interval": 60,
+  "name": "Scheduled task",
+  "optimistic": false,
+  "origin": {
+    "name": "scheduler_task2mqtt"
+  },
+  "qos": 1,
+  "retain": true,
+  "state_topic": "scheduler/task/date",
+  "unique_id": "scheduler_task",
+  "value_template": "{{ value_json.date }}",
+  "visible_by_default": true
+}

@@ -254,7 +254,7 @@ D/E). Same checklist as Phase D per platform, plus a `Component` variant.
   Regenerating the existing modules only rewrapped one doc comment.
 - [x] **`Add schema tags to Platform and Component`** (decision 17)
   `Platform::SCHEMA`, dispatch on `(platform, schema)`.
-- [ ] **`Add date`**
+- [x] **`Add date`**
 - [ ] **`Add time`**
 - [ ] **`Add datetime`**
 - [ ] **`Add scene`**

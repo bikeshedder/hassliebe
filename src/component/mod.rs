@@ -9,6 +9,7 @@ use serde::{Serialize, Serializer};
 pub mod binary_sensor;
 pub mod button;
 pub mod cover;
+pub mod date;
 pub mod light;
 pub mod number;
 pub mod select;
@@ -166,6 +167,7 @@ components! {
     BinarySensor(binary_sensor::BinarySensor),
     Button(button::Button),
     Cover(cover::Cover),
+    Date(date::Date),
     Light(light::Light),
     Number(number::Number),
     Select(select::Select),

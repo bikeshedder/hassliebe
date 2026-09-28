@@ -22,7 +22,8 @@ pub use common::{
     unit::Unit,
 };
 pub use component::{
-    Component, Platform, binary_sensor, button, cover, light, number, select, sensor, switch, text,
+    Component, Platform, binary_sensor, button, cover, date, light, number, select, sensor, switch,
+    text,
 };
 pub use discovery::{DeviceDiscovery, SharedOptions};
 pub use string_enum::UnknownValue;
