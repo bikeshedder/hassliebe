@@ -11,12 +11,12 @@ use super::{
     state_class::StateClass,
     unit::UnitOfMeasurement,
 };
-use derive_builder::Builder;
 use serde::Serialize;
 
 /// https://www.home-assistant.io/integrations/sensor.mqtt/
-#[derive(Clone, Debug, Default, Serialize, Builder)]
-#[builder(default, setter(into, strip_option))]
+#[derive(Clone, Debug, Default, Serialize)]
+#[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
+#[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
 pub struct Sensor {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub availabilty: Option<Vec<Availability>>,
@@ -78,6 +78,7 @@ pub struct Sensor {
     pub value_template: Option<String>,
 }
 
+#[cfg(feature = "builder")]
 impl Sensor {
     pub fn builder() -> SensorBuilder {
         SensorBuilder::default()

@@ -1,8 +1,8 @@
-use derive_builder::Builder;
 use serde::Serialize;
 
-#[derive(Clone, Debug, Default, Serialize, Builder)]
-#[builder(default, setter(into, strip_option))]
+#[derive(Clone, Debug, Default, Serialize)]
+#[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
+#[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
 pub struct Device {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub configuration_url: Option<String>,
@@ -30,6 +30,7 @@ pub struct Device {
     pub via_device: Option<String>,
 }
 
+#[cfg(feature = "builder")]
 impl Device {
     pub fn builder() -> DeviceBuilder {
         DeviceBuilder::default()

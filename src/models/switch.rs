@@ -1,4 +1,3 @@
-use derive_builder::Builder;
 use serde::Serialize;
 
 use crate::discovery::Discovery;
@@ -12,8 +11,9 @@ use super::{
 };
 
 /// https://www.home-assistant.io/integrations/switch.mqtt/
-#[derive(Clone, Debug, Default, Serialize, Builder)]
-#[builder(default, setter(into, strip_option))]
+#[derive(Clone, Debug, Default, Serialize)]
+#[cfg_attr(feature = "builder", derive(derive_builder::Builder))]
+#[cfg_attr(feature = "builder", builder(default, setter(into, strip_option)))]
 pub struct Switch {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub availabilty: Option<Vec<Availability>>,
@@ -78,6 +78,7 @@ pub struct Switch {
     pub value_template: Option<String>,
 }
 
+#[cfg(feature = "builder")]
 impl Switch {
     pub fn builder() -> SwitchBuilder {
         SwitchBuilder::default()
