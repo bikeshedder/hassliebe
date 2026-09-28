@@ -9,6 +9,7 @@ mod string_enum;
 
 pub mod common;
 pub mod component;
+pub mod discovery;
 
 pub use common::unit;
 pub use common::{
@@ -25,4 +26,5 @@ pub use common::{
 pub use component::{
     Component, Platform, binary_sensor, button, cover, light, number, select, sensor, switch, text,
 };
+pub use discovery::{DeviceDiscovery, SharedOptions};
 pub use string_enum::UnknownValue;

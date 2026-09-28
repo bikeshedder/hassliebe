@@ -1,0 +1,42 @@
+---
+source: tests/discovery.rs
+expression: kitchen()
+---
+{
+  "components": {
+    "some_unique_component_id1": {
+      "platform": "sensor",
+      "device_class": "temperature",
+      "state_topic": "sensorBedroom/state",
+      "unique_id": "temp01ae_t",
+      "unit_of_measurement": "°C",
+      "value_template": "{{ value_json.temperature}}"
+    },
+    "some_unique_id2": {
+      "platform": "sensor",
+      "device_class": "humidity",
+      "state_topic": "sensorBedroom/state",
+      "unique_id": "temp01ae_h",
+      "unit_of_measurement": "%",
+      "value_template": "{{ value_json.humidity}}"
+    }
+  },
+  "device": {
+    "hw_version": "1.0rev2",
+    "identifiers": [
+      "ea334450945afc"
+    ],
+    "manufacturer": "Bla electronics",
+    "model": "xya",
+    "name": "Kitchen",
+    "serial_number": "ea334450945afc",
+    "sw_version": "1.0"
+  },
+  "origin": {
+    "name": "bla2mqtt",
+    "support_url": "https://bla2mqtt.example.com/support",
+    "sw_version": "2.1"
+  },
+  "qos": 2,
+  "state_topic": "sensorBedroom/state"
+}

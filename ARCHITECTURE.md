@@ -132,8 +132,14 @@ Home Assistant supports two ways to announce entities, and the crate supports bo
 2. **Device-based discovery**: one retained message per device on
    `<prefix>/device/[<node_id>/]<object_id>/config` (the docs define `<component>`
    as a platform or `device`), payload is `DeviceDiscovery` with the
-   `device`, the `origin`, the `components` map (serialized as `cmps`) and optional
+   `device`, the `origin`, the `components` map (abbreviated `cmps`) and optional
    shared options such as `availability`, `state_topic` or `qos`.
+
+   The shared options live in `SharedOptions`, flattened into the root. When
+   reading, they are copied into every component that does not set them (like
+   `_merge_common_device_options` in `mqtt/discovery.py`). When writing, each
+   component must be complete on its own, e.g. a sensor needs its own
+   `state_topic`.
 
 `discovery.rs` provides pure functions for both topics and the constants for Home
 Assistant's birth/last-will topic (`homeassistant/status`, `online`/`offline`).

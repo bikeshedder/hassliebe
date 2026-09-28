@@ -217,8 +217,8 @@ Same checklist as Phase D.
   with feature `json`, `Other { platform, config: serde_json::Map }` for unknown
   platforms and non-basic lights (decisions 3, 7). `Serialize` always;
   `Deserialize` only with `json` (buffers each entry as a `serde_json::Value`).
-- [ ] **`Add DeviceDiscovery`** (`device`, `origin`, `components` serialized as
-  `components`; shared options: `availability`, `availability_mode`,
+- [x] **`Add DeviceDiscovery`** (`device`, `origin`, `components` serialized as
+  `components`; shared options in a flattened `SharedOptions`, decision 16: `availability`, `availability_mode`,
   `command_topic`, `encoding`, `message_expiry_interval`, `qos`, `state_topic`
   (decision 8). `Deserialize` only with `json`.)
 - [ ] **`Add topic helpers and HA status constants`**
@@ -298,3 +298,8 @@ are the source of truth; the core source only fills gaps the docs leave open.
     `Option<Nullable<T>>` (`Null` or `Value(T)`; `From<&str>` for strings).
 15. **Lists where absent equals empty** (`availability`, `group`, device
     `identifiers`/`connections`) are plain `Vec`s, skipped when empty.
+16. **Shared options in device discovery:** when reading, they are merged into
+    each non-removal component that does not set them, like HA. Components
+    must still be complete when writing (a sensor needs its own
+    `state_topic`), because the platform types follow the per-platform docs.
+    Values that rely on inheritance therefore normalise on a round trip.

@@ -44,3 +44,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `Light` (default schema only), `LightSchema` and `OnCommandType`.
 - Add `Component`, the platform-tagged entry of device discovery, with
   `Removed` and (feature `json`) `Other` for unmodeled platforms.
+- Add `DeviceDiscovery` and `SharedOptions` for device-based discovery;
+  deserializing (feature `json`) applies shared options like Home Assistant.
