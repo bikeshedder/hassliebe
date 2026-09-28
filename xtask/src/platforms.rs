@@ -671,6 +671,47 @@ pub const PLATFORMS: &[Platform] = &[
             field("topic", Req, "String", &["Topic to receive image files from. Required."]),
         ],
     },
+    Platform {
+        name: "image",
+        struct_name: "Image",
+        noun: "image",
+        doc: &[
+            "An MQTT image: shows an image file received on `image_topic`, or",
+            "downloaded from a URL received on `url_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/image.mqtt/",
+        schema: None,
+        validate: true,
+        entity: Some(Entity {
+            encoding_doc: &[
+                "Encoding of received payloads; an empty string disables decoding. Not",
+                "applied to images on `image_topic`, see `image_encoding`. Default:",
+                "`utf-8`.",
+            ],
+            undocumented: &["group", "message_expiry_interval", "origin", "qos"],
+            ..entity("image.doorbell_snapshot", "mdi:image", "MQTT Image", false)
+        }),
+        fields: &[
+            field("content_type", Opt, "String", &[
+                "Content type of the images received on `image_topic`. Not allowed with",
+                "`url_topic`. Default: `image/jpeg`.",
+            ]),
+            field("image_encoding", Opt, "ImageEncoding", &[
+                "Encoding of the image payloads. Unset: raw binary image data.",
+            ]),
+            field("image_topic", Opt, "String", &[
+                "Topic to receive image files from. Exactly one of `image_topic` and",
+                "`url_topic` is required; the builder checks this.",
+            ]),
+            field("url_template", Opt, "String", &[
+                "Template to extract the image URL from messages on `url_topic`.",
+            ]),
+            field("url_topic", Opt, "String", &[
+                "Topic to receive image URLs from. Exactly one of `image_topic` and",
+                "`url_topic` is required.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

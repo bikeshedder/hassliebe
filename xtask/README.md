@@ -41,5 +41,10 @@ formatted with `rustfmt`. Kinds:
    `device-class` region.
 3. Run `cargo xtask generate <ha-core>`.
 
+Rules the builder should enforce beyond required fields (e.g. "exactly one of
+`image_topic` and `url_topic`") go into a hand-written
+`fn validate(&self) -> Result<(), String>` on the builder, outside the region;
+set `validate: true` in the spec so the struct calls it.
+
 The Python readers are line-based and fail loudly on member lines they do not
 understand; adjust `src/python.rs` when Home Assistant changes its style.

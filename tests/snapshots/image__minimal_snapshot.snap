@@ -1,0 +1,7 @@
+---
+source: tests/image.rs
+expression: "Image { url_topic: Some(\"mynas/status/url\".into()), ..Default::default() }"
+---
+{
+  "url_topic": "mynas/status/url"
+}

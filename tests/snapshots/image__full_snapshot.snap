@@ -1,0 +1,40 @@
+---
+source: tests/image.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "mynas/status/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "content_type": "image/png",
+  "default_entity_id": "image.mynas_status",
+  "device": {
+    "identifiers": [
+      "mynas_status_device"
+    ],
+    "name": "NAS"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/mynas_status.png",
+  "group": [
+    "mynas_status_2"
+  ],
+  "icon": "mdi:image",
+  "image_encoding": "b64",
+  "image_topic": "mynas/status/file",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "mynas/status/attributes",
+  "message_expiry_interval": 60,
+  "name": "Logo",
+  "origin": {
+    "name": "mynas_status2mqtt"
+  },
+  "qos": 1,
+  "unique_id": "mynas_status",
+  "visible_by_default": true
+}

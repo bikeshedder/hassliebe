@@ -22,7 +22,7 @@ pub use common::{
     unit::Unit,
 };
 pub use component::{
-    Component, Platform, binary_sensor, button, camera, cover, date, datetime, event, light,
+    Component, Platform, binary_sensor, button, camera, cover, date, datetime, event, image, light,
     notify, number, scene, select, sensor, switch, text, time,
 };
 pub use discovery::{DeviceDiscovery, SharedOptions};
