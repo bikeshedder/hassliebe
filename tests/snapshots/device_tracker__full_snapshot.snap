@@ -1,0 +1,43 @@
+---
+source: tests/device_tracker.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "location/paulus/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "default_entity_id": "device_tracker.location_paulus",
+  "device": {
+    "identifiers": [
+      "location_paulus_device"
+    ],
+    "name": "Paulus' phone"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "diagnostic",
+  "entity_picture": "https://example.com/location_paulus.png",
+  "group": [
+    "location_paulus_2"
+  ],
+  "icon": "mdi:cellphone",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "location/paulus/attributes",
+  "message_expiry_interval": 60,
+  "name": "Paulus",
+  "origin": {
+    "name": "location_paulus2mqtt"
+  },
+  "payload_home": "home",
+  "payload_not_home": "not_home",
+  "payload_reset": "None",
+  "qos": 1,
+  "source_type": "router",
+  "state_topic": "location/paulus",
+  "unique_id": "location_paulus",
+  "value_template": "{{ value_json.location }}",
+  "visible_by_default": true
+}

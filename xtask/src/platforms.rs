@@ -712,6 +712,53 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "device_tracker",
+        struct_name: "DeviceTracker",
+        noun: "device tracker",
+        doc: &[
+            "An MQTT device tracker: a location received on `state_topic`, or GPS",
+            "coordinates received as attributes on `json_attributes_topic`.",
+        ],
+        url: "https://www.home-assistant.io/integrations/device_tracker.mqtt/",
+        schema: None,
+        validate: true,
+        entity: Some(Entity {
+            name_default: Some(""),
+            undocumented: &[
+                "encoding",
+                "entity_category",
+                "entity_picture",
+                "message_expiry_interval",
+                "origin",
+            ],
+            ..entity("device_tracker.paulus_phone", "mdi:cellphone", "", false)
+        }),
+        fields: &[
+            field("payload_home", Opt, "String", &[
+                "Payload that means the device is `home`. Default: `home`.",
+            ]),
+            field("payload_not_home", Opt, "String", &[
+                "Payload that means the device is `not_home`. Default: `not_home`.",
+            ]),
+            field("payload_reset", Opt, "String", &[
+                "Payload on `state_topic` after which the location is derived from",
+                "Home Assistant's zones again. Default: the string `None`.",
+            ]),
+            field("source_type", Opt, "SourceType", &[
+                "Source of the location, which affects `person` entities. Home",
+                "Assistant's source defaults to `gps`; the docs give no default.",
+            ]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive the location (`home`, `not_home` or a zone name)",
+                "from. Required unless `json_attributes_topic` is set; the builder",
+                "checks this.",
+            ]),
+            field("value_template", Opt, "String", &[
+                "Template to extract the location from the payload.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

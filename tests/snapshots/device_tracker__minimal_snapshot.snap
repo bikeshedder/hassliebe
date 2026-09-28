@@ -1,0 +1,7 @@
+---
+source: tests/device_tracker.rs
+expression: "DeviceTracker\n{ state_topic: Some(\"location/paulus\".into()), ..Default::default() }"
+---
+{
+  "state_topic": "location/paulus"
+}

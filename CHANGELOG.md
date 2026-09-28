@@ -64,3 +64,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Select.options` also reads a single string.
 - Add `Camera` and `CameraImageEncoding`.
 - Add `Image` and `ImageEncoding`; the builder checks the `image_topic`/`url_topic` rules.
+- Add `DeviceTracker` and `SourceType`; the builder requires `state_topic` or `json_attributes_topic`.

@@ -12,6 +12,7 @@ pub mod camera;
 pub mod cover;
 pub mod date;
 pub mod datetime;
+pub mod device_tracker;
 pub mod event;
 pub mod image;
 pub mod light;
@@ -177,6 +178,7 @@ components! {
     Cover(cover::Cover),
     Date(date::Date),
     DateTime(datetime::DateTime),
+    DeviceTracker(device_tracker::DeviceTracker),
     Event(event::Event),
     Image(image::Image),
     Light(light::Light),
