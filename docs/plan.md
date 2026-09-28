@@ -248,9 +248,10 @@ Same checklist as Phase D.
 Scope: every entry of `SUPPORTED_COMPONENTS` in `mqtt/const.py` (32; 9 done in
 D/E). Same checklist as Phase D per platform, plus a `Component` variant.
 
-- [ ] **`Add xtask code generators`** (decision 18)
-  Std-only `xtask` workspace member: `units`, `device-class`, `component`,
-  `abbreviations`; regenerating the existing modules is a no-op.
+- [x] **`Add xtask code generators`** (decision 18)
+  Std-only `xtask` workspace member with `generate`/`check`; region kinds
+  `unit-classes`, `unit-wrapper`, `device-class`, `abbreviations`, `component`.
+  Regenerating the existing modules only rewrapped one doc comment.
 - [ ] **`Add schema tags to Platform and Component`** (decision 17)
   `Platform::SCHEMA`, dispatch on `(platform, schema)`.
 - [ ] **`Add date`**
@@ -348,5 +349,6 @@ are the source of truth; the core source only fills gaps the docs leave open.
     `schema` field (closed `string_enum!`) so they always serialize it.
     `Component` dispatches on platform and schema.
 18. **Code generators** live in a std-only Rust `xtask` workspace member and
-    read a local checkout of HA core. Generated code is committed and may be
-    edited by hand afterwards.
+    read a local checkout of HA core. Generated code is committed inside
+    marked regions that `cargo xtask generate` rewrites; code outside the
+    regions is hand-written. Never edit inside a region.

@@ -1,5 +1,6 @@
 //! MQTT text: <https://www.home-assistant.io/integrations/text.mqtt/>
 
+// @generated begin component text
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -164,6 +165,7 @@ impl Text {
 impl Platform for Text {
     const PLATFORM: &'static str = "text";
 }
+// @generated end
 
 string_enum! {
     /// How a text entity is shown in the UI.

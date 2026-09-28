@@ -16,6 +16,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer, de};
 
 use crate::string_enum::string_enum;
 
+// @generated begin unit-classes
 string_enum! {
     @closed
     /// Units of apparent power, like `UnitOfApparentPower` in Home Assistant.
@@ -640,6 +641,7 @@ string_enum! {
         MillimetersPerHour = "mm/h",
     }
 }
+// @generated end
 
 macro_rules! unit {
     (
@@ -738,6 +740,7 @@ macro_rules! unit {
 
 unit! {
     classes {
+        // @generated begin unit-wrapper
         ApparentPower(UnitOfApparentPower),
         Area(UnitOfArea),
         BloodGlucoseConcentration(UnitOfBloodGlucoseConcentration),
@@ -767,6 +770,7 @@ unit! {
         Volume(UnitOfVolume),
         VolumeFlowRate(UnitOfVolumeFlowRate),
         VolumetricFlux(UnitOfVolumetricFlux),
+        // @generated end
     }
     constants {
         /// `°` (`DEGREE`).

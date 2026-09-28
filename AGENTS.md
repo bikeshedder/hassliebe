@@ -66,10 +66,27 @@ Run all of these before declaring a task done. All must pass.
 cargo fmt --all
 cargo clippy --all-targets --all-features -- -D warnings
 cargo clippy --all-targets --no-default-features -- -D warnings
+cargo clippy -p xtask --all-targets -- -D warnings
 cargo test --all-features
 cargo test --no-default-features
 cargo doc --no-deps --all-features   # must build without warnings
+cargo test -p xtask
 ```
+
+### Code generation
+
+Parts of `src/` are generated from Home Assistant's source and marked with
+`// @generated begin <kind> …` / `// @generated end`. Never edit inside these
+regions; change the spec in `xtask/` instead (see `xtask/README.md`). With a
+local checkout of `home-assistant/core` (branch `dev`):
+
+```sh
+cargo xtask generate <ha-core>   # rewrite the generated regions
+cargo xtask check <ha-core>      # fail if a region is out of date
+```
+
+New platforms get their field spec in `xtask/src/platforms.rs` and their device
+class enums as `device-class` regions.
 
 Snapshot tests use `insta`. New or changed snapshots are written as `*.snap.new`.
 Inspect every new snapshot and check it against the Home Assistant docs before

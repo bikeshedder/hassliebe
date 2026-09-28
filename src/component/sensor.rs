@@ -1,5 +1,6 @@
 //! MQTT sensor: <https://www.home-assistant.io/integrations/sensor.mqtt/>
 
+// @generated begin component sensor
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -100,8 +101,8 @@ pub struct Sensor {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub last_reset_value_template: Option<String>,
-    /// Message expiry interval for command payloads. Not in the sensor docs;
-    /// accepted by Home Assistant for all MQTT entities.
+    /// Message expiry interval for command payloads. Not in the sensor
+    /// docs; accepted by Home Assistant for all MQTT entities.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "builder", builder(default))]
     pub message_expiry_interval: Option<MessageExpiryInterval>,
@@ -170,6 +171,7 @@ impl Sensor {
 impl Platform for Sensor {
     const PLATFORM: &'static str = "sensor";
 }
+// @generated end
 
 string_enum! {
     /// Device class of a sensor, which sets its icon and how its state is displayed.
@@ -178,6 +180,7 @@ string_enum! {
     ///
     /// Source: `homeassistant/components/sensor/const.py`
     pub enum SensorDeviceClass {
+        // @generated begin device-class homeassistant/components/sensor/const.py SensorDeviceClass
         /// Date.
         Date = "date",
         /// Enumeration.
@@ -416,5 +419,6 @@ string_enum! {
         ///
         /// Unit of measurement: `SPEED_*` units; SI /metric: `m/s`, `km/h`; USCS / imperial: `ft/s`, `mph`; Nautical: `kn`; Beaufort: `Beaufort`
         WindSpeed = "wind_speed",
+        // @generated end
     }
 }

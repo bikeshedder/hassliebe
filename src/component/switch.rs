@@ -1,5 +1,6 @@
 //! MQTT switch: <https://www.home-assistant.io/integrations/switch.mqtt/>
 
+// @generated begin component switch
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -170,6 +171,7 @@ impl Switch {
 impl Platform for Switch {
     const PLATFORM: &'static str = "switch";
 }
+// @generated end
 
 string_enum! {
     /// Device class of a switch, which sets its icon.
@@ -178,9 +180,11 @@ string_enum! {
     ///
     /// Source: `homeassistant/components/switch/const.py`
     pub enum SwitchDeviceClass {
+        // @generated begin device-class homeassistant/components/switch/const.py SwitchDeviceClass
         /// Outlet.
         Outlet = "outlet",
         /// Switch.
         Switch = "switch",
+        // @generated end
     }
 }

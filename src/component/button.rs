@@ -1,5 +1,6 @@
 //! MQTT button: <https://www.home-assistant.io/integrations/button.mqtt/>
 
+// @generated begin component button
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -142,6 +143,7 @@ impl Button {
 impl Platform for Button {
     const PLATFORM: &'static str = "button";
 }
+// @generated end
 
 string_enum! {
     /// Device class of a button, which sets its icon.
@@ -150,11 +152,13 @@ string_enum! {
     ///
     /// Source: `homeassistant/components/button/const.py`
     pub enum ButtonDeviceClass {
+        // @generated begin device-class homeassistant/components/button/const.py ButtonDeviceClass
         /// Identify.
         Identify = "identify",
         /// Restart.
         Restart = "restart",
         /// Update.
         Update = "update",
+        // @generated end
     }
 }

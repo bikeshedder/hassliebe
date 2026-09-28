@@ -1,5 +1,6 @@
 //! MQTT binary sensor: <https://www.home-assistant.io/integrations/binary_sensor.mqtt/>
 
+// @generated begin component binary_sensor
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -158,6 +159,7 @@ impl BinarySensor {
 impl Platform for BinarySensor {
     const PLATFORM: &'static str = "binary_sensor";
 }
+// @generated end
 
 string_enum! {
     /// Device class of a binary sensor, which sets its icon and the text shown
@@ -167,6 +169,7 @@ string_enum! {
     ///
     /// Source: `homeassistant/components/binary_sensor/const.py`
     pub enum BinarySensorDeviceClass {
+        // @generated begin device-class homeassistant/components/binary_sensor/const.py BinarySensorDeviceClass
         /// Battery.
         ///
         /// On means low, Off means normal.
@@ -283,5 +286,6 @@ string_enum! {
         ///
         /// On means open, Off means closed.
         Window = "window",
+        // @generated end
     }
 }

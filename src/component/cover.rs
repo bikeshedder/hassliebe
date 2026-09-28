@@ -1,5 +1,6 @@
 //! MQTT cover: <https://www.home-assistant.io/integrations/cover.mqtt/>
 
+// @generated begin component cover
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -268,6 +269,7 @@ impl Cover {
 impl Platform for Cover {
     const PLATFORM: &'static str = "cover";
 }
+// @generated end
 
 string_enum! {
     /// Device class of a cover, which sets its icon and the text shown for its
@@ -277,6 +279,7 @@ string_enum! {
     ///
     /// Source: `homeassistant/components/cover/const.py`
     pub enum CoverDeviceClass {
+        // @generated begin device-class homeassistant/components/cover/const.py CoverDeviceClass
         /// Awning.
         Awning = "awning",
         /// Blind.
@@ -297,5 +300,6 @@ string_enum! {
         Shutter = "shutter",
         /// Window.
         Window = "window",
+        // @generated end
     }
 }

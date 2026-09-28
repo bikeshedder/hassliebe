@@ -1,5 +1,6 @@
 //! MQTT light, default schema: <https://www.home-assistant.io/integrations/light.mqtt/>
 
+// @generated begin component light
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -335,6 +336,7 @@ impl Light {
 impl Platform for Light {
     const PLATFORM: &'static str = "light";
 }
+// @generated end
 
 string_enum! {
     @closed

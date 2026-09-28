@@ -1,5 +1,6 @@
 //! MQTT select: <https://www.home-assistant.io/integrations/select.mqtt/>
 
+// @generated begin component select
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -147,3 +148,4 @@ impl Select {
 impl Platform for Select {
     const PLATFORM: &'static str = "select";
 }
+// @generated end

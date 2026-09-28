@@ -1,5 +1,6 @@
 //! MQTT number: <https://www.home-assistant.io/integrations/number.mqtt/>
 
+// @generated begin component number
 use serde::{Deserialize, Serialize};
 
 use super::Platform;
@@ -177,6 +178,7 @@ impl Number {
 impl Platform for Number {
     const PLATFORM: &'static str = "number";
 }
+// @generated end
 
 string_enum! {
     /// How a number is shown in the UI.
@@ -202,6 +204,7 @@ string_enum! {
     ///
     /// Source: `homeassistant/components/number/const.py`
     pub enum NumberDeviceClass {
+        // @generated begin device-class homeassistant/components/number/const.py NumberDeviceClass
         /// Absolute humidity.
         ///
         /// Unit of measurement: `g/m³`, `mg/m³`
@@ -432,5 +435,6 @@ string_enum! {
         ///
         /// Unit of measurement: `SPEED_*` units; SI /metric: `m/s`, `km/h`; USCS / imperial: `ft/s`, `mph`; Nautical: `kn`
         WindSpeed = "wind_speed",
+        // @generated end
     }
 }

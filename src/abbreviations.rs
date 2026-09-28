@@ -187,6 +187,7 @@ fn lookup(table: &[(&str, &'static str)], key: &str) -> Option<&'static str> {
 
 /// Abbreviations of entity and device discovery keys (`ABBREVIATIONS`). Sorted by abbreviation.
 const ABBREVIATIONS: &[(&str, &str)] = &[
+    // @generated begin abbreviations ABBREVIATIONS
     ("act_stat_t", "activity_state_topic"),
     ("act_t", "action_topic"),
     ("act_tpl", "action_template"),
@@ -468,10 +469,12 @@ const ABBREVIATIONS: &[(&str, &str)] = &[
     ("xy_cmd_tpl", "xy_command_template"),
     ("xy_stat_t", "xy_state_topic"),
     ("xy_val_tpl", "xy_value_template"),
+    // @generated end
 ];
 
 /// Abbreviations inside the `device` block (`DEVICE_ABBREVIATIONS`). Sorted by abbreviation.
 const DEVICE_ABBREVIATIONS: &[(&str, &str)] = &[
+    // @generated begin abbreviations DEVICE_ABBREVIATIONS
     ("cns", "connections"),
     ("cu", "configuration_url"),
     ("hw", "hw_version"),
@@ -483,13 +486,16 @@ const DEVICE_ABBREVIATIONS: &[(&str, &str)] = &[
     ("sa", "suggested_area"),
     ("sn", "serial_number"),
     ("sw", "sw_version"),
+    // @generated end
 ];
 
 /// Abbreviations inside the `origin` block (`ORIGIN_ABBREVIATIONS`). Sorted by abbreviation.
 const ORIGIN_ABBREVIATIONS: &[(&str, &str)] = &[
+    // @generated begin abbreviations ORIGIN_ABBREVIATIONS
     ("name", "name"),
     ("sw", "sw_version"),
     ("url", "support_url"),
+    // @generated end
 ];
 #[cfg(test)]
 mod tests {

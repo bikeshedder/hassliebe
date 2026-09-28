@@ -7,8 +7,12 @@ description = "Typed Home Assistant MQTT discovery payloads. Serde structs, no M
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/bikeshedder/hassliebe"
 readme = "README.md"
+exclude = [".cargo/"]
 keywords = ["home-assistant", "mqtt", "discovery", "smart-home", "serde"]
 categories = ["data-structures", "encoding"]
+
+[workspace]
+members = ["xtask"]
 
 [features]
 default = ["builder"]
