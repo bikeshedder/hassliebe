@@ -10,4 +10,5 @@ pub(crate) mod one_or_many;
 pub mod origin;
 pub mod qos;
 pub mod state_class;
+pub mod temperature_unit;
 pub mod unit;

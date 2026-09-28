@@ -1498,6 +1498,7 @@ const IMPORTS: &[(&str, &str)] = &[
     ("Origin", "origin::Origin"),
     ("Qos", "qos::Qos"),
     ("StateClass", "state_class::StateClass"),
+    ("TemperatureUnit", "temperature_unit::TemperatureUnit"),
     ("Unit", "unit::Unit"),
 ];
 

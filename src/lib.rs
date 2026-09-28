@@ -19,6 +19,7 @@ pub use common::{
     origin::Origin,
     qos::Qos,
     state_class::StateClass,
+    temperature_unit::TemperatureUnit,
     unit::Unit,
 };
 pub use component::{
