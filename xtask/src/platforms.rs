@@ -1745,6 +1745,79 @@ pub const PLATFORMS: &[Platform] = &[
             ]),
         ],
     },
+    Platform {
+        name: "light",
+        struct_name: "TemplateLight",
+        noun: "template light",
+        doc: &[
+            "An MQTT light with the `template` schema: command payloads are rendered",
+            "and states are parsed with templates, so any payload format works.",
+        ],
+        url: "https://www.home-assistant.io/integrations/light.mqtt/#template-schema",
+        schema: Some("template"),
+        validate: false,
+        entity: Some(entity("light.bedroom_bulb", "mdi:lightbulb", "MQTT Template Light", true)),
+        fields: &[
+            field("blue_template", Opt, "String", &[
+                "Template to extract the blue value (`0` to `255`) from the state payload.",
+            ]),
+            field("brightness_template", Opt, "String", &[
+                "Template to extract the brightness (`0` to `255`) from the state payload.",
+            ]),
+            field("color_temp_kelvin", Opt, "bool", &[
+                "Send and receive color temperatures in Kelvin instead of mireds.",
+                "Default: `false`.",
+            ]),
+            field("color_temp_template", Opt, "String", &[
+                "Template to extract the color temperature from the state payload, in",
+                "Kelvin with `color_temp_kelvin`, otherwise in mireds.",
+            ]),
+            field("command_off_template", Req, "String", &[
+                "Template for the payload that turns the light off. Variables: `state`",
+                "and `transition`. Required.",
+            ]),
+            field("command_on_template", Req, "String", &[
+                "Template for the payload that turns the light on. Variables: `state`,",
+                "`brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`,",
+                "`flash`, `transition` and `effect`. Required.",
+            ]),
+            field("command_topic", Req, "String", &["Topic to publish commands to. Required."]),
+            field("effect_list", OneOrMany, "String", &[
+                "Supported effects. Home Assistant also accepts a single string.",
+            ]),
+            field("effect_template", Opt, "String", &[
+                "Template to extract the effect from the state payload.",
+            ]),
+            field("green_template", Opt, "String", &[
+                "Template to extract the green value (`0` to `255`) from the state payload.",
+            ]),
+            field("max_kelvin", Opt, "u32", &["Maximum color temperature in Kelvin. Default: `6535`."]),
+            field("max_mireds", Opt, "u32", &["Maximum color temperature in mireds."]),
+            field("min_kelvin", Opt, "u32", &["Minimum color temperature in Kelvin. Default: `2000`."]),
+            field("min_mireds", Opt, "u32", &["Minimum color temperature in mireds."]),
+            optimistic(&[
+                "Assume the state changes as commanded. Default: `true` without",
+                "`state_topic` or `state_template`, otherwise `false`.",
+            ]),
+            field("red_template", Opt, "String", &[
+                "Template to extract the red value (`0` to `255`) from the state payload.",
+            ]),
+            field("retain", Opt, "bool", &[
+                "Publish commands with the retain flag. Not in the template light docs;",
+                "accepted by Home Assistant. Default: `false`.",
+            ]),
+            field("schema", Tag, "TemplateLightSchema", &[
+                "Schema of the light config; always `template`. Required.",
+            ]),
+            field("state_template", Opt, "String", &[
+                "Template to extract the state (`on` or `off`) from the state payload.",
+            ]),
+            field("state_topic", Opt, "String", &[
+                "Topic to receive state updates from. `None` resets the state to",
+                "unknown; empty payloads are ignored.",
+            ]),
+        ],
+    },
 ];
 
 macro_rules! color_fields {

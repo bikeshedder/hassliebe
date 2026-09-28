@@ -1,0 +1,58 @@
+---
+source: tests/light_template.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "home/rgb1/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "blue_template": "{{ value.split(',')[2].split('-')[2] }}",
+  "brightness_template": "{{ value.split(',')[1] }}",
+  "color_temp_kelvin": false,
+  "color_temp_template": "{{ value.split(',')[4] }}",
+  "command_off_template": "off",
+  "command_on_template": "on,{{ brightness|d }},{{ red|d }}-{{ green|d }}-{{ blue|d }},{{ hue|d }}-{{ sat|d }}",
+  "command_topic": "home/rgb1/set",
+  "default_entity_id": "light.home_rgb1",
+  "device": {
+    "identifiers": [
+      "home_rgb1_device"
+    ],
+    "name": "RGB bulb"
+  },
+  "effect_list": [
+    "rainbow",
+    "colorloop"
+  ],
+  "effect_template": "{{ value.split(',')[5] }}",
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/home_rgb1.png",
+  "green_template": "{{ value.split(',')[2].split('-')[1] }}",
+  "group": [
+    "home_rgb1_2"
+  ],
+  "icon": "mdi:lightbulb",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "home/rgb1/attributes",
+  "max_mireds": 370,
+  "message_expiry_interval": 60,
+  "min_mireds": 153,
+  "name": "Bulb",
+  "optimistic": false,
+  "origin": {
+    "name": "home_rgb12mqtt"
+  },
+  "qos": 1,
+  "red_template": "{{ value.split(',')[2].split('-')[0] }}",
+  "retain": false,
+  "schema": "template",
+  "state_template": "{{ value.split(',')[0] }}",
+  "state_topic": "home/rgb1/status",
+  "unique_id": "home_rgb1",
+  "visible_by_default": true
+}

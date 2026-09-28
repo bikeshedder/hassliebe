@@ -86,15 +86,13 @@ mod json {
 
     #[test]
     fn unknown_light_schema_is_other() {
-        for schema in ["template", "future_schema"] {
-            let component = parse(json!({
-                "platform": "light",
-                "schema": schema,
-                "command_topic": "kitchen/light/set"
-            }))
-            .unwrap();
-            assert!(matches!(component, Component::Other { .. }), "{schema}");
-        }
+        let component = parse(json!({
+            "platform": "light",
+            "schema": "future_schema",
+            "command_topic": "kitchen/light/set"
+        }))
+        .unwrap();
+        assert!(matches!(component, Component::Other { .. }));
         let basic = parse(json!({
             "platform": "light",
             "schema": "basic",

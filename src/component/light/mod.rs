@@ -1,8 +1,10 @@
 //! MQTT light, default schema: <https://www.home-assistant.io/integrations/light.mqtt/>
 
 mod json;
+mod template;
 
 pub use json::{JsonLight, JsonLightSchema};
+pub use template::{TemplateLight, TemplateLightSchema};
 
 use crate::string_enum::string_enum;
 

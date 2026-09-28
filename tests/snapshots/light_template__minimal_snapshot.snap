@@ -1,0 +1,10 @@
+---
+source: tests/light_template.rs
+expression: "TemplateLight\n{\n    command_off_template: \"off\".into(), command_on_template: \"on\".into(),\n    command_topic: \"home/rgb1/set\".into(), ..Default::default()\n}"
+---
+{
+  "command_off_template": "off",
+  "command_on_template": "on",
+  "command_topic": "home/rgb1/set",
+  "schema": "template"
+}

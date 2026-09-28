@@ -208,6 +208,7 @@ components! {
     Siren(siren::Siren),
     Switch(switch::Switch),
     Text(text::Text),
+    TemplateLight(light::TemplateLight),
     Time(time::Time),
     Update(update::Update),
     Vacuum(vacuum::Vacuum),
