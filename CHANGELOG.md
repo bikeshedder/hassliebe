@@ -35,3 +35,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   required, `state_topic` optional.
 - Sync `Number` with Home Assistant: `NumberDeviceClass` (58 values), open
   `NumberMode`, `payload_reset`, `group`, alphabetical fields.
+- Sync `Select` with Home Assistant: `options` required, typed
+  `entity_category`.

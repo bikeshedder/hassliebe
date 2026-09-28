@@ -1,0 +1,48 @@
+---
+source: tests/select.rs
+expression: full()
+---
+{
+  "availability": [
+    {
+      "topic": "fan/status"
+    }
+  ],
+  "availability_mode": "latest",
+  "command_template": "{\"mode\": \"{{ value }}\"}",
+  "command_topic": "fan/mode/set",
+  "default_entity_id": "select.fan_mode",
+  "device": {
+    "identifiers": [
+      "fan01"
+    ],
+    "name": "Fan"
+  },
+  "enabled_by_default": true,
+  "encoding": "utf-8",
+  "entity_category": "config",
+  "entity_picture": "https://example.com/fan.png",
+  "group": [
+    "fan02_mode"
+  ],
+  "icon": "mdi:fan",
+  "json_attributes_template": "{{ value_json | tojson }}",
+  "json_attributes_topic": "fan/attributes",
+  "message_expiry_interval": 60,
+  "name": "Mode",
+  "optimistic": false,
+  "options": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "origin": {
+    "name": "fan2mqtt"
+  },
+  "qos": 1,
+  "retain": false,
+  "state_topic": "fan/mode",
+  "unique_id": "fan01_mode",
+  "value_template": "{{ value_json.mode }}",
+  "visible_by_default": true
+}

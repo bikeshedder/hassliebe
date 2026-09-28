@@ -196,7 +196,7 @@ snapshot, round-trip test, one real-world fixture, CHANGELOG line.
 - [x] **`Sync binary_sensor with HA`** (`group` → `Vec<String>`; 29 device classes)
 - [x] **`Sync switch with HA`** (`SwitchDeviceClass`: `outlet`, `switch`)
 - [x] **`Sync number with HA`** (`min` default 1 per docs; `NumberMode` via `string_enum!`; 58 device classes)
-- [ ] **`Sync select with HA`** (`entity_category` typed; no device class in HA)
+- [x] **`Sync select with HA`** (`entity_category` typed; no device class in HA)
 - [ ] **`Remove shared DeviceClass`** (should be empty of users by now)
 
 ### Phase E — new components (scope 0.1)

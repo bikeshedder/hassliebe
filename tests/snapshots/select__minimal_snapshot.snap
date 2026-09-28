@@ -1,0 +1,11 @@
+---
+source: tests/select.rs
+expression: "Select\n{\n    command_topic: \"fan/mode/set\".into(), options:\n    vec![\"low\".into(), \"high\".into()], ..Default::default()\n}"
+---
+{
+  "command_topic": "fan/mode/set",
+  "options": [
+    "low",
+    "high"
+  ]
+}
